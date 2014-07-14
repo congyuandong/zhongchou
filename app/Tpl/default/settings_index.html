@@ -1,0 +1,142 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/avatar.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/avatar.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/ajaxupload.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/switch_city.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/switch_city.js";
+$this->_var['dpagejs'][] = APP_ROOT_PATH."/system/region.js";
+$this->_var['dcpagejs'][] = APP_ROOT_PATH."/system/region.js";
+?>
+
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+		<div class="page_title">
+			 个人设置
+		</div>
+		<div class="switch_nav">
+			<ul>
+				<li class="current"><a href="{url r="settings#index"}">个人资料</a></li>
+				<li><a href="{url r="settings#password"}">修改密码</a></li>
+				<li><a href="{url r="settings#consignee"}">配送地址</a></li>
+				<li><a href="{url r="settings#bind"}">绑定设置</a></li>
+				{if $user_info.ex_real_name eq '' and $user_info.ex_account_info eq '' and $user_info.ex_contact eq ''}
+				<li><a href="{url r="settings#bank"}">银行帐户</a></li>
+				{/if}
+			</ul>
+		</div>
+		
+		<div class="blank"></div>
+		
+		<div class="left">
+			<form class="ajax_form" action="{url r="settings#save_index"}">
+									
+				<div class="form_row">
+					<div class="blank15"></div>
+					<label class="title w100">会员帐号:</label>
+					<input type="text" value="{$user_info.user_name}" class="textbox" disabled="true" />
+					<div class="blank15"></div>
+				</div>
+				<div class="form_row">
+					<label class="title w100">电子邮箱:</label>
+					<input type="text" value="{$user_info.email}" class="textbox" disabled="true" />
+					<div class="blank15"></div>
+				</div>
+				<div class="form_row">
+					<label class="title w100">性别:</label>
+					<div class="select_box">
+					<select name="sex">
+						<option value="-1" {if $user_info.sex eq -1}selected="selected"{/if}>未知</option>
+						<option value="1" {if $user_info.sex eq 1}selected="selected"{/if}>男</option>
+						<option value="0" {if $user_info.sex eq 0}selected="selected"{/if}>女</option>
+					</select>
+					</div>
+					<div class="blank15"></div>
+				</div>
+				<div class="form_row">
+					<label class="title w100">所在地:</label>
+					<div class="select_box">
+					<select name="province">				
+					<option value="" rel="0">请选择省份</option>			
+					{foreach from=$region_lv2 item=region}
+						<option value="{$region.name}" rel="{$region.id}" {if $region.selected}selected="selected"{/if}>{$region.name}</option>
+					{/foreach}
+					</select>
+					
+					<select name="city">				
+					<option value="" rel="0">请选择城市</option>
+					{foreach from=$region_lv3 item=region}
+						<option value="{$region.name}" rel="{$region.id}" {if $region.selected}selected="selected"{/if}>{$region.name}</option>
+					{/foreach}
+					</select>
+					</div>
+					<div class="blank15"></div>
+				</div>
+				<div class="form_row">
+					<label class="title w100">自我介绍:</label>
+					<textarea name="intro" class="textarea">{$user_info.intro}</textarea>
+					<div class="blank1"></div>
+					<div class="form_tip">这里可以输入大约300字的自我介绍，让大家多了解你</div>
+					<div class="blank15"></div>
+				</div>
+				
+				<div class="form_row">
+					<label class="title w100">博客或微博:</label>
+					<div class="f_l">
+						<div  id="weibo_list">
+						{if $weibo_list}
+						{foreach from=$weibo_list item=weibo_item key=key}
+							<div>
+							<input type="text" value="{$weibo_item.weibo_url}" class="textbox" name="weibo_url[]" />
+							{if $key gt 0}
+							<a href="javascript:void(0);" class="del_weibo form_link_btn"  onclick="del_weibo(this);">删除</a>
+							{/if}
+							<div class="blank"></div>
+							</div>
+						{/foreach}
+						{else}
+							<div>
+							<input type="text" value="" class="textbox" name="weibo_url[]" />							
+							<div class="blank"></div>
+							</div>
+						{/if}
+						</div>
+						<a href="javascript:void(0);" class="more_weibo form_link_btn" onclick="add_weibo();">更多</a>
+					</div>
+					<div class="blank15"></div>
+				</div>
+				
+				<div class="submit_btn_row">
+					<div class="ui-button green" rel="green">
+						<div>
+							<span>保存最新的设置</span>
+						</div>
+					</div>
+					<input type="hidden" value="1" name="ajax" />
+					<div class="blank15"></div>
+				</div>
+				
+			</form>
+		</div><!--left-->
+		<div class="right">
+			个人头像
+			<div class="blank"></div>
+			<img id="avatar" src="{function name="get_user_avatar" uid=$user_info.id type="middle"}" />
+			<div class="blank"></div>
+			<label class="fileupload" onclick="upd_file(this,'avatar_file',{$user_info.id});">
+			<input type="file" class="filebox" name="avatar_file" id="avatar_file"/>
+			
+			</label>
+			<label class="fileuploading hide" ></label>
+		</div>
+		
+		<div class="blank"></div>
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

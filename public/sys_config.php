@@ -18,7 +18,7 @@ return array(
 'ALLOW_IMAGE_EXT'=>'jpg,gif,png',
 'BG_COLOR'=>'#ffffff',
 'IS_WATER_MARK'=>'1',
-'TEMPLATE'=>'fanwe',
+'TEMPLATE'=>'default',
 'SITE_LOGO'=>'http://t1.fanwe.net:93/zc/public/attachment/201210/12/11/5077943312beb.jpg',
 'SEO_TITLE'=>'工程大学',
 'REPLY_ADDRESS'=>'info@fanwe.com',

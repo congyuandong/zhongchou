@@ -1,0 +1,57 @@
+{foreach from=$deal_list item=deal_item key=key}
+	<div class="deal_item_box f_l {if $key mod 4 eq 0}first{/if}">
+			<div class="deal_content_box">
+			<a href="{url r="deal#show" p="id=$deal_item.id"}" title="{$deal_item.name}">
+			<img src="{if $deal_item.image eq ''}{$TMPL}/images/empty_thumb.gif{else}{function name="get_spec_image" v=$deal_item.image w="205" h="160" g="1"}{/if}" alt="{$deal_item.name}" />
+			</a>
+			<div class="blank"></div>
+			<a href="{url r="deal#show" p="id=$deal_item.id"}" title="{$deal_item.name}" class="deal_title">{function name="msubstr" v=$deal_item.name b=0 e=25}</a>
+			<div class="blank"></div>
+			<div class="deal_loc">
+			{if $deal_item.user_name eq ''}{else}
+			<a href="{url r="home" p="id=$deal_item.user_id"}">{$deal_item.user_name}</a>&nbsp;&nbsp;
+			{/if}
+			{if $deal_item.province neq '' or $deal_item.city neq ''}
+			(
+			{if $deal_item.province neq ''}
+			<span><a href="{url r="deals" p="loc=$deal_item.province"}" title="{$deal_item.province}">{$deal_item.province}</a></span>
+			{/if}
+			{if $deal_item.city neq ''}
+			<span><a href="{url r="deals" p="loc=$deal_item.city"}" title="{$deal_item.city}">{$deal_item.city}</a></span>
+			{/if}
+			)
+			{/if}
+			</div>
+			<div class="blank"></div>
+			<div class="deal_brief" title="{$deal_item.brief}">{function name="msubstr" v=$deal_item.brief b=0 e=45}</div>
+			</div>
+			<div class="deal_item_dash"></div>
+			<div class="deal_content_box">				
+				<div class="ui-progress">
+					<span style="width:{$deal_item.percent}%;"></span>
+				</div>			
+				<div class="blank"></div>
+				<div class="div3"><span class="num">{$deal_item.percent}%</span><span class="til">达到</span></div>
+				<div class="div3"><span class="num" ><font>{function name="round" v=$deal_item.support_amount e=2}</font>元</span><span class="til">已获支持</span></div>
+				<div class="div3">
+					{if $deal_item.begin_time > $now}
+					<span class="num">未上线</span>
+					<span class="til">剩余时间</span>
+					{elseif $deal_item.end_time < $now and $deal_item.end_time neq 0}
+					<span class="num">已过期</span>
+					<span class="til">剩余时间</span>
+					{else}
+					<span class="num">
+						{if $deal_item.end_time eq 0}
+						长期项目
+						{else}
+						<font>{$deal_item.remain_days}</font>天
+						{/if}
+					</span>
+					<span class="til">剩余时间</span>
+					{/if}					
+				</div>
+				<div class="blank1"></div>
+			</div>
+	</div>
+	{/foreach}

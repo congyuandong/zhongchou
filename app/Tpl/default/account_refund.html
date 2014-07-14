@@ -1,0 +1,107 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/refund.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/refund.js";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/account.css";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+		<div class="page_title">
+			提现记录
+		</div>
+		<div class="switch_nav">
+			<ul>
+				<li><a href="{url r="account#index"}">支持的项目</a></li>
+				<li><a href="{url r="account#project"}">我的项目</a></li>
+				<li><a href="{url r="account#focus"}">关注的项目</a></li>
+				<li><a href="{url r="account#credit"}">收支明细</a></li>
+				
+			</ul>
+		</div>
+		
+		<div class="blank"></div>
+		
+		{include file="inc/money_box.html"} 
+		
+		<div class="full">
+		{if $refund_list}
+		<table class="data-table">
+			<tr>
+				<th width="120">金额</th>
+				<th width="120">时间</th>
+				<th>提现备注</th>
+				<th>是否确认</th>
+				<th width="120">确认时间</th>
+				<th width="50">操作</th>
+			</tr>
+			{foreach from=$refund_list item=refund_item}
+			<tr>
+				<td>{function name="format_price" v=$refund_item.money}</td>
+				<td>{function name="to_date" v=$refund_item.create_time}</td>
+				<td>{$refund_item.memo}</td>
+				<td>
+					{if $refund_item.is_pay}
+						{if $refund_item.reply neq ''}
+						{$refund_item.reply}
+						{else}
+						已确认
+						{/if}
+					{else}
+					未确认
+					{/if}
+				</td>
+				<td>{function name="to_date" v=$refund_item.pay_time}</td>
+				<td>
+		
+					<a href="{url r="account#delrefund" p="id=$refund_item.id"}" class="delrefund linkgreen">删除</a>
+		
+				</td>
+			</tr>
+			{/foreach}
+		</table>
+		
+		{else}
+		<div class="empty_tip">
+			还没任何提现记录
+		</div>
+		{/if}
+		
+		<div class="blank"></div>
+		<div class="pages">{$pages}</div>
+		<div class="blank"></div>
+		
+		<form class="ajax_form" action="{url r="account#submitrefund"}">
+			<div class="form_row">
+					<label class="title w100">提现金额:</label>
+					<input type="text" value="" class="textbox" name="money" />
+					<div class="blank15"></div>
+			</div>
+			<div class="form_row">
+					<label class="title w100">提现备注:</label>
+					<textarea name="memo" class="textarea"></textarea>
+					<div class="blank15"></div>
+			</div>
+			<div class="submit_btn_row">
+					<div class="ui-button green" rel="green">
+						<div>
+							<span>提交提现申请</span>
+						</div>
+					</div>
+					<input type="hidden" value="1" name="ajax" />
+					<div class="blank15"></div>
+			</div>
+		</form>
+		
+		</div>
+		
+		
+		<div class="blank"></div>
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

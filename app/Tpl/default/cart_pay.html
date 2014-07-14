@@ -1,0 +1,126 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/cart.css";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/cart_pay.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/cart_pay.js";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+		<div class="page_title">
+			{$deal_info.name}
+			<div class="support_price">
+				<input name="is_delivery" id="is_delivery" type="hidden" value="{$deal_item.is_delivery}" />
+				<font class="delivery_fee">
+				支持金额  ¥{$deal_item.price_format}			
+				{if $deal_item.is_delivery eq 1}				
+				
+					{if $deal_item.delivery_fee neq 0}
+					邮费:¥{$deal_item.delivery_fee_format}
+					{else}
+					包邮
+					{/if}
+				
+				{/if}
+				</font>
+				应付总额 <span>¥{$deal_item.total_price_format}</span> 元	
+			</div>
+		</div>
+		
+		<div class="switch_nav" style="height:1px;"></div>
+		
+		<div class="blank"></div>
+		
+		<div class="public_left">
+			
+			<form class="pay_form" action="{url r="cart#go_pay"}" target="_blank" method="post">									
+				
+				{if $user_info.money gt 0}
+					<div class="form_row">
+						<div class="blank15"></div>
+						<label class="title">使用余额支付:</label>
+						<input type="text" class="textbox" value="0" name="credit" style="width:100px;" />
+						<label class="title" style="padding-left:10px;">可用余额：{function name="format_price" v=$user_info.money}</label>
+						<input type="hidden" name="max_credit" value="{$user_info.money}" />
+						<input type="hidden" name="max_pay" value="{$deal_item.total_price}" />
+						<div class="blank15"></div>
+					</div>
+				{/if}
+						
+				{$payment_html}
+				
+				<div class="blank"></div>
+				<div>
+					<div class="ui-button green" rel="green">
+						<div>
+							<span>确定，去付款</span>
+						</div>
+					</div>				
+					<input type="hidden" id="back_url" value="{url r="account"}" />	
+					<input type="hidden" value="{$memo}" name="memo" />	
+					<input type="hidden" value="{$deal_item.id}" name="id" />
+					<input type="hidden" value="{$consignee_id}" name="consignee_id" />	
+					<input type="hidden" value="1" name="ajax" />					
+					<div class="blank15"></div>
+				</div>
+				
+			</form>
+			
+		</div><!--left-->
+		<div class="public_right">
+				
+				<div class="deal_item_box">
+					<div class="deal_content_box">
+					<img  src="{if $deal_info.image eq ''}{$TMPL}/images/empty_thumb.gif{else}{function name="get_spec_image" v=$deal_info.image w="205" h="160" g="1"}{/if}" />
+					<div class="blank"></div>
+					<a href="{url r="deal#show" p="id=$deal_info.id"}" class="deal_title" title="{$deal_info.name}">{$deal_info.name}</a>
+					<div class="blank"></div>
+					<a href="{url r="home" p="id=$deal_info.user_id"}">{$deal_info.user_name}</a></a>&nbsp;&nbsp;(<span><a href="{url r="deals" p="loc=$deal_info.province"}" title="{$deal_info.province}">{$deal_info.province}</a></span><span><a href="{url r="deals" p="loc=$deal_info.city"}" title="{$deal_info.city}">{$deal_info.city}</a></span>)
+					<div class="blank"></div>
+					<div>{$deal_info.brief}</div>
+					</div>
+					<div class="deal_item_dash"></div>
+					<div class="deal_content_box">
+						<div class="ui-progress">
+							<span style="width:{$deal_info.percent}%;"></span>
+						</div>
+						<div class="blank"></div>
+						<div class="div3"><span class="num">{$deal_info.percent}%</span><span class="til">达到</span></div>
+						<div class="div3"><span class="num" ><font>{function name="round" v=$deal_info.support_amount e=2}</font>元</span><span class="til">已获支持</span></div>
+		
+						<div class="div3">
+							{if $deal_info.begin_time > $now}
+							<span class="num">未上线</span>
+							<span class="til">剩余时间</span>
+							{elseif $deal_info.end_time < $now and $deal_info.end_time neq 0}
+							<span class="num">已过期</span>
+							<span class="til">剩余时间</span>
+							{else}
+							<span class="num">
+								{if $deal_info.end_time eq 0}
+								长期项目
+								{else}
+								<font>{$deal_info.remain_days}</font>天
+								{/if}
+							</span>
+							<span class="til">剩余时间</span>
+							{/if}					
+						</div>
+				
+						<div class="blank1"></div>
+					</div>
+				</div>
+				
+				
+				
+			</div>
+		
+		<div class="blank"></div>
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

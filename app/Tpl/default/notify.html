@@ -1,0 +1,58 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/notify.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/notify.js";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/notify.css";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+		<div class="page_title">
+			{if $all eq 0}
+			未读通知
+			{else}
+			全部通知
+			{/if}
+		</div>
+		<div class="switch_nav">
+			<ul>
+				<li {if $all eq 0}class="current"{/if}><a href="{url r="notify#index"}">未读通知</a></li>
+				<li {if $all eq 1}class="current"{/if}><a href="{url r="notify#index" p="all=1"}">全部通知</a></li>				
+			</ul>
+		</div>
+		
+		<div class="full">
+		{if $notify_list}
+		{foreach from=$notify_list item=notify_item}
+		<div class="notify_item">
+			<a href="{$notify_item.url}" target="_blank" class="linkgreen">{$notify_item.log_info}</a> <span>{function name="pass_date" v=$notify_item.log_time}</span>
+			<div class="blank5"></div>
+			<div class="notify_op">
+				{if $notify_item.is_read eq 0}
+				<a href="{url r="notify#ignore" p="id=$notify_item.id"}" class="linkgreen">忽略</a> | 
+				{/if}
+				<a href="{url r="notify#delnotify" p="id=$notify_item.id"}" class="delnotify linkgreen">删除</a>
+			</div>
+			<div class="blank5"></div>
+		</div>
+		<div class="blank"></div>
+		{/foreach}
+	
+		<div class="blank"></div>
+		<a href="{url r="notify#ignoreall"}" class="linkgreen" style="font-size:14px;">忽略全部通知</a>
+		
+		<div class="blank"></div>
+		<div class="pages">{$pages}</div>
+		{else}
+		<div class="empty_tip">{if $all eq 0}没有新通知{else}没有通知记录{/if}</div>
+		{/if}
+		</div>
+				
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

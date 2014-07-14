@@ -1,0 +1,34 @@
+{include file="inc/header.html"} 
+{if $stay eq 0}
+<meta http-equiv="refresh" content="3;URL={$jump}" />
+{/if}
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+	
+		<div class="page_title">
+			成功
+		</div>
+		<div class="switch_nav" style="height:1px;"></div>				
+					
+
+							<div class="full msgbox">
+								<p>
+								{if $integrate_result}
+								{$integrate_result}
+								{/if}
+								{$msg}	
+								</p>
+								<div class="blank"></div>
+								{if $stay eq 0}
+								<div class="return_jump">								
+									请点击此处直接 [<a href="{$jump}">返回</a>] 或者等待三秒钟后自动跳转。		
+								</div>
+								{/if}
+							</div>
+
+
+	</div>
+</div>
+					
+<div class="blank"></div>
+{include file="inc/footer.html"} 

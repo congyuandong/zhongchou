@@ -1,0 +1,25 @@
+<div class="comment_item">
+	<div class="comment_user_avatar">{function name="show_avatar" p="$comment_item.user_id" t="small"}</div>
+	<div class="comment_content">
+		<a href="{url r="home" p="id=$comment_item.user_id"}" class="linkgreen">{$comment_item.user_name}</a>
+		{if $comment_item.deal_info}
+		对 <a href="{url r="deal#show" p="id=$comment_item.deal_info.id"}" target="_blank" title="{$comment_item.deal_info.name}" class="linkgreen">{$comment_item.deal_info.name}</a> 
+		{if $comment_item.log_id neq 0}的动态{/if}{if $comment_item.reply_user_id gt 0}回复了评论{else}发表了评论{/if}:
+		{/if}
+		<div class="blank"></div>
+		<span class="cnt">
+		{function name="nl2br" v=$comment_item.content}
+		</span> &nbsp;&nbsp;
+		<span class="pass_time">{function name="pass_date" v=$comment_item.create_time}</span>
+		<div class="blank1"></div>
+		<div class="comment_op" style="height:20px;">
+			{if $comment_item.user_id eq $user_info.id}
+			<a href="{url r="deal#delcomment" p="id=$comment_item.id"}" class="linkgreen delcomment">删除</a>
+			{/if}	
+		</div>
+		<div class="blank1"></div>
+
+	</div>
+	
+	<div class="blank5"></div>
+</div>

@@ -1,0 +1,55 @@
+.author_row{ padding:0px 20px; font-size:14px;}
+.author_row a{ color:#690; text-decoration:none;}
+.author_row a:hover{ color:#9c0; text-decoration:none;}
+.author_row span{ display:inline-block; float:left; height:20px;  }
+.send_message{ display:inline-block; width:17px; height:12px; font-size:0px; line-height:0px; margin-left:5px; background:url(../images/message.gif) 0px 3px no-repeat; cursor:pointer;}
+
+.deal_box{ padding:10px;}
+.deal_left{ width:570px; float:left; overflow:hidden;}
+.deal_right{ width:340px; float:right;  }
+.deal_right_info{ background:#f2f2f2;}
+
+.deal_url{ border:1px solid #ccc; border-radius:3px; height:14px;}
+.deal_url input{ font-size:12px; color:#ccc; border:0px; padding:0px; margin:0px; width:250px; float:left; height:14px; line-height:14px;}
+.deal_url span{ background:url(../images/copy_url.gif) no-repeat; width:14px; height:14px; cursor:pointer; display:inline-block; float:left; margin-left:5px;}
+
+.deal_description{ font-size:14px; line-height:25px;}
+.deal_tags{ font-size:14px; padding:5px 0px; }
+.deal_tags a{ color:#690; text-decoration:none;}
+.deal_tags a:hover{ color:#9c0; text-decoration:none;}
+
+
+
+.faq_question{ border:1px solid #F0F0F0; background:#f5f5f5; color:#72A40F; font-size:14px; height:25px; line-height:25px; padding:0px 20px;  cursor:pointer;}
+.faq_answer{ display:none; border:1px dotted #f0f0f0; border-top:0px; padding:10px 20px; font-size:14px; line-height:25px;}
+
+.deal_contact{ padding:15px; background:#f5f5f5; border-radius:5px; font-size:14px; line-height:30px; height:30px;}
+
+.info_box{ padding:15px 25px 0px 25px;}
+.info_title{ font-size:16px; font-weight:bolder;}
+.info_content{ font-size:40px; font-weight:bolder; line-height:50px;}
+.info_content span{ font-size:16px;}
+
+.deal_tip{ position:relative; height:70px;}
+.deal_tip div{ position:absolute; background:url(../images/deal_tip_bg.gif) no-repeat; width:320px; height:40px; left:-10px; color:#fff; padding:15px 20px; font-size:12px; }
+
+.green_tip div{ background-position:0px 0px; }
+.gray_tip div{ background-position:0px -70px; }
+
+.deal_item{ padding:10px 20px;}
+.deal_item_price{ font-size:16px; font-weight:bolder;}
+.deal_item_support_count{ height:30px; line-height:30px;}
+.deal_item_description{ font-size:12px; padding:15px; border:#ccc dotted 1px; background:#f9f9f9;}
+.deal_item_delivery_limit{ height:30px; line-height:30px;}
+.deal_item_repaid{ height:30px; line-height:30px; }
+.deal_item_images .image_item{ float:left; border:#ccc solid 1px; display:inline-block; width:50px; height:50px; margin-right:10px; cursor:url(../images/zoom.cur),auto;}
+
+
+.deal_user_box .deal_user_title{ font-size:16px; font-weight:bolder; height:35px; line-height:35px; border-bottom:#ccc dotted 1px; margin-bottom:10px;}
+.deal_user_box .deal_user_avatar{ float:left; width:120px; height:120px; }
+.deal_user_box .deal_user_info{ display:inline-block; width:200px; float:left; margin-left:10px;}
+.user_weibo_list a{ color:#51A2F5; text-decoration:none;}
+.user_weibo_list a:hover{ color:#51A2F5; text-decoration:none;}
+.deal_user_name{ font-size:16px; font-weight:bolder; color:#690; height:30px; line-height:30px;}
+.deal_login_time{ color:#ccc; height:30px; line-height:30px;}
+.deal_user_loc{ background:url(../images/loc_ico.gif) no-repeat 0px 8px; height:30px; line-height:30px; color:#666; padding-left:15px;}

@@ -1,0 +1,35 @@
+<div class="page_title">
+			{$deal_info.name}
+</div>
+<div class="author_row">
+	<span>作者：</span>
+	{if $deal_info.user_id neq 0}
+	<span><a href="{url r="home" p="id=$deal_info.user_id"}">{$deal_info.user_name}</a></span>
+	<span onclick="send_message({$deal_info.user_id});" class="send_message"></span>
+	{else}<span>{function name="app_conf" v="SITE_NAME"}</span>
+	{/if}
+</div>
+<div class="blank"></div>
+<div class="blank"></div>		
+<div class="switch_nav" style="position:relative;">
+	{if $is_focus}
+	<div class="ui-button gray focus_deal" rel="gray" id="{$deal_info.id}">
+		<div>
+			<span>取消关注</span>
+		</div>
+	</div>
+	{else}
+	<div class="ui-button blue focus_deal" rel="blue" id="{$deal_info.id}">
+		<div>
+			<span>立即关注</span>
+		</div>
+	</div>
+	{/if}
+	<ul>
+		<li {if ACTION_NAME eq 'show'}class="current"{/if}><a href="{url r="deal#show" p="id=$deal_info.id"}">项目主页</a></li>
+		<li {if ACTION_NAME eq 'update' or ACTION_NAME eq 'updatedetail'}class="current"{/if}><a href="{url r="deal#update" p="id=$deal_info.id"}">动态({$deal_info.log_count})</a></li>
+		<li {if ACTION_NAME eq 'support'}class="current"{/if}><a href="{url r="deal#support" p="id=$deal_info.id"}">支持者({$deal_info.support_count})</a></li>
+		<li {if ACTION_NAME eq 'comment'}class="current"{/if}><a href="{url r="deal#comment" p="id=$deal_info.id"}">评论({$deal_info.comment_count})</a></li>				
+	</ul>
+		
+</div>

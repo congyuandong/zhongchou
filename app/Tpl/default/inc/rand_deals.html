@@ -1,0 +1,15 @@
+{foreach from=$rand_deals item=deal_item}
+<div class="rand_deal">
+	<div class="rand_deal_image">
+	<a href="{url r="deal#show" p="id=$deal_item.id"}" title="{$deal_item.name}" target="_blank">
+	<img src="{function name="get_spec_image" v=$deal_item.image w=60 h=60 g=1}" />
+	</a>
+	</div>
+	<div class="rand_deal_title">
+	<a href="{url r="deal#show" p="id=$deal_item.id"}" title="{$deal_item.name}" target="_blank" class="linkgreen">
+		{function name="msubstr" v=$deal_item.name b=0 e=20}	
+	</a>		
+	</div>
+	<div class="blank1"></div>
+</div>
+{/foreach}

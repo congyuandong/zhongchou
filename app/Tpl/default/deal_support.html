@@ -1,0 +1,52 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/deal.css";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/deal_support.css";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/fancybox.css";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/jquery.fancybox.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/deal.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/deal.js";
+
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+
+<div class="blank"></div>
+<div class="shadow_bg">
+	<div class="wrap white_box">
+		{include file="inc/deal_header.html"}
+
+		
+		<div class="deal_box">
+			<div class="deal_left">
+				{foreach from=$support_list item=support_item}
+				<div class="support_item">
+					<div class="support_avatar">{function name="show_avatar" p="$support_item.user_id"}</div>
+					<div class="support_info">
+						<div class="support_user_name">
+						<a href="{url r="home" p="id=$support_item.user_id"}" class="linkgreen">{$support_item.user_info.user_name}</a>
+						<span class="support_loc">({$support_item.user_info.province}{$support_item.user_info.city})</span>
+						</div>
+						<div class="blank5"></div>
+						{function name="to_date" v=$support_item.create_time} 支持了 {function name="format_price" v=$support_item.price}
+						<div class="blank5"></div>
+						TA总共支持了{$support_item.user_info.support_count}个项目
+					</div>
+					<div class="blank1"></div>
+				</div>
+				{/foreach}
+				
+				<div class="blank"></div>
+				<div class="pages">{$pages}</div>
+			</div><!--end left-->
+			<div class="deal_right">
+				{include file="inc/deal_right.html"}
+			</div><!--end right-->
+		</div>
+		
+		<div class="blank"></div>
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

@@ -1,0 +1,66 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/api_bind.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/api_bind.js";
+
+?>
+
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+		<div class="page_title">
+			帐户绑定
+		</div>
+		<div class="switch_nav">
+			<ul>
+				<li><a href="{url r="settings#index"}">个人资料</a></li>
+				<li><a href="{url r="settings#password"}">修改密码</a></li>
+				<li><a href="{url r="settings#consignee"}">配送地址</a></li>
+				<li class="current"><a href="{url r="settings#bind"}">绑定设置</a></li>
+				{if $user_info.ex_real_name eq '' and $user_info.ex_account_info eq '' and $user_info.ex_contact eq ''}
+				<li><a href="{url r="settings#bank"}">银行帐户</a></li>
+				{/if}
+			</ul>
+		</div>
+		
+		<div class="blank"></div>
+		
+		<div class="left">
+				<div class="blank15"></div>
+							
+				{foreach from=$api_list item=api_item}		
+				<div class="form_row">
+					
+					{if $api_item.is_bind}
+					<label class="title w100">{$api_item.dispname}:</label>
+					<input type="text" class="textbox" value="{$api_item.weibo_url}" disabled="true" />
+					<div class="ui-button green" rel="green" style="margin-left:10px;" url="{url r="settings#unbind" p="c=$api_item.class_name"}">
+						<div>
+							<span>取消绑定</span>
+						</div>
+					</div>
+					{else}
+					<label class="title w100">{$api_item.dispname}:</label>					
+					<div class="ui-button green" rel="green" style="margin-left:10px;" url="{$api_item.url}">
+						<div>
+							<span>立即绑定</span>
+						</div>
+					</div>
+					{/if}
+					<div class="blank15"></div>
+				</div>
+				
+				{/foreach}
+				
+
+		</div><!--left-->
+		
+		
+		<div class="blank"></div>
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

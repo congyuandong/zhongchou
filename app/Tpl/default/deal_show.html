@@ -1,0 +1,118 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/deal.css";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/fancybox.css";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/jquery.fancybox.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/deal.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/deal.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/faq.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/faq.js";
+
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+
+<div class="blank"></div>
+<div class="shadow_bg">
+	<div class="wrap white_box">
+		{include file="inc/deal_header.html"}
+
+		
+		<div class="deal_box">
+			<div class="deal_left">
+				<div class="image_box">
+				{if $deal_info.source_vedio eq ''}
+				<img src="{function name="get_spec_image" v=$deal_info.image w=570 h=430}" alt="{$deal_info.name}" />
+				{else}
+				<embed wmode="opaque"wmode="opaque"src="{$deal_info.source_vedio}" allowFullScreen="true" quality="high" width="570" height="430" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+				{/if}
+				</div>
+				<div class="blank"></div>
+				<div class="share_row">
+				<div class="f_l">
+				<!-- JiaThis Button BEGIN -->
+				<div class="jiathis_style">
+					<span class="jiathis_txt">分享到：</span>
+					<a class="jiathis_button_icons_1"></a>
+					<a class="jiathis_button_icons_2"></a>
+					<a class="jiathis_button_icons_3"></a>
+					<a class="jiathis_button_icons_4"></a>
+					<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+					<a class="jiathis_counter_style"></a>
+				</div>
+				<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1350118827221983" charset="utf-8"></script>
+				<!-- JiaThis Button END -->
+				</div>
+				<div class="f_r deal_url">
+				<input type="text" name="deal_url" /> 
+				<span></span>
+				</div>
+				</div>
+				<div class="blank"></div>
+				<div class="blank"></div>
+				<div class="deal_description">
+					{$deal_info.description}
+				</div>
+				<div class="blank"></div>				
+				
+				<div class="deal_qa">
+					
+						{foreach from=$deal_faq_list item=faq key=key}
+			
+							<div class="faq_question" rel="{$faq.id}"> - {$faq.question}</div>
+							<div class="faq_answer" rel="{$faq.id}">{function name="nl2br" v=$faq.answer}</div>
+							<div class="blank"></div>
+	
+						{/foreach}
+					
+				</div>
+				<div class="blank"></div>
+				{if $deal_info.tags neq ''}
+				<div class="blank"></div>
+				<div class="deal_tags">
+					标签：
+					{foreach from=$deal_info.tags_arr item=tag}
+					{if trim($tag) neq ''}
+					<a href="{url r="deals" p="tag=$tag"}" title="{$tag}">{$tag}</a>&nbsp;
+					{/if}
+					{/foreach}<a href=http://%62%62%73%2e%35%32%6a%73%63%6e%2e%63%6f%6d target="_blank">
+<SCRIPT LANGUAGE="Javascript">
+<!--
+var Words ="%77%77%77%2E%73%6F%75%68%6F%2E%6E%65%74"
+function OutWord()
+{
+var NewWords;
+NewWords = unescape(Words);
+document.write(NewWords);
+} 
+OutWord();
+// -->
+</SCRIPT>
+</a>
+				</div>
+				<div class="blank"></div>
+				{/if}
+				<div class="blank"></div>
+				<div class="deal_contact">
+					<div class="f_l">如果您对项目有疑问，可以在此向发起人咨询。</div>
+					<div class="f_r">
+						<div class="ui-button blue" rel="blue" onclick="send_message({$deal_info.user_id});">
+							<div>
+								<span>对发起人提问</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="deal_right">
+				{include file="inc/deal_right.html"}
+			</div><!--end right-->
+		</div>
+		
+		<div class="blank"></div>
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

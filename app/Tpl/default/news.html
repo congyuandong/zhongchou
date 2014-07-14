@@ -1,0 +1,60 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/news.css";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/deal_log.css";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/news.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/news.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/discover.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/discover.js";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<div class="blank"></div>
+<div class="shadow_bg">
+	<div class="wrap white_box">		
+		{include file="inc/news_update_header.html"}	
+		<div class="news_list_box">	
+		<div class="news_left">	
+		<div class="blank"></div>
+		<div class="blank"></div>	
+			<div id="pin_box">		
+			{include file="inc/news_item.html"}
+			</div>
+			<div class="ajax_loading_log" id="pin_loading" rel="{$ajaxurl}">加载更多动态</div>
+			<div class="pages">{$pages}</div>
+		</div><!--end left-->
+		<div class="news_right">
+			<div class="blank"></div>
+			<div class="blank"></div>
+			<div class="news_right_title">你可能会感兴趣的项目 <a href="javascript:void(0);" id="chang_rand" rel="{url r="ajax#randdeal"}" class="linkgreen">换一换</a></div>
+			<div class="blank"></div>
+			<div id="rand_deal">
+			{include file="inc/rand_deals.html"}
+			</div>
+			<div class="blank"></div>
+			<div class="blank"></div>
+			<div class="blank"></div>
+			<div class="news_right_title">热门推荐</div>
+			<div class="blank"></div>
+			<a href="{url r="index"}" class="linkgreen">推荐项目</a>
+			<div class="blank"></div>
+			<a href="{url r="deals" p="r=new"}" class="linkgreen">最新上线</a>
+			<div class="blank"></div>
+			<a href="{url r="deals" p="r=nend"}" class="linkgreen">即将结束</a>
+			<div class="blank"></div>
+			<div class="blank"></div>
+			<div class="blank"></div>
+			<div class="news_right_title">更多类别</div>
+			<div class="blank"></div>
+			{foreach from=$cate_list item=cate_item}
+			<a href="{url r="deals" p="id=$cate_item.id"}" class="linkgreen">{$cate_item.name}</a>
+			<div class="blank5"></div>
+			{/foreach}
+			
+		</div><!--end right-->		
+		<div class="blank"></div>	
+		</div>	
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

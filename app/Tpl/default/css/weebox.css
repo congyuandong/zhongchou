@@ -1,0 +1,65 @@
+/**
+ * weebox.css
+ *
+ * weebox style
+ *
+ * @category   javascript
+ * @package    jquery
+ * @author     Jack <xiejinci@gmail.com>
+ * @copyright  Copyright (c) 2006-2008 9wee Com. (http://www.9wee.com)
+ * @license    http://www.9wee.com/license/
+ * @version    
+ */
+.dialog-loading {background:url(../images/loading.gif) no-repeat center; width:32px; height:32px; margin:20px auto; padding:0px 50px; }
+.dialog-mask{border:0px; background:#000; margin:0px; padding:0px; position:absolute; top:0px; left:0px;}
+
+.dialog-box {background:#fff; width:300px;}
+.dialog-box .dialog-header {padding:8px; height:15px;  border-bottom:solid 1px #ccc; position:relative;}
+.dialog-box .dialog-title {float:left; text-align:left; font-size:12px; position:relative;}
+.dialog-box .dialog-close {float:right;	cursor:pointer;	margin:3px 3px 0 0;	height:11px; width:11px; background:url(../images/close.gif) no-repeat;}
+.dialog-box .dialog-content {clear:both; margin:0px; padding:6px; color:#666666; font-size:13px; overflow-y:auto;}
+.dialog-box .dialog-button {clear:both; border-top: 1px solid #cccccc; text-align:center; margin:0px; padding-top:5px;}
+
+.errorbox {border:1px solid #924949;}
+.errorbox .dialog-content {background:#fff url(../images/e_bg.jpg) bottom right no-repeat;}
+.errorbox .dialog-header {background:url(../images/e_hd.gif) repeat-x; color:#6f2c2c;}
+.warningbox {border:1px solid #c5a524;}
+.warningbox .dialog-content {background:#fff url(../images/w_bg.jpg) bottom right no-repeat;}
+.warningbox .dialog-header {background:url(../images/w_hd.gif) repeat-x; color:#957c17;}
+.successbox {border:1px solid #60a174;}
+.successbox .dialog-content {background:#fff url(../images/s_bg.jpg) bottom right no-repeat;}
+.successbox .dialog-header {background:url(../images/s_hd.gif) repeat-x; color:#3c7f51;}
+.promptbox {border:1px solid #cccccc;}
+.promptbox .dialog-content {background:#fff url(../images/p_bg.jpg) bottom right no-repeat;}
+.promptbox .dialog-header {background:#edf3f7; color:#355468;}
+.dialogbox {border:1px solid #cccccc;}
+.dialogbox .dialog-content {background:#fff;}
+.dialogbox .dialog-header {background:#f0f0f0; color:#999;}
+.boxbox {border:1px solid #cccccc;}
+.boxbox .dialog-content {background:#fff;}
+.boxbox .dialog-header {background:#edf3f7; color:#355468;}
+
+.weedialog{}
+.weedialog .dialog-header{height:37px;  cursor:move; line-height:37px; font-size:14px; width:100%; clear:both; text-align:left; position:relative; top:0; left:0;background:url(../images/dialog_header.png);}
+.weedialog .dialog-title{color:#333; float:left; padding-left:20px;  }
+
+.weedialog .dialog-top{height:8px;position:relative; overflow:hidden;}
+.weedialog .dialog-tl{position:absolute; left:0px; top:0px;width:8px; height:8px;background:url(../images/lb_left_top.png) no-repeat; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="scale", src="../images/lb_left_top.png"); _background:none;}
+.weedialog .dialog-tc{margin-left:8px; margin-right:8px; width:auto; height:8px;background:url(../images/lb_border.png) repeat-x; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="scale", src="../images/lb_border.png"); _background:none; overflow:hidden;}
+.weedialog .dialog-tr{position:absolute; right:0px;top:0px;width:8px; height:8px;background:url(../images/lb_right_top.png) no-repeat; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="scale", src="../images/lb_right_top.png"); _background:none;}
+.weedialog .dialog-close{ cursor:pointer; background:url(../images/light_box_close_btn.png) no-repeat; font-size:0px; line-height:0px; height:15px; width:15px; float:right; margin:10px 10px 0 0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="scale", src="../images/light_box_close_btn.png"); _background:none;}
+.weedialog .dialog-content{clear:both; padding:10px; overflow-y:auto; overflow-x:hidden;background-color:#fff;}
+.weedialog .dialog-button{clear:both; background:#fff; height:40px; overflow:hidden;}
+.weedialog .dialog-cl{width:8px;background:url(../images/lb_border.png); _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="scale", src="../images/lb_border.png"); _background:none;}
+.weedialog .dialog-cr{width:8px;background:url(../images/lb_border.png); _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="scale", src="../images/lb_border.png"); _background:none;}
+.weedialog .dialog-button{text-align:right; font-size:12px; padding-right:6px; _padding-right:2px;}
+
+.weedialog .dialog-ok{margin-right:3px; float:right;}
+.weedialog .dialog-cancel{margin-right:3px; float:right;}
+
+.weedialog .dialog-button-disabled{overflow:visible; overflow-y:hidden; border:1px solid #999; background:url(img/btn_cancel.gif) top; height:24px; line-height:24px; color:#666;cursor:pointer; padding:0 5px; margin:0px;}
+.weedialog .dialog-bot{clear:both; height:8px; position:relative; font-size:0px;}
+.weedialog .dialog-bl{position:absolute; left:0px; top:0px; width:8px; height:8px; background:url(../images/lb_left_bottom.png) no-repeat; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="scale", src="../images/lb_left_bottom.png"); _background:none;}
+.weedialog .dialog-bc{margin-left:8px; margin-right:8px; width:auto; height:8px; background:url(../images/lb_border.png) repeat-x; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="scale", src="../images/lb_border.png"); _background:none;}
+.weedialog .dialog-br{position:absolute; right:0px; top:0px; width:8px; height:8px; background:url(../images/lb_right_bottom.png) no-repeat; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="scale", src="../images/lb_right_bottom.png"); _background:none;}
+

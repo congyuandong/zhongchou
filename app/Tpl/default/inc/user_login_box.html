@@ -1,0 +1,54 @@
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/ajax_user_login.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/ajax_user_login.js";
+?>
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+
+<div class="signlogin_box">
+			<div class="left">
+				
+				<div class="link_dash f25">
+					登录 </span class="hf2weafr225"></span><span class="235435"></span><span class="9hf2f3sfs25"></span><span class="hffsff295"></span><span class="hffs2925"></span><span class="hgag25"></span><span class="hffs3fsf2935"></span><span class="hf9fd22425"></span><span class="hff9s525"></span><span class="hff9s525"></span><span class="hff9s525"></span> 
+				</div>
+				<form id="user_login_form" name="user_login_form" action="{url r="user#do_login"}">
+					
+				<div class="form_row">
+					<div class="blank15"></div>
+					<label class="title"><font>*&nbsp;&nbsp;</font>帐号:</label>
+					<input type="text" value="邮箱或者用户名" class="textbox" name="email"/>
+					<div class="blank15"></div>
+				</div>
+				<div class="form_row">
+					<label class="title"><font>*&nbsp;&nbsp;</font>密码:</label>
+					<input type="password" name="user_pwd"  class="textbox" />
+					<span class="getpassword"><a href="{url r="user#getpassword"}">忘记密码 ？</a></span>
+					<div class="blank15"></div>
+				</div>
+				<div class="form_row auto_login">
+					<input type="checkbox" value="1" name="auto_login" checked="checked" /> 
+					<label class="auto_login_tip">下次自动登录</label>
+					<div class="blank15"></div>
+				</div>
+				
+				<div class="button_row do_login">
+					<input type="button" value="" name="submit_form" class="btn_do_login" id="btn_do_login" />
+					<input type="hidden" value="1" name="ajax" />
+					<div class="blank15"></div>
+				</div>
+				
+				</form>
+			</div>
+			
+			<div class="right">
+				<div class="link_dash f16">
+					快速通过微博帐号登录					
+				</div>		
+				<div class="blank"></div>		
+				{insert name="api_login"}
+				<span class="no_account_tip">还没有账号？</span>
+				<a href="{url r="user#register"}" class="btn_go_register" title="立即注册"></a>
+				
+			</div>
+			<div class="blank"></div>
+			
+		</div>

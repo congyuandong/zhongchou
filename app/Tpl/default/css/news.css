@@ -1,0 +1,34 @@
+.news_list_box{ padding:10px;}
+
+.news_left{ width:730px; float:left; }
+.news_right{ width:200px; float:right; }
+
+.news_deal_info{ width:180px; float:left; padding-right:10px; }
+.news_deal_update{ width:520px; float:right; padding-right:10px;}
+
+.deal_bar_bg{ background:#d5d5d5; position:relative; height:4px; width:180px; font-size:0px; line-height:0px; overflow:hidden; border-radius:2px; }
+.deal_bar_front{ background:#87C442; position:absolute; height:4px; font-size:0px; line-height:0px; border-radius:2px;}
+
+.deal_news_info_row{ color:#999;}
+
+a.news_update_title{ font-size:20px; font-family:"微软雅黑"; font-weight:bolder; text-decoration:none; line-height:35px; }
+a.news_update_title:hover{ text-decoration:none;}
+.send_message{ display:inline-block; width:17px; height:12px; font-size:0px; line-height:0px; margin-left:5px; background:url(../images/message.gif) 0px 3px no-repeat; cursor:pointer;}
+
+.author{ float:left;}
+.passdate{ float:right; color:#ccc; font-size:14px;}
+.dash{ border-bottom:#d5d5d5 solid 1px;}
+
+.log_info{ padding:10px 0px; font-size:14px; color:#666; }
+.deal_update{ padding-bottom:50px;}
+
+.comment_tip_row{ text-align:right; font-size:12px; height:15px; line-height:15px; }
+.comment_tip_row a{ color:#690; text-decoration:none;}
+.comment_tip_row a:hover{ color:#9c0; text-decoration:none;}
+
+.news_right_title{ font-size:14px; font-weight:bolder; border-bottom:#f2f2f2 solid 1px; padding-bottom:5px;}
+.news_right_title a{ font-size:12px; font-weight:normal;}
+
+.rand_deal{ padding:5px 0px;}
+.rand_deal_image{ width:60px; height:60px; float:left; }
+.rand_deal_title{ float:right; width:120px; padding-right:10px; font-size:12px;}

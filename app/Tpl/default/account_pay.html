@@ -1,0 +1,51 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/account.css";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/go_pay.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/go_pay.js";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+		<div class="page_title">
+			<div class="credit_box">充值 <span class="price">{function name="format_price" v=$money p=2}</span> 元</div>
+		</div>
+		
+		<div class="switch_nav" style="height:1px;"></div>
+		
+		<div class="blank"></div>
+		
+		<div class="full" style="padding:30px;">
+			
+			<form class="pay_form" action="{url r="account#go_pay"}" target="_blank">
+									
+				
+				{$payment_html}
+				
+				<div class="blank"></div>
+				<div>
+					<div class="ui-button green" rel="green">
+						<div>
+							<span>确定，去付款</span>
+						</div>
+					</div>				
+					<input type="hidden" id="back_url" value="{url r="account"}" />	
+					<input type="hidden" value="{$money}" name="money" />
+					<input type="hidden" value="1" name="ajax" />					
+					<div class="blank15"></div>
+				</div>
+				
+			</form>
+			
+		</div><!--full-->
+		
+		
+		<div class="blank"></div>
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

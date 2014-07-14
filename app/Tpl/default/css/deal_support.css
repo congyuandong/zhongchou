@@ -1,0 +1,6 @@
+.support_item{ padding:10px 0px; border-bottom:solid 1px #ccc; }
+.support_avatar{ float:left; width:60px; height:60px; }
+.support_avatar img{ width:60px; height:60px;}
+.support_info{ float:left; width:450px; padding-left:10px;}
+.support_user_name{ font-size:14px; font-weight:bolder;}
+.support_loc{ color:#999;}

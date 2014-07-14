@@ -1,0 +1,9 @@
+.index_images { overflow:hidden; width:960px; position:relative; height:320px; }
+.index_images .roll_box a{ float:left; display:block; margin:0px; padding:0px; width:960px; height:280px;}
+.index_images .roll_box{ position:absolute; left:0px; top:0px;}
+
+.index_images .slider_page{ text-align:center; margin-top:285px;}
+.index_images .slider_page ul{ display:inline-block;}
+.index_images .slider_page ul li{ float:left; width:10px; height:20px; background:url(../images/slider_ico.gif) no-repeat 0px 0px; cursor:pointer; display:inline-block; margin-left:8px; }
+.index_images .slider_page ul li.current{ float:left; width:10px; height:20px; background:url(../images/slider_ico.gif) no-repeat 0px -27px; cursor:pointer; display:inline-block; margin-left:8px; }
+
