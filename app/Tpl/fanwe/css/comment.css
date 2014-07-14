@@ -1,0 +1,20 @@
+.comment_item{ border-bottom:1px solid #d5d5d5; padding:15px 0px;}
+.comment_user_avatar{ width:48px; height:48px; float:left; padding-top:5px; }
+.comment_user_avatar img{ width:48px; height:48px;}
+.comment_content{ float:left; width:850px; margin-left:20px; line-height:18px; font-size:12px;}
+.comment_op{ float:right; font-size:12px;}
+.pass_time{ color:#ccc;}
+.reply_box{ display:none;}
+.delcomment{ display:none;}
+
+
+.deal_comment_list{ padding:0px 10px 10px 10px;}
+
+.reply_content textarea{  border:#ccc solid 1px; width:840px; min-width:840px; max-width:840px; height:60px; padding:5px; color:#666; font-size:14px; line-height:18px; border-radius:3px;  min-height:60px; max-height:60px; }
+
+.comment-btn{ padding:0px 10px; display:none;}
+.syn_weibo{ float:left;}
+.send_btn{ float:right;}
+.syn_weibo input{float:left;}
+.syn_weibo span{ font-size:12px; float:left; line-height:18px; _line-height:22px; *line-height:22px;}
+.cnt{ font-size:14px;}

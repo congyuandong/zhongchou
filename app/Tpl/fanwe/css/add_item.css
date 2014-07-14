@@ -1,0 +1,18 @@
+.add_item_tip{ padding:10px; }
+.add_item_tip h1{ font-size:16px; font-family:"微软雅黑"; display:inline-block; height:30px;}
+.add_item_tip ul li{ font-size:14px;}
+.add_item_btn{ width:140px; margin:0px auto; }
+.ui-button_green{ float:left; background:url(../images/ui-buttonbg.gif) no-repeat 0px -490px; height:32px; padding-left:5px;}
+.ui-button_green div{ float:left; background:url(../images/ui-buttonbg.gif) no-repeat right -140px; height:32px; }
+.ui-button_green span{ background:none; white-space:nowrap; border:none; padding:0px 15px 0px 10px; height:30px;  color:#fff; font-size:14px; float:left;  line-height:30px; display:inline-block; cursor:pointer;}
+
+.item_preview{ background:#f5f5f5; padding:10px; margin-left:16px;}
+#support_price_box{ font-size:16px; font-weight:bolder;}
+
+.image_item{ position:relative; float:left; width:50px; height:50px; overflow:hidden; display:inline-block; margin-right:10px; border:1px solid #ccc; }
+.image_item span{ position:absolute; right:0px; top:0px; width:15px; height:15px; display:block; background:url(../images/del_image.png); cursor:pointer; 
+_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/del_image.png', sizingMethod='scale');
+_background-image:none; }
+
+.add_item_btn a{ float:left; width:80px; display:inline-block; height:30px; line-height:30px; color:#690; text-decoration:none; margin-left:10px;}
+.add_item_btn a:hover{ float:left; width:80px; display:inline-block; height:30px; line-height:30px; color:#9c0; text-decoration:none;}

@@ -1,0 +1,135 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript" src="__ROOT__/system/region.js"></script>	
+<load href='__TMPL__Common/js/user_edit.js' />
+<div class="main">
+<div class="main_title">{%ADD} <a href="{:u("User/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form conf_tab" cellpadding=0 cellspacing=0 >
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%USER_NAME}:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="user_name" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%USER_EMAIL}:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="email" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%USER_MOBILE}:</td>
+		<td class="item_input"><input type="text" class="textbox" name="mobile" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%USER_PASSWORD}:</td>
+		<td class="item_input"><input type="password" class="textbox require" name="user_pwd" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%USER_CONFIRM_PASSWORD}:</td>
+		<td class="item_input"><input type="password" class="textbox require" name="user_confirm_pwd" /></td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">所属地区:</td>
+		<td class="item_input">
+			<select name="province">				
+			<option value="" rel="0">请选择省份</option>
+			<foreach name="region_lv2" item="region">
+				<option value="{$region.name}" rel="{$region.id}">{$region.name}</option>
+			</foreach>
+			</select>
+			
+			<select name="city">				
+			<option value="" rel="0">请选择城市</option>
+			</select>
+			<script type="text/javascript">
+				load_city();
+			</script>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">性别:</td>
+		<td class="item_input">
+			
+			<label>女<input type="radio" name="sex" value="0" /></label>
+			<label>男<input type="radio" name="sex" value="1" /></label>
+			<label>未知<input type="radio" name="sex" value="-1" checked="checked" /></label>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">简介:</td>
+		<td class="item_input">
+			<textarea name="intro" class="textarea"></textarea>
+		</td>
+	</tr>
+	
+
+	
+	<tr>
+		<td class="item_title">{%IS_EFFECT}:</td>
+		<td class="item_input">
+			<label>{%IS_EFFECT_1}<input type="radio" name="is_effect" value="1" checked="checked" /></label>
+			<label>{%IS_EFFECT_0}<input type="radio" name="is_effect" value="0" /></label>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>
+<div class="blank5"></div>
+	<table class="form" cellpadding=0 cellspacing=0>
+		<tr>
+			<td colspan=2 class="topTd"></td>
+		</tr>
+		<tr>
+			<td class="item_title">真实姓名</td>
+			<td class="item_input">
+			<input type="text" value="" name="ex_real_name" class="textbox" />
+			</td>
+		</tr>
+		
+		<tr>
+			<td class="item_title">银行帐户信息</td>
+			<td class="item_input">
+			<input type="text" value="" name="ex_account_info" class="textbox" style="width:500px;" />
+			</td>
+		</tr>
+		
+		<tr>
+			<td class="item_title">联系方式</td>
+			<td class="item_input">
+			<input type="text" value="" name="ex_contact" class="textbox" style="width:500px;" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="bottomTd"></td>
+		</tr>
+	</table> 
+<div class="blank5"></div>
+	<table class="form" cellpadding=0 cellspacing=0>
+		<tr>
+			<td colspan=2 class="topTd"></td>
+		</tr>
+		<tr>
+			<td class="item_title"></td>
+			<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="User" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="insert" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%ADD}" />
+			<input type="reset" class="button" value="{%RESET}" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="bottomTd"></td>
+		</tr>
+	</table> 		 
+</form>
+</div>
+<include file="Public:footer" />

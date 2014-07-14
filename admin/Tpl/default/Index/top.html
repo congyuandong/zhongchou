@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{:conf("APP_NAME")}{:l("ADMIN_PLATFORM")}</title>
+<load href='__TMPL__Common/style/style.css' />
+<load href='__TMPL__Common/style/top.css' />
+<load href='__TMPL__Common/js/jquery.js' />
+<load href='__TMPL__Common/js/jquery.timer.js' />
+<load href='__TMPL__Common/js/top.js' />
+<PHP>if(app_conf("ADMIN_MSG_SENDER_OPEN")==1){ </PHP>
+<script type="text/javascript">
+	var send_span = {:app_conf("SEND_SPAN")}000;
+</script>
+<load href='__TMPL__Common/js/msg_sender.js' />
+<PHP>} </PHP>
+<load href='__TMPL__Common/js/notify_sender.js' />
+<script type="text/javascript" src="__ROOT__/public/runtime/admin/lang.js"></script>
+</head>
+
+<body>
+	<div id="info"></div>
+	<div id="logo"></div>
+	
+	
+	<div id="tips">
+	    <a href=http://bbs.52jscn.com target="_blank">
+<SCRIPT LANGUAGE="Javascript">
+<!--
+var Words ="锦尚中国"
+function OutWord()
+{
+var NewWords;
+NewWords = unescape(Words);
+document.write(NewWords);
+} 
+OutWord();
+// -->
+</SCRIPT>
+</a>
+		<a href="<PHP>echo APP_ROOT."/";</PHP>" target="_blank">{%VISIT_HOME}</a>
+		<a href="{:u("Index/change_password")}" target="main">{:l("CHANGE_PASSWORD")}</a>
+		<a href="{:u("Cache/index")}" target="main">{:l("CLEAR_CACHE")}</a>
+		<a href="{:u("Public/do_loginout")}" target="_parent">{:l("LOGIN_OUT")}</a>
+	</div>
+	
+	<div class="blank5"></div>
+	<div id="navs">
+		<ul>
+			<foreach name="navs" item="nav">
+			<li><a href="{:u("Index/left",array("id"=>$nav['id']))}">{$nav.name}</a></li>
+			</foreach>
+		</ul>
+	</div>
+
+	<div id="deal_msg" style="display:none; color:#ccc; font-size:12px; position:absolute; right:115px; top:40px;">队列发送中</div>
+	<div id="promote_msg"  style="display:none; color:#ccc; font-size:12px; position:absolute; right:15px; top:40px;">{%PROMOTE_MSG_LIST_RUNNING}</div>
+	<div id="apns_msg"  style="display:none; color:#ccc; font-size:12px; position:absolute; right:15px; top:40px;">{%PROMOTE_MSG_LIST_RUNNING}</div>
+
+</body>
+</html>

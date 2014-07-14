@@ -1,0 +1,60 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<PHP>
+	function get_refund_user_name($uid)
+	{
+		return M("User")->where("id=".$uid)->getField("user_name");
+	}
+	function get_confirm($id,$vo)
+	{
+		if($vo['is_pay']==0)
+		return "<a href='javascript:refund_confirm(".$id.");'>确认</a>";
+	}
+</PHP>
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<script type="text/javascript">
+function refund_confirm(id)
+{
+	$.weeboxs.open(ROOT+'?m=UserRefund&a=refund_confirm&id='+id, {contentType:'ajax',showButton:false,title:"确认提现",width:600,height:140});
+}
+</script>
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">提现记录</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="删除" onclick="del();" />
+</div>
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		会员ID: <input type="text" class="textbox" name="user_id" value="{:trim($_REQUEST['user_id'])}" style="width:30px;" />	
+		<input type="hidden" value="UserRefund" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+		,money|format_price:金额
+		,user_id|get_refund_user_name:会员名
+		,create_time|to_date:申请时间
+		,memo|get_title:申请备注
+		,is_pay|get_status:是否确认
+		,pay_time|to_date:确认时间
+		,reply|get_title:确认备注" 
+	actionlist="del:删除,id|get_confirm=$deal" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

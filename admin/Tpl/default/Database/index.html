@@ -1,0 +1,38 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/database.js' />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%BACKUP}" onclick="backup();" />
+</div>
+<div class="blank5"></div>
+
+<table cellspacing="0" cellpadding="0" class="dataTable" id="dataTable">
+	<tr><td height="5" class="topTd" colspan="4"/></tr>
+	<tr class="row">
+		<th>{$Think.lang.BACKUP_FILE}</th>
+		<th>{$Think.lang.CREATE_TIME}</th>
+
+		<th>{$Think.lang.TAG_LANG_OPERATE}</th>
+	</tr>
+	<foreach name="sql_list" item="sql_item" key="groupname">
+
+		<tr class="row">
+			<td>{$groupname}({:sprintf(l("TOTAL_COUNT_VOL"),count($sql_item))})</td>
+			<td>{$groupname|to_date}</td>
+			<td><a href="javascript:void(0);" onclick="restore_db('{$groupname}');">{$Think.lang.RESTORE}</a> <a href="javascript:void(0);" onclick="delsql('{$groupname}');">{$Think.lang.DEL}</a></td>
+		</tr>
+			
+	</foreach>
+	<tr><td height="5" class="bottomTd" colspan="4"/></tr>
+</table>
+</div>
+
+</div>
+<include file="Public:footer" />

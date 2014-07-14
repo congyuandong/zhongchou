@@ -1,0 +1,36 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<PHP>
+	function get_view($id)
+	{
+		return "<a href='".url("deal#updatedetail",array("id"=>$id))."' target='_blank'>查看</a>";
+	}
+</PHP>
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/deal.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">{$deal_info.name} 项目日志</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="删除" onclick="del_deal_log();" />
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+		,log_info|msubstr:日志内容
+		,create_time|to_date:日期" 
+	actionlist="id|get_view, del_deal_log:删除" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

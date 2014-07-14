@@ -1,0 +1,102 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	function check_fee(id)
+	{
+		 $.ajax({ 
+			url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=check_fee&&id="+id, 
+			data: "ajax=1",
+			success: function(text){
+				alert(text);
+			}
+		});
+	}
+</script>
+<div class="main">
+<div class="main_title">{%EDIT} <a href="{:u("Sms/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%SMS_NAME}:</td>
+		<td class="item_input">
+			{$data.name}
+			<input type="hidden" value="{$data.name}" name="name" />
+			<if condition="$data['is_effect'] eq 1">
+				<input type="button" class="button" value="查询余额" onclick="check_fee({$data.id});" />
+			</if>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CLASS_NAME}:</td>
+		<td class="item_input">
+			{$data.class_name}
+			<input type="hidden" value="{$data.class_name}" name="class_name" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%SMS_ACCOUNT}:</td>
+		<td class="item_input">
+			<input type="text" class="textbox"  name="user_name" value="{$vo.user_name}" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%SMS_PASSWORD}:</td>
+		<td class="item_input">
+			<input type="password" class="textbox"  name="password" value="{$vo.password}" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%DESCRIPTION}:</td>
+		<td class="item_input">
+			<textarea class="textarea" name="description" >{$vo.description}</textarea>
+		</td>
+	</tr>
+	<if condition="$data['config']">
+	<tr>
+		<td class="item_title">{%CONFIG_INFO}:</td>
+		<td class="item_input">
+			<foreach name="data.config" item="config">
+				<php>$config_name = $key;</php>
+				<span class="cfg_title">{:trim($data['lang'][$key])}:</span>
+				<span class="cfg_content">
+				<if condition="$config['INPUT_TYPE'] eq 0">
+				<input type="text" class="textbox" name="config[{$key}]" value="{$vo['config'][$key]}" />
+				<elseif condition="$config['INPUT_TYPE'] eq 2" />
+				<input type="password" class="textbox" name="config[{$key}]" value="{$vo['config'][$key]}" />
+				<else />
+				<select name="config[{$key}]" >
+					<foreach name="config.VALUES" item="val">
+						<option value="{$val}" <if condition="$vo['config'][$config_name] eq $val">selected="selected"</if>>{:trim($data['lang'][$config_name."_".$val])}</option>
+					</foreach>
+				</select>
+				</if>
+				</span>
+				<div class="blank5"></div>
+			</foreach>
+		</td>
+	</tr>
+	</if>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" value="{$vo.id}" name="id" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Sms" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

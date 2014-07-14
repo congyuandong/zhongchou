@@ -1,0 +1,5 @@
+.focus-table th{ font-size:12px;}
+.focus-table th a{ display:block; margin:0 auto; width:70px; height:18px; background:url(../images/sort_arrow.gif) no-repeat right -68px; color:#A1A1A1;}
+.focus-table th a:hover{ text-decoration:none; display:block; margin:0 auto; width:70px; height:18px; background:url(../images/sort_arrow.gif) no-repeat right -68px; color:#A1A1A1;}
+.focus-table th a.current{ display:block; margin:0 auto; width:70px; height:18px; background:url(../images/sort_arrow.gif) no-repeat right 5px; color:#666;}
+.focus-table th a.current:hover{ text-decoration:none; display:block; margin:0 auto; width:70px; height:18px; background:url(../images/sort_arrow.gif) no-repeat right 5px;  color:#666;}

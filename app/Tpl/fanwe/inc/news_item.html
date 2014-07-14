@@ -1,0 +1,119 @@
+{foreach from=$log_list item=log_item}
+<div class="deal_update"  id="post_{$log_item.id}">
+	<div class="news_deal_info">
+		<a href="{url r="deal#show" p="id=$log_item.deal_info.id"}" target="_blank" title="{$log_item.deal_info.name}"><img src="{function name="get_spec_image" v=$log_item.deal_info.image w=180 h=130 g=1}" /></a>
+		<div class="blank"></div>
+		<a href="{url r="deal#show" p="id=$log_item.deal_info.id"}" target="_blank" title="{$log_item.deal_info.name}" class="linkgreen">
+			{function name="msubstr" v=$log_item.deal_info.name b=0 e=25}
+		</a>
+		<div class="blank"></div>
+		<div class="deal_bar_bg">
+			<div class="deal_bar_front" style="width:{$log_item.deal_info.percent}%;"></div>
+		</div>	
+		<div class="blank"></div>
+		<div class="deal_news_info_row">
+			<div class="div3">{$log_item.deal_info.percent}%<div class="blank1"></div>达到</div>
+			<div class="div3 tc"><span style="font-weight:bolder;">¥{function name="number_price_format" v=$log_item.deal_info.support_amount}</span><div class="blank1"></div>支持</div>
+			<div class="div3 tr">
+			{if $log_item.deal_info.begin_time > $now}
+			未上线
+			{elseif $log_item.deal_info.end_time < $now and $log_item.deal_info.end_time neq 0}
+			已过期
+			{else}
+				{if $log_item.deal_info.end_time eq 0}
+				长期项目
+				{else}
+				<font>{$log_item.deal_info.remain_days}</font>天
+				{/if}
+			{/if}
+			<div class="blank1"></div>
+			剩余
+			</div>
+		</div>				
+	</div><!--end news_deal_info-->
+	<div class="news_deal_update">
+		<a href="{url r="deal#updatedetail" p="id=$log_item.id"}" class="news_update_title">{function name="msubstr" v=$log_item.log_info b=0 e=30}</a>
+		<div class="blank"></div>
+		<div class="author">
+			<a class="f_l linkgreen" href="{url r="home" p="id=$log_item.user_id"}" style="font-size:14px;" >{$log_item.user_name}</a>
+			<span onclick="send_message({$log_item.user_id});" class="send_message f_l" style="height:20px; background-position:0px 5px;"></span>	
+		</div>
+		<div class="passdate">
+			{$log_item.pass_time}
+		</div>
+		<div class="blank"></div>
+		<div class="dash"></div>
+		<div class="log_info">
+			{function name="nl2br" v=$log_item.log_info}
+			<div class="blank"></div>
+			{if $log_item.source_vedio neq ''}
+			<div class="blank"></div>
+			<embed wmode="opaque"wmode="opaque"src="{$log_item.source_vedio}" allowFullScreen="true" quality="high" width="520" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>				
+			{/if}
+			
+			{if $log_item.image neq ''}
+			<div class="blank"></div>
+			<img src="{function name="get_spec_image" v=$log_item.image w=520 h=400}" />
+			{/if}
+		</div>
+		<!--comment-->
+		<div class="blank"></div>
+		<div class="comment_tip_row">
+			{if $log_item.comment_count gt 0}
+			<a href="javascript:void(0);" class="swap_comment" id="comment_{$log_item.id}_tip">评论({$log_item.comment_count})</a>
+			{else}
+			<a href="javascript:void(0);" class="swap_comment" id="comment_{$log_item.id}_tip">发表评论</a>
+			{/if}
+		</div>
+		
+		<div id="post_{$log_item.id}_comment" {if $log_item.comment_count eq 0}style="display:none;"{/if}>
+		
+			<div class="timeline-comment">
+				<div class="timeline-comment-top"></div>
+				{if $user_info}
+				<form name="comment_{$log_item.id}_form"  rel="{$log_item.id}" class="comment_form" action="{url r="deal#save_comment" p="log_id=$log_item.id&deal_id=$log_item.deal_info.id"}">		
+				<div class="comment-content">
+					<textarea name="content">发表评论</textarea>
+					<input type="hidden" name="ajax" value="1" />
+				</div>
+				<div class="comment-btn">
+					<span class="syn_weibo">
+						<input type="checkbox" name="syn_weibo" value="1" />
+						<span>同时发布至我的微博 </span>
+					</span>				
+					<div class="ui-button green send_btn" rel="green">
+							<div>
+								<span>发送</span>
+							</div>
+					</div>	
+					<div class="blank"></div>
+				</div>
+				</form>
+				{else}
+				<div class="comment-content" style="font-size:12px;">请登录后评论，立即 <a href="{url r="user#login"}" class="linkgreen">登录</a> 或 <a href="{url r="user#register"}"  class="linkgreen">注册</a></div>
+				{/if}
+	
+				<div class="deal_comment_list" id="deal_comment_list_{$log_item.id}">
+					{if $log_item.comment_list}
+					{foreach from=$log_item.comment_list item=comment_item}
+					{include file="inc/comment_item.html"}
+					{/foreach}
+					{/if}
+				</div>
+				{if $log_item.more_comment}
+				<div class="timeline-comment-more ui-button-ajax-more">
+				<p><a href="{url r="deal#updatedetail" p="id=$log_item.id"}">更多评论</a></p>
+				<span><a class="fodeup_comment" href="javascript:void(0);" rel="{$log_item.id}">收起</a></span>
+				</div>
+				{/if}
+				
+			</div>
+			
+			
+		</div>
+		
+		<!--end comment-->
+	</div>
+	<div class="blank"></div>
+</div>
+{/foreach}

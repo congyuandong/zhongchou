@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{:conf("APP_NAME")}{:l("ADMIN_PLATFORM")}</title>
+<load href='__TMPL__Common/style/style.css' />
+<load href='__TMPL__Common/style/left.css' />
+<load href='__TMPL__Common/js/jquery.js' />
+<load href='__TMPL__Common/js/jquery.timer.js' />
+<load href='__TMPL__Common/js/left.js' />
+</head>
+
+<body>
+	<dl class="menu">
+		<foreach name="menus" item="menu_group">
+		<dt>{$menu_group.name}</dt>
+			<foreach name="menu_group.nodes" item="node">
+				<dd><a href="{:u($node["m"]."/".$node["a"])}">{$node.name}</a></dd>
+			</foreach>		
+		</foreach>
+	</dl>
+	
+</body>
+</html>

@@ -1,0 +1,45 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/deal.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">{$deal_info.name} 放款记录</div>
+<div class="blank5"></div>
+<div class="main_title" style="font-size:12px; font-weight:normal;">
+实收{$deal_info.support_amount|format_price}
+<if condition="$deal_info['delivery_fee_amount'] gt 0">
+(含运费{$deal_info.delivery_fee_amount|format_price})	
+</if>
+ - 网站佣金{$deal_info.commission|format_price}
+ = 应发筹金总额{$deal_info.pay_amount|format_price}
+
+已发筹金{$paid_money|format_price}
+
+剩余筹金{$remain_money|format_price}
+</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="发放" onclick="add_pay_log({$deal_info.id});" />
+	<input type="button" class="button" value="删除" onclick="del_pay_log();" />
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+		,log_info:日志内容
+		,money|format_price:金额
+		,create_time|to_date:日期" 
+	actionlist="del_pay_log:删除" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

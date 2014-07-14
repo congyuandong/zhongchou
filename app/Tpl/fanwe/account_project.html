@@ -1,0 +1,90 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_list.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_list.js";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/account.css";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+		<div class="page_title">
+			我的项目
+		</div>
+		<div class="switch_nav">
+			<ul>
+				<li><a href="{url r="account#index"}">支持的项目</a></li>
+				<li class="current"><a href="{url r="account#project"}">我的项目</a></li>
+				<li><a href="{url r="account#focus"}">关注的项目</a></li>
+				<li><a href="{url r="account#credit"}">收支明细</a></li>
+				
+			</ul>
+		</div>
+		
+		<div class="blank"></div>		
+		{include file="inc/money_box.html"} 		
+
+		<div class="full">
+		{if $deal_list}
+		<table class="data-table">
+			<tr>
+				<th>项目名称</th>
+				<th width="50">状态</th>
+				<th width="200">操作</th>
+			</tr>
+			{foreach from=$deal_list item=deal_item}
+			<tr>
+				<td class="deal_name">
+					<div><a href="{url r="deal#show" p="id=$deal_item.id"}" target="_blank" title="{$deal_item.name}"><img src="{function name="get_spec_image" v=$deal_item.image w=50 h=50 g=1}"  alt="{$deal_item.name}"/></a></div>	
+					<div><a href="{url r="deal#show" p="id=$deal_item.id"}" target="_blank" title="{$deal_item.name}">{function name="msubstr" v=$deal_item.name b=0 e=25}</a></div>	
+				</td>
+				<td>
+					{if $deal_item.is_effect eq 0}
+					准备中
+					{else}
+						{if $deal_item.is_success eq 1}
+							{if $deal_item.begin_time > $now}未开始{/if}
+							{if $deal_item.end_time < $now and $deal_item.end_time neq 0}已成功{/if}
+							{if $deal_item.begin_time < $now and ($deal_item.end_time > $now or $deal_item.end_time eq 0)}已成功{/if}
+						{else}
+							{if $deal_item.begin_time > $now}未开始{/if}
+							{if $deal_item.end_time < $now and $deal_item.end_time neq 0}未成功{/if}
+							{if $deal_item.begin_time < $now and ($deal_item.end_time > $now or $deal_item.end_time eq 0)}进行中{/if}
+						{/if}
+					{/if}
+				</td>
+				<td>
+					{if $deal_item.is_effect eq 0}
+						<a href="{url r="project#edit" p="id=$deal_item.id"}">编辑</a>
+						<a href="{url r="project#del" p="id=$deal_item.id"}" class="del_deal">删除</a>
+					{else}
+						<a href="{url r="deal#update" p="id=$deal_item.id"}">项目日志</a>
+						{if $deal_item.is_success eq 1}
+							<a href="{url r="account#support" p="id=$deal_item.id"}">支持记录</a>
+							<a href="{url r="account#paid" p="id=$deal_item.id"}">放款记录</a>
+																
+						{/if}
+					{/if}
+				</td>
+			</tr>
+			{/foreach}
+		</table>
+		
+		{else}
+		<div class="empty_tip">
+			从过创建过任何项目 <a href="{url r="project#add"}" class="linkgreen">立即创建项目</a>
+		</div>
+		{/if}
+		
+		
+		</div>
+		<div class="blank"></div>
+		<div class="pages">{$pages}</div>
+		<div class="blank"></div>
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

@@ -1,0 +1,57 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/faq.js' />
+<div class="main">
+<div class="main_title">{%EDIT} <a href="{:u("Faq/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">分组:</td>
+		<td class="item_input">
+			<select name="group">
+				<option value="">新建分组</option>
+				<foreach name="group" item="g">
+					<option value="{$g.group}" <if condition="$vo['group'] eq $g['group']">selected="selected"</if> >{$g.group}</option>
+				</foreach>
+			</select>
+			<input type="text" class="textbox" name="define_group" value="" style="display:none;" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">问题:</td>
+		<td class="item_input"><textarea class="textarea require" name="question">{$vo.question}</textarea></td>
+	</tr>
+	<tr>
+		<td class="item_title">答案:</td>
+		<td class="item_input"><textarea class="textarea require" name="answer">{$vo.answer}</textarea></td>
+	</tr>
+
+	<tr>
+		<td class="item_title">{%SORT}:</td>
+		<td class="item_input"><input type="text" class="textbox" name="sort" value="{$vo.sort}" /></td>
+	</tr>
+	
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Faq" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+			<input type="hidden" name="id" value="{$vo.id}" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

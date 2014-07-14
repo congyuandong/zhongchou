@@ -1,0 +1,73 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<php>
+	function get_payment_effect($effect)
+	{
+		return l("IS_EFFECT_".$effect);
+	}
+	function get_payment_install($install)
+	{
+		return l("IS_INSTALL_".$install);
+	}
+</php>
+<script type="text/javascript">
+	function uninstall(id)
+	{
+		if(confirm("{%CONFIRM_DELETE}"))
+		{
+			location.href = ROOT + "?m=Payment&a=uninstall&id="+id;
+		}
+	}
+</script>
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+
+<table cellspacing="0" cellpadding="0" class="dataTable" id="dataTable">
+	<tbody>
+		<tr>
+			<td class="topTd" colspan="7">&nbsp; </td>
+			</tr>
+			<tr class="row">
+				<th>{%PAYMENT_NAME}</th>
+				<th>{%IS_EFFECT}</th>
+				<th>{%IS_INSTALL}</th>				
+				<th> {%PAYMENT_INCHARGE}</th>
+				<th>{%SORT}</th>
+				<th>{%TAG_LANG_OPERATE}</th>
+				</tr>
+				<foreach name="payment_list" item="payment_item">
+				<tr class="row">
+					<td>{$payment_item.name}
+					<if condition="$payment_item['reg_url'] neq ''">
+						<a href="{$payment_item['reg_url']}" target="_blank">
+							{%GO_TO_REG}
+						</a>
+					</if>
+					</td>
+					<td>{$payment_item.is_effect|get_payment_effect}</td>
+					<td>{$payment_item.installed|get_payment_install}</td>
+					<td>{$payment_item.total_amount|format_price} 
+					<if condition="$payment_item['installed'] eq 1">
+						<a href="{:u("PaymentNotice/index",array("payment_id"=>$payment_item['id']))}">{%VIEW}</a>
+					</if>
+					</td>
+					<td>{$payment_item.sort}</td>
+					<td>
+						<if condition="$payment_item['installed'] eq 0">
+						<a href="{:u("Payment/install",array("class_name"=>$payment_item['class_name']))}">{%INSTALL}</a>
+						<else />
+						<a href="{:u("Payment/edit",array("id"=>$payment_item['id']))}">{%EDIT}</a>
+						<a href="javascript:uninstall({$payment_item.id});" >{%UNINSTALL}</a>
+						</if>
+					</td>
+				</tr>
+				</foreach>
+				<tr><td class="bottomTd" colspan="7"> &nbsp;</td></tr>
+			</tbody>
+		</table>
+
+
+</div>
+<include file="Public:footer" />

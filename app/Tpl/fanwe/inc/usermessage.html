@@ -1,0 +1,16 @@
+<div class="usermessage" style="overflow:hidden; height:155px;">
+	<form name="user_message" id="user_message_form" action="{url r="message#send" p="id=$send_user_info.id"}">
+	<textarea name="message"></textarea>
+	<input type="hidden" name="ajax" value="1" />
+	<div class="blank"></div>
+	<div class="btn_row">
+	<div class="f_l"><a href="{url r="message#history" p="id=$send_user_info.id"}" class="linkgreen">查看私信记录</a></div>
+	<div class="ui-button green" rel="green" style="float:right;">
+		<div>
+			<span>发送</span>
+		</div>
+	</div>	
+	<div class="blank1"></div>
+	</div>
+	</form>
+</div>

@@ -1,0 +1,67 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/user.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<script type="text/javascript">
+	function show_content(id)
+	{
+		$.weeboxs.open(ROOT+'?m=DealMsgList&a=show_content&id='+id, {contentType:'ajax',showButton:false,title:LANG['SHOW_CONTENT'],width:600});
+	}
+	function send(id)
+	{
+		$.ajax({ 
+				url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=send&id="+id, 
+				data: "ajax=1",
+				success: function(msg){
+					alert(msg);
+				}
+		});
+	}
+</script>
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel();" />
+	
+	<input type="button" id="reset_sending" class="button" value="{%CANCEL_SENDING}" onclick="reset_sending('DEAL_MSG_LOCK');" />
+	
+</div>
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		{%SEND_DEST}：<input type="text" class="textbox" name="dest" value="{:trim($_REQUEST['dest'])}" style="width:100px;" />
+		{%CONTENT}：<input type="text" class="textbox" name="content" value="{:trim($_REQUEST['content'])}" />
+		<input type="hidden" value="DealMsgList" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="msg" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+	,send_type|get_send_type_msg:{%SEND_TYPE}
+	,dest:{%SEND_DEST}
+	,user_id:{%USER_NAME}
+	,title:{%TITLE}
+	,content|show_content=$msg['id']:{%CONTENT}
+	,create_time|to_date:{%CREATE_TIME}
+	,send_time|to_date:{%SEND_TIME}
+	,is_send|get_is_send:{%SEND_STATUS}
+	,is_success|get_send_result:{%SEND_RESULT}
+	,result:{%SEND_INFO}" 
+	actionlist="send:{%SEND_NOW},foreverdel:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

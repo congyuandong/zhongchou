@@ -1,0 +1,57 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<script type="text/javascript">
+	function check_incharge_form()
+	{
+		if($("input[name='money']").val()=='')
+		{
+			alert("资金操作不能为空");
+			return false;
+		}
+		if($("input[name='money']").val()!=''&&isNaN($("input[name='money']").val()))
+		{
+			alert(LANG['MONEY_FORMAT_ERROR']);
+			return false;
+		}
+		
+		return true;
+	}
+</script>
+<div class="main">
+<div class="main_title">{$user_info.user_name} {%USER_MONEY}:{$user_info.money|format_price}</div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data" onsubmit="return check_incharge_form();">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%INCHARGE_USER_MONEY}:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="money" />
+		<span class='tip_span'>[{%INCHARGE_USER_MONEY_TIP}]</span>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">{%INCHARGE_MSG}:</td>
+		<td class="item_input"><input type="text" class="textbox" name="msg" style="width:400px;" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">&nbsp;</td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="id" value="{$user_info.id}" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="User" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="modify_account" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%OK}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>

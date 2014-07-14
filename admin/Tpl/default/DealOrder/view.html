@@ -1,0 +1,135 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<php>
+	function get_order_status($status)
+	{
+		if($status==0)return "未支付";
+		if($status==1)return "过期支付";
+		if($status==2)return "限额已满";
+		if($status==3)return "已支付";
+	}
+	
+	function get_notice_info($notice)
+	{		
+		$str .= $notice['memo']."  ";
+		$payment = M("Payment")->getById($notice['payment_id']);
+		if($payment)
+		{
+			$str .= "通过";
+			$class_name = $payment['class_name']."_payment";		
+			$str.=$payment['name'];
+			if($notice['bank_id']!="")
+			{
+				require_once APP_ROOT_PATH."/system/payment/".$class_name.".php";
+				$str.=$payment_lang[$notice['bank_id']];
+			}
+		}
+		$str.="支付".format_price($notice['money']);
+		$str.=",内部单号:".$notice['notice_sn']."。外部单号:";
+		if($notice['outer_notice_sn']=="")
+		$notice['outer_notice_sn']= "无";
+		$str.=$notice['outer_notice_sn'];
+		return $str;
+	}
+</php>
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">{$order_info.deal_name}</div>
+<div class="blank5"></div>
+
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=6 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">项目名称:</td>
+		<td class="item_input" colspan=3>{$order_info.deal_name}</td>
+		<td class="item_title">支持者:</td>
+		<td class="item_input">{$order_info.user_name}</td>
+
+	</tr>	
+	<tr>
+		<td class="item_title">配送地址:</td>
+		<td class="item_input" colspan=5>{$order_info.province}{$order_info.city}{$order_info.address},邮编：{$order_info.zip},收货人：{$order_info.consignee}手机：{$order_info.mobile}</td>
+
+	</tr>	
+	<tr>
+		<td class="item_title" width="16%">下单时间:</td>
+		<td class="item_input" width="16%">{$order_info.create_time|to_date}</td>
+		<td class="item_title" width="16%">订单状态:</td>
+		<td class="item_input" width="16%">
+			{$order_info.order_status|get_order_status}
+			<if condition="$order_info['order_status'] eq 0">
+			<a href="{:u("DealOrder/incharge",array("id"=>$order_info['id']))}">管理员收款</a>
+			</if>
+		</td>
+		<td class="item_title" width="16%">退款:</td>
+		<td class="item_input" width="16%">
+			<if condition="$order_info['is_refund'] eq 0 and $order_info['order_status'] eq 3">
+				<a href="{:u("DealOrder/refund",array("id"=>$order_info['id']))}">立即退款</a>
+			<else />
+			<if condition="$order_info['order_status'] eq 0">
+			--
+			<else />
+			已退款
+			</if>
+			</if>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">总价:</td>
+		<td class="item_input">{$order_info.total_price|format_price}</td>
+		<td class="item_title">项目:</td>
+		<td class="item_input">{$order_info.deal_price|format_price}</td>
+		<td class="item_title">运费:</td>
+		<td class="item_input">{$order_info.delivery_fee|format_price}</td>
+	</tr>
+	<tr>
+		<td class="item_title">余额支付:</td>
+		<td class="item_input">{$order_info.credit_pay|format_price}</td>
+		<td class="item_title">在线支付:</td>
+		<td class="item_input">{$order_info.online_pay|format_price}</td>
+		<td class="item_title">支付时间:</td>
+		<td class="item_input">{$order_info.pay_time|to_date}</td>
+	</tr>	
+	<tr>
+		<td class="item_title">支持者备注:</td>
+		<td class="item_input" colspan=5>{$order_info.support_memo}</td>
+
+	</tr>
+	<tr>
+		<td class="item_title">回报设置:</td>
+		<td class="item_input" colspan=5>
+			<if condition="$order_info['repay_time'] neq 0">
+			{$order_info.repay_time|to_date}:{$order_info.repay_memo}
+			<else />
+			回报未发放
+			</if>
+		</td>
+
+	</tr>
+	<tr>
+		<th colspan=6>付款记录</th>
+	</tr>
+	<foreach name="payment_notice_list" item="notice">
+	<tr>
+		<td class="item_title">{$notice.pay_time|to_date}:</td>
+		<td class="item_input" colspan=5>
+			{$notice|get_notice_info}
+		</td>
+
+	</tr>
+	</foreach>
+	
+		
+	<tr>
+		<td colspan=6 class="bottomTd"></td>
+	</tr>
+</table>
+<div class="blank5"></div>
+
+</div>
+<include file="Public:footer" />

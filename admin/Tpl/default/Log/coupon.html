@@ -1,0 +1,65 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<script type="text/javascript">
+	function foreverdellog(id)
+	{
+		if(!id)
+		{
+			idBox = $(".key:checked");
+			if(idBox.length == 0)
+			{
+				alert(LANG['DELETE_EMPTY_WARNING']);
+				return;
+			}
+			idArray = new Array();
+			$.each( idBox, function(i, n){
+				idArray.push($(n).val());
+			});
+			id = idArray.join(",");
+		}
+		if(confirm(LANG['CONFIRM_DELETE']))
+		$.ajax({ 
+				url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=foreverdeletelog&id="+id, 
+				data: "ajax=1",
+				dataType: "json",
+				success: function(obj){
+					$("#info").html(obj.info);
+					if(obj.status==1)
+					location.href=location.href;
+				}
+		});
+	}
+</script>
+<div class="main">
+<div class="main_title">{%LOG_COUPON}</div>
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		{%KEYWORD}：<input type="text" class="textbox" name="msg" value="{:trim($_REQUEST['msg'])}" />	
+		{%COUPON_SN}：<input type="text" class="textbox" name="coupon_sn" value="{:trim($_REQUEST['coupon_sn'])}" />		
+		{%QUERY_ID}：<input type="text" class="textbox" name="query_id" value="{:trim($_REQUEST['query_id'])}" />	
+		<input type="hidden" value="Log" name="m" />
+		<input type="hidden" value="coupon" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+		<input type="button" class="button" value="{%DEL}" onclick="foreverdellog();" />
+	</form>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="log" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,coupon_sn:{%COUPON_SN},msg:{%LOG_INFO},create_time|to_date:{%LOG_TIME},query_id:{%QUERY_ID}" 
+	actionlist="foreverdellog:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,158 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/account.css";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/cart_pay.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/cart_pay.js";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+		<div class="page_title">
+			{$order_info.deal_name}
+		</div>
+		<div class="switch_nav">
+			<ul>
+				<li class="current"><a href="{url r="account#index"}">支持的项目</a></li>
+				<li><a href="{url r="account#project"}">我的项目</a></li>
+				<li><a href="{url r="account#focus"}">关注的项目</a></li>
+				<li><a href="{url r="account#credit"}">收支明细</a></li>
+				
+			</ul>
+		</div>
+		
+		<div class="blank"></div>
+		
+		{include file="inc/money_box.html"} 
+		
+		<div class="full">
+			<table class="data-table order_table">
+
+				<tr>
+					<td class="deal_name" width=150>项目名称</td>
+					<td>
+						{if $deal_info}
+						<a href="{url r="deal#show" p="id=$deal_info.id"}" target="_blank">{$order_info.deal_name}</a>
+						{else}
+						{$order_info.deal_name}
+						{/if}
+					</td>
+				</tr>
+				{if $order_info.consignee neq ''}
+				<tr>
+					<td class="deal_name">配送信息</td>
+					<td>
+						地址:{$order_info.province}{$order_info.city}{$order_info.address} 邮编:{$order_info.zip} 收件人:{$order_info.consignee} 电话:{$order_info.mobile}
+					</td>
+				</tr>
+				{/if}
+				{if $order_info.support_memo neq ''}
+				<tr>
+					<td class="deal_name">备注信息</td>
+					<td>
+						{$order_info.support_memo}
+					</td>
+				</tr>
+				{/if}
+				<tr>
+					<td class="deal_name">应付金额</td>
+					<td>
+						
+						{if $order_info.delivery_fee gt 0}
+						项目金额:{function name="format_price" v=$order_info.deal_price}
+						运费:{function name="format_price" v=$order_info.delivery_fee}
+						总额：{function name="format_price" v=$order_info.total_price}
+						{else}
+						{function name="format_price" v=$order_info.total_price}
+						{/if}
+						
+					</td>
+				</tr>
+				<tr>
+					<td class="deal_name">收款情况</td>
+					<td>
+						{if $order_info.order_status eq 1}
+						因项目过期，资金已退到个人帐户
+						{/if}
+						{if $order_info.order_status eq 2}
+						因项目限额已满，资金已退到个人帐户
+						{/if}	
+						{if $order_info.order_status eq 3}
+						支付成功
+						{/if}	
+						{if $order_info.order_status eq 0}
+						支付未完成
+							{if $order_info.credit_pay gt 0}
+							已用余额支付{function name="format_price" v=$order_info.credit_pay}
+							{/if}
+						{/if}	
+					</td>
+				</tr>
+				{if $order_info.order_status eq 3}
+				<tr>
+					<td class="deal_name">回报情况</td>
+					<td>
+						{if $order_info.is_success eq 0}
+							{if $order_info.is_refund eq 1}
+							项目失败，金额已退回会员帐户
+							{else}
+							项目未成功
+							{/if}
+						{else}
+							{if $order_info.repay_time eq 0}
+							项目成功，回报未发放
+							{else}
+							{$order_info.repay_memo}
+							{/if}
+						{/if}
+					</td>
+				</tr>
+				{/if}
+	
+			</table>
+			{if $order_info.order_status eq 0}
+			<div class="blank"></div>
+			<form class="pay_form" action="{url r="account#go_order_pay"}" target="_blank">									
+				
+				{if $user_info.money gt 0}
+					<div class="form_row">
+						<div class="blank15"></div>
+						<label class="title">使用余额支付:</label>
+						<input type="text" class="textbox" value="0" name="credit" style="width:100px;" />
+						<label class="title" style="padding-left:10px;">可用余额：{function name="format_price" v=$user_info.money}</label>
+						<input type="hidden" name="max_credit" value="{$user_info.money}" />
+						<input type="hidden" name="max_pay" value="{$max_pay}" />
+						<div class="blank15"></div>
+					</div>
+				{/if}
+						
+				{$payment_html}
+				
+				<div class="blank"></div>
+				<div>
+					<div class="ui-button green" rel="green">
+						<div>
+							<span>确定，去付款</span>
+						</div>
+					</div>				
+					<input type="hidden" id="back_url" value="{url r="account#view_order" p="id=$order_info.id"}" />	
+					<input type="hidden" value="{$order_info.id}" name="order_id" />	
+					<input type="hidden" value="1" name="ajax" />					
+					<div class="blank15"></div>
+				</div>
+				
+			</form>
+			{/if}
+		</div>
+
+		
+		<div class="blank"></div>
+		
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

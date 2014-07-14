@@ -1,0 +1,77 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<script type="text/javascript">
+	function check_form()
+	{
+		if($("input[name='money']").val()=='')
+		{
+			alert("金额不能为空");
+			return false;
+		}
+		if(($("input[name='money']").val()!=''&&isNaN($("input[name='money']").val()))||parseFloat($("input[name='money']").val())<=0)
+		{
+			alert("金额有误");
+			return false;
+		}
+		
+		if(parseFloat($("input[name='money']").val())>parseFloat($("input[name='remain_money']").val()))
+		{
+			alert("筹款发放超额");
+			return false;
+		}
+		
+		return true;
+	}
+</script>
+<div class="main">
+<div class="main_title">{$deal_info.name} 筹款发放</div>
+<div class="blank5"></div>
+<div class="main_title" style="font-size:12px; font-weight:normal;">
+实收{$deal_info.support_amount|format_price}
+<if condition="$deal_info['delivery_fee_amount'] gt 0">
+(含运费{$deal_info.delivery_fee_amount|format_price})	
+</if>
+ - 网站佣金{$deal_info.commission|format_price}
+ = 应发筹金总额{$deal_info.pay_amount|format_price}
+
+已发筹金{$paid_money|format_price}
+
+剩余筹金{$remain_money|format_price}
+</div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data" onsubmit="return check_form();">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">发放金额:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="money" />
+		<input type="hidden" name="remain_money" value="{$remain_money}" />
+		<span class='tip_span'>[{%INCHARGE_USER_MONEY_TIP}]</span>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">备注:</td>
+		<td class="item_input"><input type="text" class="textbox" name="log_info" style="width:400px;" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">&nbsp;</td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="id" value="{$deal_info.id}" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Deal" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="save_pay_log" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%OK}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>

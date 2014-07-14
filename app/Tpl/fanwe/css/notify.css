@@ -1,0 +1,5 @@
+.notify_item{ padding:10px 0px; border-bottom:#d5d5d5 solid 1px;}
+.notify_item a{ font-size:14px;}
+.notify_item span{ color:#999;} 
+.notify_item .notify_op{ font-size:12px; float:right;}
+.notify_item .notify_op a{ font-size:12px;}

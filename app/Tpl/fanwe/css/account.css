@@ -1,0 +1,22 @@
+.money_box{ border:#ccc solid 1px; margin:10px; padding:20px; background:#fafafa;}
+.credit_box{ font-size:20px; font-family:"微软雅黑"; }
+.price{ color:#c00; }
+.incharge_tip{ font-size:14px; color:#666;}
+.incharge_tip a{ color:#690; font-weight:bolder; text-decoration:none;}
+.incharge_tip a:hover{ color:#9c0; font-weight:bolder; text-decoration:none; }
+.cancel_incharge{ line-height:32px; padding-left:10px; float:left;  font-size:12px; color:#690; text-decoration:none;}
+.cancel_incharge:hover{ line-height:32px; padding-left:10px; float:left;  font-size:12px; color:#9c0; text-decoration:none;}
+
+.pay_tip_box{ font-size:14px; padding:5px 10px;}
+.choose{ font-size:12px; }
+.deal_name_title{ font-size:16px; font-weight:bolder; padding: 10px 0px; color:#690;}
+
+.data-table .data-title{ width:80px; background:#f5f5f5; font-weight:bolder;  text-align:right; }
+.data-table .data-split{ height:1px; _height:2px; *height:2px; background:#9c0; font-size:0px; line-height:0px; padding:0px; }
+.data-table .tl{ text-align:left;}
+
+.repay_memo{ width:670px; min-width:670px; max-width:670px; float:left;  border:#ccc solid 1px; height:60px; padding:5px; color:#666; font-size:14px; line-height:18px; border-radius:3px; min-height:60px; max-height:60px; }
+.set_repay{ float:left; margin-left:10px; display:inline-block; margin-top:40px; }
+.repay_tip{ color:#ccc;}
+
+.order_table td,.order_table th{ padding:10px 10px;}

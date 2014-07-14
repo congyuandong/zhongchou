@@ -1,0 +1,100 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/focus_list.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/focus_list.js";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/account.css";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/focus.css";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+		<div class="page_title">
+			关注的项目
+		</div>
+		<div class="switch_nav">
+			<ul>
+				<li><a href="{url r="account#index"}">支持的项目</a></li>
+				<li><a href="{url r="account#project"}">我的项目</a></li>
+				<li class="current"><a href="{url r="account#focus"}">关注的项目</a></li>
+				<li><a href="{url r="account#credit"}">收支明细</a></li>
+				
+			</ul>
+		</div>
+		
+		<div class="blank"></div>
+		
+		{include file="inc/money_box.html"} 
+		
+		<div class="full">
+		
+		<div class="f_l">
+		<ul class="tab-nav">
+			<li {if $f eq 0}class="current"{/if}><a href="{url r="account#focus" p="s=$s&f=0"}">全部</a></li>
+			<li {if $f eq 1}class="current"{/if}><a href="{url r="account#focus" p="s=$s&f=1"}">进行中</a></li>
+			<li {if $f eq 2}class="current"{/if}><a href="{url r="account#focus" p="s=$s&f=2"}">成功的</a></li>
+			<li {if $f eq 3}class="current"{/if}><a href="{url r="account#focus" p="s=$s&f=3"}">失败的</a></li>
+		</ul>
+		</div>
+		<div class="blank"></div>
+			
+		{if $deal_list}
+		<table class="data-table focus-table">
+			<tr>
+				<th>项目名称</th>
+				<th width="100"><a href="{url r="account#focus" p="s=3&f=$f"}" {if $s eq 3}class="current"{/if} >获得支持</a></th>
+				<th width="60"><a href="{url r="account#focus" p="s=1&f=$f"}" {if $s eq 1}class="current"{/if} >支持人数</a></th>
+				<th width="60"><a href="{url r="account#focus" p="s=2&f=$f"}" {if $s eq 2}class="current"{/if} >达成目标</a></th>
+				<th width="60"><a href="{url r="account#focus" p="s=0&f=$f"}" {if $s eq 0}class="current"{/if} >剩余时间</a></th>
+				<th width="60">操作</th>
+			</tr>
+			{foreach from=$deal_list item=deal_item}
+			<tr>
+				<td class="deal_name">
+	
+					<div><a href="{url r="deal#show" p="id=$deal_item.id"}" target="_blank" title="{$deal_item.name}"><img src="{function name="get_spec_image" v=$deal_item.image w=50 h=50 g=1}"  alt="{$order_item.deal_name}"/></a></div>	
+					<div><a href="{url r="deal#show" p="id=$deal_item.id"}" target="_blank" title="{$deal_item.name}">{function name="msubstr" v=$deal_item.name b=0 e=25}</a></div>	
+		
+				</td>
+				<td>
+					{function name="format_price" v=$deal_item.support_amount}
+				</td>
+				<td>
+					{$deal_item.support_count}
+				</td>
+				<td>			
+					{$deal_item.percent}%
+				</td>
+				<td>		
+					{if $deal_item.begin_time > $now}未开始{/if}
+					{if $deal_item.end_time < $now and $deal_item.end_time neq 0}已结束{/if}
+					{if $deal_item.begin_time < $now and ($deal_item.end_time > $now or $deal_item.end_time eq 0)}
+					{$deal_item.remain_days}天
+					{/if}						
+				</td>
+				<td>
+					<a href="{url r="account#del_focus" p="id=$deal_item.fid"}">取消关注</a>
+				</td>
+			</tr>
+			{/foreach}
+		</table>
+		{else}
+		<div class="empty_tip">
+			没有相关的记录
+		</div>
+		{/if}
+		
+		
+		</div>
+		<div class="blank"></div>
+		<div class="pages">{$pages}</div>
+		<div class="blank"></div>
+		
+		<div class="blank"></div>
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

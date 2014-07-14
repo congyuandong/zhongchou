@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+body{background:#edf3f7; font-size:12px; font-family:"verdana,Arial";  margin:0px; padding:0px; color:#404040; }
+div{margin:0 auto; padding:0;}
+h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,form,img,p{margin:0; padding:0; border:none; list-style-type:none;}
+a{ color:#333; display:block; width:100%; height:20px; line-height:20px; }
+
+dl.menu { display:block; padding:5px;}
+dl.menu dt{ display:block; background:#8ba9c0; padding:5px; margin:2px 0px; color:#fff; font-size:12px; font-weight:bold; text-indent:15px;}
+dl.menu dd{ display:block; background:#fff; padding:2px; margin:1px 0px;  text-indent:25px;}
+dl.menu dd a{ text-decoration:none;}
+a.current{display:block; width:100%; height:20px; line-height:20px; background:#6f777a; color:#fff;}

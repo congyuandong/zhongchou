@@ -1,0 +1,113 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	function init_port()
+	{
+		var is_ssl = $("select[name='is_ssl']").val();
+		if(is_ssl == '1')
+		{
+			$("input[name='smtp_port']").val("465");
+		}
+		else
+		{
+			$("input[name='smtp_port']").val("25");
+		}
+	}
+	$(document).ready(function(){
+		$("select[name='is_ssl']").bind("change",function(){
+			init_port();
+		});
+		init_port();
+	});
+	
+</script>
+<div class="main">
+<div class="main_title">{%ADD} <a href="{:u("MailServer/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%SMTP_SERVER}:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="smtp_server" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%SMTP_NAME}:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="smtp_name" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%SMTP_PWD}:</td>
+		<td class="item_input"><input type="password" class="textbox require" name="smtp_pwd" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%IS_VERIFY}:</td>
+		<td class="item_input">
+			<select name="is_verify">
+				<option value="1">{%YES}</option>
+				<option value="0">{%NO}</option>				
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%SMTP_PORT}:</td>
+		<td class="item_input"><input type="text" class="textbox" name="smtp_port" value="25" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%IS_SSL}:</td>
+		<td class="item_input">
+			<select name="is_ssl">
+				<option value="0">{%NO}</option>
+				<option value="1">{%YES}</option>
+			</select>
+		</td>
+	</tr>	
+	<tr>
+		<td class="item_title">{%TOTAL_USE}:</td>
+		<td class="item_input"><input type="text" class="textbox" name="total_use" value="0" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%USE_LIMIT}:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="use_limit" value="0" />
+			<span class='tip_span'>[{%USE_LIMIT_TIP}]</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%IS_RESET}:</td>
+		<td class="item_input">
+			<select name="is_reset">
+				<option value="0">{%NO}</option>
+				<option value="1">{%YES}</option>
+			</select>
+			<span class='tip_span'>[{%IS_RESET_TIP}]</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%IS_EFFECT}:</td>
+		<td class="item_input">
+			<lable>{%IS_EFFECT_1}<input type="radio" name="is_effect" value="1" checked="checked" /></lable>
+			<lable>{%IS_EFFECT_0}<input type="radio" name="is_effect" value="0" /></lable>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="MailServer" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="insert" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%ADD}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

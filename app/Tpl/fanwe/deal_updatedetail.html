@@ -1,0 +1,47 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/deal.css";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/deal_log.css";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/fancybox.css";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/jquery.fancybox.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/deal.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/deal.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_log.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_log.js";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+
+<div class="blank"></div>
+<div class="shadow_bg">
+	<div class="wrap white_box">
+		{include file="inc/deal_header.html"}
+
+		
+		<div class="deal_box">
+			<div class="deal_left">
+				<div class="deal_log_title">
+					<div class="title"><a href="{url r="deal#update" p="id=$deal_info.id"}" class="linkgreen">查看全部动态</a></div>				
+		
+				</div>
+				<div class="blank"></div>
+				<div class="timeline">
+					<div id="pin_box">
+					
+					{include file="inc/time_line_item.html"}
+				
+					</div>
+										
+				</div><!--end timeline-->
+			</div><!--end left-->
+			<div class="deal_right">
+				{include file="inc/deal_right.html"}
+			</div><!--end right-->
+		</div>
+		
+		<div class="blank"></div>
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

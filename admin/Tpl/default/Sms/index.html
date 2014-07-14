@@ -1,0 +1,78 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	function uninstall(id)
+	{
+		if(confirm("{%CONFIRM_DELETE}"))
+		{
+			location.href = ROOT + "?m=Sms&a=uninstall&id="+id;
+		}
+	}
+	function send_demo()
+	{		
+		$.ajax({ 
+				url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=send_demo&test_mobile="+$.trim($("input[name='test_mobile']").val()), 
+				data: "ajax=1",
+				dataType: "json",
+				success: function(obj){
+					if(obj.status==0)
+					{
+						alert(obj.info);
+					}
+					else
+					$("#info").html(obj.info);
+				}
+		});
+	}
+	$(document).ready(function(){
+		$("input[name='test_mobile_btn']").bind("click",function(){
+			var mail = $.trim($("input[name='test_mobile']").val());	
+			if(mail!='')
+			send_demo();
+		});
+	});
+</script>
+<div class="main">
+<div class="main_title">{$main_title}
+			<input type="text" class="textbox" name="test_mobile" />
+			<input type="button" class="button" name="test_mobile_btn" value="{%TEST}" />
+</div>
+<div class="blank5"></div>
+
+<table cellspacing="0" cellpadding="0" class="dataTable" id="dataTable">
+	<tbody>
+		<tr>
+			<td class="topTd" colspan="3">&nbsp; </td>
+			</tr>
+			<tr class="row">
+				<th>{%SMS_NAME}</th>
+				<th>{%DESCRIPTION}</th>		
+				<th>{%TAG_LANG_OPERATE}</th>
+				</tr>
+				<foreach name="sms_list" item="sms_item">
+				<tr class="row">
+					<td>{$sms_item.name}</td>
+					<td>{$sms_item.description}</td>				
+					<td>
+						<if condition="$sms_item['installed'] eq 0">
+						<a href="{:u("Sms/install",array("class_name"=>$sms_item['class_name']))}">{%INSTALL}</a>
+						<else />
+							<a href="javascript:uninstall({$sms_item.id});" >{%UNINSTALL}</a>
+							<a href="javascript:edit({$sms_item.id});" >{%EDIT}</a>
+							<if condition="$sms_item['is_effect'] eq 0">
+								<a href="{:u("Sms/set_effect",array("id"=>$sms_item['id']))}">{%USE_THIS_SMS}</a>
+							<else />
+								{%SMS_USING}
+							</if>
+						</if>
+					</td>
+				</tr>
+				</foreach>
+				<tr><td class="bottomTd" colspan="3"> &nbsp;</td></tr>
+			</tbody>
+		</table>
+
+
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,47 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	function uninstall(id)
+	{
+		if(confirm("{%CONFIRM_DELETE}"))
+		{
+			location.href = ROOT + "?m=ApiLogin&a=uninstall&id="+id;
+		}
+	}
+</script>
+<div class="main">
+<div class="main_title">{$main_title}
+			
+</div>
+<div class="blank5"></div>
+
+<table cellspacing="0" cellpadding="0" class="dataTable" id="dataTable">
+	<tbody>
+		<tr>
+			<td class="topTd" colspan="3">&nbsp; </td>
+			</tr>
+			<tr class="row">
+				<th>{%SMS_NAME}</th>
+				<th>{%TAG_LANG_OPERATE}</th>
+				</tr>
+				<foreach name="api_list" item="api_item">
+				<tr class="row">
+					<td>{$api_item.name}</td>									
+					<td>
+						<if condition="$api_item['installed'] eq 0">
+						<a href="{:u("ApiLogin/install",array("class_name"=>$api_item['class_name']))}">{%INSTALL}</a>
+						<else />
+							<a href="javascript:uninstall({$api_item.id});" >{%UNINSTALL}</a>
+							<a href="javascript:edit({$api_item.id});" >{%EDIT}</a>
+						</if>
+					</td>
+				</tr>
+				</foreach>
+				<tr><td class="bottomTd" colspan="3"> &nbsp;</td></tr>
+			</tbody>
+		</table>
+
+
+</div>
+<include file="Public:footer" />

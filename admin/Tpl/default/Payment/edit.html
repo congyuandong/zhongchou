@@ -1,0 +1,106 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">{$vo.name} <a href="{:u("Payment/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%PAYMENT_NAME}:</td>
+		<td class="item_input">
+			{$vo.name}
+			<input type="hidden" value="{$vo.name}" name="name" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CLASS_NAME}:</td>
+		<td class="item_input">
+			{$vo.class_name}
+			<input type="hidden" value="{$vo.class_name}" name="class_name" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%IS_EFFECT}:</td>
+		<td class="item_input">
+			<lable>{%IS_EFFECT_1}<input type="radio" name="is_effect" value="1" <if condition="$vo['is_effect'] eq 1"> checked="checked"</if> /></lable>
+			<lable>{%IS_EFFECT_0}<input type="radio" name="is_effect" value="0" <if condition="$vo['is_effect'] eq 0"> checked="checked"</if> /></lable>
+		</td>
+	</tr>
+	
+	<if condition="$vo['class_name'] neq 'TenpayBank' and $vo['class_name'] neq 'AlipayBank'">
+	<tr>
+		<td class="item_title">{%PAYMENT_LOGO}:</td>
+		<td class="item_input">
+			<html:imgUpload name = 'logo' id='logo' value="$vo.logo"  />
+		</td>
+	</tr>
+	</if>
+
+	<tr>
+		<td class="item_title">{%SORT}:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="sort" value="{$vo.sort}" />
+		</td>
+	</tr>
+	<if condition="$vo['class_name'] neq 'Account' and $vo['class_name'] neq 'Voucher' and $vo['class_name'] neq 'TenpayBank'">
+	<tr>
+		<td class="item_title">{%DESCRIPTION}:</td>
+		<td class="item_input">
+			<textarea class="textarea" name="description" >{$vo.description}</textarea>
+		</td>
+	</tr>
+	</if>
+	<if condition="$data['config']">
+	<tr>
+		<td class="item_title">{%PAYMENT_CONFIG}:</td>
+		<td class="item_input">
+			<foreach name="data.config" item="config">
+				<php>$config_name = $key;</php>
+				<span class="cfg_title">{:trim($data['lang'][$key])}:</span>
+				<span class="cfg_content">
+				<if condition="$config['INPUT_TYPE'] eq 0">
+				<input type="text" class="textbox" name="config[{$key}]" value="{$vo['config'][$key]}" />
+				<elseif condition="$config['INPUT_TYPE'] eq 2" />
+				<input type="password" class="textbox" name="config[{$key}]" value="{$vo['config'][$key]}" />
+				<elseif condition="$config['INPUT_TYPE'] eq 3" />
+					<foreach name="config.VALUES" item="val">
+						<label><input type="checkbox" name="config[{$config_name}][{$val}]" value="1" <if condition="$vo['config'][$config_name][$val] eq 1">checked="checked"</if> >{:trim($data['lang'][$config_name."_".$val])}</label>
+						<br />
+					</foreach>
+				<else />
+				<select name="config[{$key}]" >
+					<foreach name="config.VALUES" item="val">
+						<option value="{$val}" <if condition="$vo['config'][$config_name] eq $val">selected="selected"</if>>{:trim($data['lang'][$config_name."_".$val])}</option>
+					</foreach>
+				</select>
+				</if>
+				</span>
+				<div class="blank5"></div>
+			</foreach>
+		</td>
+	</tr>
+	</if>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" value="{$vo.id}" name="id" />
+			<input type="hidden" value="{$vo.online_pay}" name="online_pay" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Payment" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

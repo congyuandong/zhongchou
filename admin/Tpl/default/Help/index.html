@@ -1,0 +1,37 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<PHP>
+function get_handle($id)
+{
+		$help = M("Help")->getById($id);
+		$str = "<a href='javascript:edit(".$id.")'>编辑</a>&nbsp;";
+		if($help['is_fix']==0)
+		{
+			$str .= "<a href='javascript: foreverdel(".$id.")'>删除</a>";
+		}
+		return $str;
+}
+</PHP>
+<div class="main">
+<div class="main_title">帮助列表</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="add();" />
+	<input type="button" class="button" value="{%DEL}" onclick="foreverdel();" />
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="help" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,title:标题:edit,is_fix|get_status:固定,sort|get_sort=$help['id']:{%SORT}" 
+	actionlist="id|get_handle" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

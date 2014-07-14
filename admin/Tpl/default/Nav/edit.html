@@ -1,0 +1,122 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	$(document).ready(function(){
+		load_u_define();
+		$("select[name='u_module']").bind("change",function(){ load_u_define();});		
+	});
+	function load_u_define()
+	{
+		if($("select[name='u_module']").val()=='')
+		{
+			$("#u_config").hide();
+			$("#u_act").hide();
+			$("#u_define").show();
+		}
+		else
+		{
+			var module = $("select[name='u_module']").val();
+			var id = $("input[name='id']").val();
+			$.ajax({ 
+					url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=load_module&module="+module+"&id="+id, 
+					data: "ajax=1",
+					dataType: "json",
+					success: function(obj){
+						if(obj.data)
+						{
+							var html="<select name='u_action'>";
+							for(name in obj.data)
+							{
+								html+="<option value='"+name+"' ";
+								if(obj.info==name)
+								{
+									html+=" selected='selected' ";
+								}
+								html+=" >"+obj.data[name]+"</option>";
+							}
+							html+="</select>";
+							$("#u_act").html(html);
+						}
+						else
+						{
+							$("#u_act").html("");
+						}
+					}
+			});
+			$("#u_act").show();
+			$("#u_define").hide();
+			$("#u_config").show();
+		}
+	}
+</script>
+<div class="main">
+<div class="main_title">{$vo.name}{%EDIT} <a href="{:u("Nav/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%NAV_NAME}:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="name" value="{$vo.name}" /></td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">{%NAV_URL}:</td>
+		<td class="item_input">
+			<select name="u_module">
+					<option value="">{%U_DEFINE}</option>
+					<foreach name="navs" item="nav" key="key" >
+						<option value="{$key}" <if condition="$key eq $vo['u_module']">selected="selected"</if> >{$nav.name}</option>
+					</foreach>
+			</select>
+			<span id="u_act">				
+			</span>
+			<span id="u_config">				
+				{%U_PARAM}：<input type="text" class="textbox" name="u_param"  value="{$vo.u_param} "/>
+			</span>
+			
+			<span id="u_define">
+				<input type="text" class="textbox" name="url" value="{$vo.url}" />
+			</span>
+		</td>
+	</tr>	
+	<tr>
+		<td class="item_title">{%SORT}:</td>
+		<td class="item_input"><input type="text" class="textbox" name="sort" value="{$vo.sort}" /></td>
+	</tr>	
+	<tr>
+		<td class="item_title">{%NAV_BLANK}:</td>
+		<td class="item_input">
+			<lable>{%BLANK_1}<input type="radio" name="blank" value="1" <if condition="$vo['blank'] eq 1">checked="checked"</if> /></lable>
+			<lable>{%BLANK_0}<input type="radio" name="blank" value="0" <if condition="$vo['blank'] eq 0">checked="checked"</if> /></lable>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%IS_EFFECT}:</td>
+		<td class="item_input">
+			<lable>{%IS_EFFECT_1}<input type="radio" name="is_effect" value="1" <if condition="$vo['is_effect'] eq 1">checked="checked"</if> /></lable>
+			<lable>{%IS_EFFECT_0}<input type="radio" name="is_effect" value="0" <if condition="$vo['is_effect'] eq 0">checked="checked"</if> /></lable>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="id" value="{$vo.id}" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Nav" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

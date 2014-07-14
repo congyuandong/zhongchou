@@ -1,0 +1,64 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/deal.css";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/deal_comment.css";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/fancybox.css";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/jquery.fancybox.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/deal.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/deal.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_comment.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_comment.js";
+
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+
+<div class="blank"></div>
+<div class="shadow_bg">
+	<div class="wrap white_box">
+		{include file="inc/deal_header.html"}
+
+		
+		<div class="deal_box">
+			<div class="deal_left">
+				{if $user_info}
+				<div class="comment_form">
+					<form name="comment_form" action="{url r="deal#savedealcomment" p="id=$deal_info.id"}">
+					<textarea name="content" class="comment_form_content">发表评论</textarea>
+					<div class="blank"></div>
+					<div class="comment-btn">
+						<span class="syn_weibo">
+							<input type="checkbox" name="syn_weibo" value="1" />
+							<span>同时发布至我的微博 </span>
+						</span>				
+						<div class="ui-button green send_btn" rel="green">
+								<div>
+									<span>发送</span>
+								</div>
+						</div>	
+						<div class="blank"></div>
+					</div>
+					<input type="hidden" name="ajax" value="1" />
+					</form>
+				</div>
+				{else}
+				<div class="comment-content" style="font-size:12px;">请登录后评论，立即 <a href="{url r="user#login"}" class="linkgreen">登录</a> 或 <a href="{url r="user#register"}"  class="linkgreen">注册</a></div>			
+				{/if}
+				<div class="blank"></div>
+				{foreach from=$comment_list item=comment_item}
+				{include file="inc/comment_item_nolog.html"}
+				{/foreach}
+				<div class="blank"></div>
+				<div class="pages">{$pages}</div>
+			</div><!--end left-->
+			<div class="deal_right">
+				{include file="inc/deal_right.html"}
+			</div><!--end right-->
+		</div>
+		
+		<div class="blank"></div>
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

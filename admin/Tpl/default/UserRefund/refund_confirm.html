@@ -1,0 +1,39 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<PHP>
+	function get_refund_user_name($uid)
+	{
+		return M("User")->where("id=".$uid)->getField("user_name");
+	}
+</PHP>
+<div class="main">
+<div class="main_title">{$refund_data.user_id|get_refund_user_name}申请提现{$refund_data.money|format_price}，确认提现将自动从会员余额中扣除金额。</div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data" onsubmit="return confirm('确认提现将自动从会员余额中扣除金额，确认吗？');">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>	
+	<tr>
+		<td class="item_title">付款备注:</td>
+		<td class="item_input"><input type="text" class="textbox" name="reply" style="width:400px;" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">&nbsp;</td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="id" value="{$refund_data.id}" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="UserRefund" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="confirm" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="确认" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>

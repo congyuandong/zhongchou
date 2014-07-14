@@ -1,0 +1,35 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/deal.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">{$deal_info.name} 价格列表</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="add_deal_item({$deal_info.id});" />
+	<input type="button" class="button" value="删除" onclick="del_deal_item();" />
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+		,price|format_price:价格
+		,is_delivery|get_status:配送
+		,support_count:支持人数
+		,support_amount|format_price:已筹金额
+		,limit_user:限购人数
+		,repaid_day:成功后回报天数" 
+	actionlist="edit_deal_item:{%EDIT}, del_deal_item:删除" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

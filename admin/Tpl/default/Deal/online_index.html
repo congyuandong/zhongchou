@@ -1,0 +1,70 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<PHP>
+	function get_refund($id,$deal)
+	{
+		if($deal['is_success']==0&&$deal['end_time']<get_gmtime()&&$deal['end_time']!=0)
+		{
+			return "<a href='".u("Deal/batch_refund",array("id"=>$id))."'>批量退款</a>";
+		}
+	}
+</PHP>
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/deal.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">上线项目</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="add();" />
+	<input type="button" class="button" value="移到回收站" onclick="del();" />
+</div>
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		项目名称：<input type="text" class="textbox" name="name" value="{:trim($_REQUEST['name'])}" style="width:100px;" />
+		时间:<select name="time_status">
+				<option value="0" <if condition="$_REQUEST['time_status'] eq 0">selected="selected"</if>>全部</option>
+				<option value="1" <if condition="$_REQUEST['time_status'] eq 1">selected="selected"</if>>未开始</option>
+				<option value="2" <if condition="$_REQUEST['time_status'] eq 2">selected="selected"</if>>进行中</option>
+				<option value="3" <if condition="$_REQUEST['time_status'] eq 3">selected="selected"</if>>已结束</option>
+			</select>
+		分类:<select name="cate_id">
+				<option value="0" <if condition="$_REQUEST['time_status'] eq 0">selected="selected"</if>>全部</option>
+				<foreach name="cate_list" item="cate_item">
+					<option value="{$cate_item.id}" <if condition="$_REQUEST['cate_id'] eq $cate_item['id']">selected="selected"</if>>{$cate_item.name}</option>
+				</foreach>
+			</select>
+		发起人ID: <input type="text" class="textbox" name="user_id" value="{:trim($_REQUEST['user_id'])}" style="width:30px;" />
+		<input type="hidden" value="Deal" name="m" />
+		<input type="hidden" value="online_index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+		,name|msubstr:项目名称|220px:edit
+		,user_id|get_deal_user:发起人|50px
+		,support_amount|format_price:已筹金额
+		,is_success|get_status:成功	
+		,focus_count:关注|50px
+		,support_count:支持|50px
+		,end_time|get_to_date:结束时间
+		,sort|get_sort=$deal['id']:{%SORT}
+		,is_recommend|get_toogle_status=$deal['id']#is_recommend:推荐
+		,is_classic|get_toogle_status=$deal['id']#is_classic:经典" 
+	actionlist="edit:{%EDIT}, del:移到回收站, deal_item:项目子项, pay_log:发放筹款, deal_log:项目日志,id|get_refund=$deal" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,25 @@
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+	<div class="main_title">{%CONF_NEWS}</div>
+	<div class="button_row">
+		<input type="button" class="button" value="{%ADD}" onclick="add();" />
+		<input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel();" />
+	</div>
+	<div class="blank5"></div>
+	<html:list 
+		id="checkList" 
+		style="dataTable" 
+		name="node" 
+		checkbox="true" 
+		action="true" 
+		datasource="list" 
+		show="id:{%ID}|80
+			,code:{%TITLE}
+			,is_verify|get_toogle_status=$node['id']#is_verify:{%STATUS}" 
+			actionlist="edit:{%EDIT},del:{%DEL}" />
+	
+	<div class="blank5"></div>
+	<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+body{background:url(../images/topbg.png) repeat-x; font-size:12px; font-family:"verdana,Arial";  margin:0px; padding:0px; color:#404040; }
+div{margin:0 auto; padding:0;}
+h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,form,img,p{margin:0; padding:0; border:none; list-style-type:none;}
+a{ color:#333;}
+
+
+#navs{ background:url(../images/navbgs.png) 0px 24px repeat-x; height:28px; position:relative;}
+#navs ul{position:absolute;  }
+#navs ul li{ float:left; display:inline; padding:0px 5px; width:90px; }
+
+#navs a{ display:block; background:url(../images/navbgs_nohover.png) 0px 0px repeat-x; color:#fff;  padding:0px 10px;text-align:center; text-decoration:none; line-height:25px; height:28px; font-weight:bold; }
+#navs a.current{ color:#2076a3; background:url(../images/navbgs_hover.png) repeat-x; line-height:28px;  }
+
+#tips{ float:right; padding:10px;}
+#tips a{ display:inline-block; padding:5px; color:#fff; }
+#logo{ background:url(../images/logo.png) 0px 3px no-repeat; width:180px; height:37px; float:left;}
+

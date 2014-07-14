@@ -1,0 +1,50 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/index.css";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/index.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/index.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/discover.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/discover.js";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+
+<div class="blank"></div>
+<div class="wrap">
+	
+	<div id="index_images" class="index_images">		
+			<div class="roll_box">
+			{foreach from=$image_list item=image_item}
+			<a href="{$image_item.url}" title="{$image_item.title}">
+				<img src="{function name="get_spec_image" v=$image_item.image w=960 h=280 g=1}"  alt="{$image_item.title}" />
+			</a>
+			{/foreach}
+			</div>			
+	</div>
+	
+	<div class="f_l">
+		<ul class="tab-nav">
+			<li class="current"><a href="{url r="index"}">推荐项目</a></li>
+			<li><a href="{url r="deals" p="r=new"}">最新上线</a></li>
+			<li><a href="{url r="deals" p="r=nend"}">即将结束</a></li>
+			<li><a href="{url r="deals" p="r=classic"}">经典项目</a></li>
+		</ul>
+	</div>
+	<div class="f_r">
+		<ul class="tab-nav">
+			{foreach from=$cate_list item=cate_item}
+			<li><a href="{url r="deals" p="id=$cate_item.id"}" title="{$cate_item.name}">{$cate_item.name}</a></li>
+			{/foreach}
+		</ul>
+	</div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div id="pin_box">
+	{include file="inc/deal_list.html"}
+	</div>	
+	<div class="blank"></div>
+	<div id="pin_loading" rel="{url r="ajax#index" p="p=$current_page"}">正在努力加载</div>	
+	
+</div>
+{include file="inc/footer.html"} 

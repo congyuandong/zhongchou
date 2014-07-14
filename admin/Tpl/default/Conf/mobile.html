@@ -1,0 +1,43 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">{%CONF_MOBILE}</div>
+<div class="blank5"></div>
+	<form method='post' id="form" name="form" action="__APP__">
+	<table cellpadding="4" cellspacing="0" border="0" class="form">
+		<tr>
+			<td colspan="2" class="topTd"></td>
+		</tr>
+		<foreach name="config" item="cfg">
+		<tr <if condition="$cfg['code'] eq 'only_one_delivery' or $cfg['code'] eq 'has_ecv' or $cfg['code'] eq 'has_message' or $cfg['code'] eq 'has_region'">style="display:none;"</if>>		
+			<td class="item_title">{$cfg.title}</th>
+			<td class="item_input">
+				<if condition="$cfg['type'] eq 1">
+				<html:editor id="{$cfg.code}" name="{$cfg.code}" type="KINDEDITOR" style=" height:150px;width:750px;" content="{$cfg.val}" />
+				</if>
+				<if condition="$cfg['type'] eq 2">
+				<html:imgUpload id="{$cfg.code}" name="{$cfg.code}" value='$cfg.val' />
+				</if>
+				<if condition="$cfg['type'] eq 0">
+				<input type="text" class="textbox" name="{$cfg.code}" value="{$cfg.val}" />
+				</if>
+			</td>
+		</tr>
+		</foreach>
+		<tr>
+			<td class="item_title"></td>
+			<td class="item_input">
+				<input type="hidden" name="{:conf("VAR_MODULE")}" value="Conf" />
+				<input type="hidden" name="{:conf("VAR_ACTION")}" value="savemobile" />
+				<input type="submit" class="button" value="{%EDIT}" />
+				<input type="reset" class="button" value="{%RESET}" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" class="bottomTd"></td>
+		</tr>
+	</table>
+	</form>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,33 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<if condition="$default_map">
+	<input type="button" class="button" value="{%ADD}" onclick="location.href='{:u("Adv/add",array("rel_table"=>$default_map['rel_table'],"rel_id"=>$default_map['rel_id']))}';" />
+	<else />
+	<input type="button" class="button" value="{%ADD}" onclick="add();" />
+	</if>
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel();" />
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="adv" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+	,name:广告名称:edit
+	,is_effect|get_is_effect=$adv['id']:{%IS_EFFECT}
+	,tmpl:模板
+	,adv_id:广告ID" 
+	actionlist="edit:{%EDIT}, foreverdel:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

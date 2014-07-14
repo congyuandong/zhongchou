@@ -1,0 +1,75 @@
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/switch_city.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/switch_city.js";
+$this->_var['dpagejs'][] = APP_ROOT_PATH."/system/region.js";
+$this->_var['dcpagejs'][] = APP_ROOT_PATH."/system/region.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/add_consignee.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/add_consignee.js";
+
+?>
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+
+<div class="full" style="padding-right:20px;">
+<form class="ajax_form" action="{url r="settings#save_consignee"}">
+									
+				<div class="form_row">
+					<div class="blank15"></div>
+					<label class="title w100">收货人姓名:</label>
+					<input type="text" class="textbox" value="{$consignee_info.consignee}" name="consignee" />
+					<div class="blank15"></div>
+				</div>
+				<div class="form_row">
+					<label class="title w100">地区:</label>
+					
+					<div class="select_box">
+					<select name="province">				
+					<option value="" rel="0">请选择省份</option>			
+					{foreach from=$region_lv2 item=region}
+						<option value="{$region.name}" rel="{$region.id}" {if $region.selected}selected="selected"{/if}>{$region.name}</option>
+					{/foreach}
+					</select>
+					
+					<select name="city">				
+					<option value="" rel="0">请选择城市</option>
+					{foreach from=$region_lv3 item=region}
+						<option value="{$region.name}" rel="{$region.id}" {if $region.selected}selected="selected"{/if}>{$region.name}</option>
+					{/foreach}
+					</select>
+					</div>
+					
+					<div class="blank15"></div>
+				</div>
+				
+				<div class="form_row">
+					<label class="title w100">详细地址:</label>
+					<textarea name="address" class="textarea">{$consignee_info.address}</textarea>
+					<div class="blank15"></div>
+				</div>
+				
+				<div class="form_row">
+					<div class="blank15"></div>
+					<label class="title w100">邮编:</label>
+					<input type="text"  name="zip" class="textbox" value="{$consignee_info.zip}" />
+					<div class="blank15"></div>
+				</div>
+				<div class="form_row">
+					<div class="blank15"></div>
+					<label class="title w100">手机:</label>
+					<input type="text"  name="mobile" class="textbox" value="{$consignee_info.mobile}" />
+					<div class="blank15"></div>
+				</div>
+				
+				
+				<div class="submit_btn_row">
+					<div class="ui-button green" rel="green">
+						<div>
+							<span>保存</span>
+						</div>
+					</div>
+					<input type="hidden" value="1" name="ajax" />
+					<input type="hidden" value="{$consignee_info.id}" name="id" />
+					<div class="blank15"></div>
+				</div>
+				
+			</form>
+			</div>

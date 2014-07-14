@@ -1,0 +1,3 @@
+@CHARSET "UTF-8";
+body{background:url(../images/topbg.png) repeat-x; font-size:12px; font-family:"verdana,Arial";  margin:0px; padding:0px; color:#404040; }
+.footer{ text-align:center; height:30px; color:#fff; line-height:30px; font-size:14px;}

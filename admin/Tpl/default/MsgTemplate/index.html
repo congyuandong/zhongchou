@@ -1,0 +1,123 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("select[name='name']").bind("change",function(){
+			load_tpl($("select[name='name']").val());
+		});
+		load_tpl($("select[name='name']").val());
+	});
+	function load_tpl(tpl_name)
+	{
+		if(tpl_name != '')
+		{
+			$.ajax({ 
+					url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=load_tpl&name="+tpl_name, 
+					data: "ajax=1",
+					dataType: "json",
+					success: function(obj){						
+						if(obj.status==1)
+						{
+							var tpl = obj.data;
+							if(tpl.type == 1)
+							{
+								$("#html_row").show();
+								$("select[name='is_html']").val(tpl.is_html);	
+							}
+							else
+							{
+								hide_html_row();
+							}
+							$("textarea[name='content']").val(tpl.content);
+							$("input[name='id']").val(tpl.id);
+							if(tpl.tip)
+							{
+								$("#content_tip").find("td").html(tpl.tip);
+								$("#content_tip").show();
+							}
+							
+						}
+						else
+						{
+							$("textarea[name='content']").val('');
+							$("input[name='id']").val(0);
+							hide_html_row();
+						}
+					}
+			});
+		}
+		else
+		{
+			$("textarea[name='content']").val('');
+			$("input[name='id']").val(0);
+			$("#content_tip").hide();
+			hide_html_row();
+		}
+	}
+	function hide_html_row()
+	{
+		$("#html_row").hide();
+		$("select[name='is_html']").val(0);		
+		$("#content_tip").hide();
+	}
+</script>
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%MSG_TPL_NAME}:</td>
+		<td class="item_input">
+			<select name="name">
+				<option value="">{%SELECT_MSG_TPL}</option>
+				<foreach name="tpl_list" item="tpl_item">
+					<option value="{$tpl_item.name}">{:l("LANG_".$tpl_item['name'])}</option>
+				</foreach>
+			</select>
+		</td>
+	</tr>
+	<tr id="html_row">
+		<td class="item_title">{%IS_HTML}:</td>
+		<td class="item_input">
+			<select name="is_html">
+				<option value="0">{%IS_HTML_0}</option>
+				<option value="1">{%IS_HTML_1}</option>
+			</select>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">{%CONTENT}:</td>
+		<td class="item_input">
+			<textarea class="textarea" name="content" style="width:600px; height:250px;" ></textarea>
+		</td>
+	</tr>
+	<tr id="content_tip">
+		<td colspan="2">
+			
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" value="0" name="id" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="MsgTemplate" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>
+</form>
+</div>
+<include file="Public:footer" />

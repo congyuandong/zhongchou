@@ -1,0 +1,11 @@
+<div class="page_title">
+		{if ACTION_NAME eq 'index'}收到的评论{/if}
+		{if ACTION_NAME eq 'send'}发出的评论{/if}
+</div>
+<div class="blank"></div>		
+<div class="switch_nav">
+	<ul>
+		<li {if ACTION_NAME eq 'index'}class="current"{/if}><a href="{url r="comment"}">收到的评论</a></li>
+		<li {if ACTION_NAME eq 'send'}class="current"{/if}><a href="{url r="comment#send"}">发出的评论</a></li>						
+	</ul>		
+</div>

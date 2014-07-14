@@ -1,0 +1,68 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_list.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_list.js";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/account.css";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+		<div class="page_title">
+			我的项目
+		</div>
+		<div class="switch_nav">
+			<ul>
+				<li><a href="{url r="account#index"}">支持的项目</a></li>
+				<li class="current"><a href="{url r="account#project"}">我的项目</a></li>
+				<li><a href="{url r="account#focus"}">关注的项目</a></li>
+				<li><a href="{url r="account#credit"}">收支明细</a></li>
+				
+			</ul>
+		</div>
+		
+		<div class="blank"></div>		
+		{include file="inc/money_box.html"} 		
+
+		<div class="full">
+		<div class="deal_name_title">
+		{$deal_info.name} 放款记录
+		<div style="font-size:12px; color:#999; font-weight:normal; padding:10px 0px;"> 该项目你实际可获得 <span style="color:#c00; font-weight:bolder;">{function name="format_price" v=$deal_info.pay_amount}</span> 资金（包含运费）</div>
+		</div>
+		{if $paid_list}
+		<table class="data-table">
+			<tr>
+				<th>日志内容</th>				
+				<th width="120">金额</th>
+				<th width="120">时间</th>
+
+			</tr>
+			{foreach from=$paid_list item=paid_item}
+			<tr>
+				<td class="deal_name">{$paid_item.log_info}</td>
+				<td>
+					{function name="format_price" v=$paid_item.money}
+				</td>
+				<td>{function name="to_date" v=$paid_item.create_time}</td>
+			</tr>
+			{/foreach}
+		</table>
+		
+		
+		
+		<div class="blank"></div>
+		<div class="pages">{$pages}</div>
+		{else}
+		<div class="empty_tip">
+			还没有任何放款记录
+		</div>	
+		{/if}
+		</div>
+		<div class="blank"></div>
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

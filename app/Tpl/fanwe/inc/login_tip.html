@@ -1,0 +1,50 @@
+{if $user_info}
+	<a href="#" id="mymessage">消息</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="#" id="mycenter">{$user_info.user_name}</a>&nbsp;&nbsp;|&nbsp;&nbsp;		
+	<a href="{url r="user#loginout"}" title="登出" id="user_login_out">登出</a>
+	
+	{if $USER_NOTIFY_COUNT>0 or $USER_MESSAGE_COUNT>0}
+	{if $HIDE_USER_NOTIFY eq 0}
+	<div id="user_notify_tip" style="position:absolute; z-index:1; display:none;">		
+		<div class="notify_tip_box" id="close_user_notify">
+			<div class="close_user_notify"></div>
+			{if $USER_NOTIFY_COUNT>0}
+			<span><a href="{url r="notify"}">您有 <font>{$USER_NOTIFY_COUNT}</font> 条新通知</a></span>
+			{/if}
+			{if $USER_MESSAGE_COUNT>0}
+			<span><a href="{url r="message"}">您有 <font>{$USER_MESSAGE_COUNT}</font> 条新信息</a></span>
+			{/if}
+		</div>
+	</div>
+	{/if}
+	{/if}
+
+	<div id="mymessage_drop" style="position:absolute; display:none;">
+		<div class="drop_box">
+			<span><a href="{url r="news#fav"}">关注动态</a></span>
+			<span><a href="{url r="comment"}">查看评论</a></span>
+			<span><a href="{url r="message"}">查看私信</a></span>
+			<span><a href="{url r="notify"}">查看通知</a></span>
+
+		</div>
+	</div>
+	<div id="mycenter_drop" style="position:absolute; display:none;">
+		<div class="drop_box">
+			<span><a href="{url r="home" p="id=$user_info.id"}">我的主页</a></span>
+			<span><a href="{url r="account"}">项目管理</a></span>
+			<span><a href="{url r="settings"}">个人设置</a></span>
+
+		</div>
+	</div>
+	
+{else}
+	<a href="{url r="user#login"}" title="登录">登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;	
+	<a href="{url r="user#register"}" title="注册">注册</a>&nbsp;&nbsp;			
+	<span class="api_login_tip" id="api_login_tip">使用其他帐号登录</span>
+	
+	<div id="api_login_tip_drop" style="position:absolute; display:none;">
+		<div class="api_drop_box">
+			{$api_login}
+		</div>
+	</div>
+{/if}

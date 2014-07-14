@@ -1,0 +1,38 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">{%EDIT} <a href="{:u("Conf/news")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+	<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/updatenews')}">
+		<table cellpadding="4" cellspacing="0" border="0" class="form">
+			<tr>
+				<td colspan="2" class="topTd"></td>
+			</tr>
+			<tr>		
+				<td class="item_title">标题</th>
+				<td class="item_input">
+					<input type="text" class="textbox require" name="code" value="{$vo.code}" />
+				</td>
+			</tr>
+			<tr>		
+				<td class="item_title">内容</th>
+				<td class="item_input">			
+				<html:editor id="title" name="title" type="KINDEDITOR" style="width:96%;height:300px" content="{$vo.title}" />
+				</td>
+			</tr>
+			<tr>
+				<td class="item_title"></td>
+				<td class="item_input">
+				<input type="hidden" name="id" value="{$vo.id}" />
+				<input type="submit" class="button" value="{%EDIT}" />
+				<input type="reset" class="button" value="{%RESET}" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="bottomTd"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,66 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/consignee.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/consignee.js";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/consignee.css";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+		<div class="page_title">
+			配送地址
+		</div>
+		<div class="switch_nav">
+			<ul>
+				<li><a href="{url r="settings#index"}">个人资料</a></li>
+				<li><a href="{url r="settings#password"}">修改密码</a></li>
+				<li class="current"><a href="{url r="settings#consignee"}">配送地址</a></li>
+				<li><a href="{url r="settings#bind"}">绑定设置</a></li>
+				{if $user_info.ex_real_name eq '' and $user_info.ex_account_info eq '' and $user_info.ex_contact eq ''}
+				<li><a href="{url r="settings#bank"}">银行帐户</a></li>
+				{/if}
+			</ul>
+		</div>
+		
+		<div class="blank"></div>
+		
+		<div class="full">
+				
+				<div class="ui-button green" rel="green" id="add_consignee" url="{url r="settings#add_consignee"}">
+						<div>
+							<span>添加配送地址</span>
+						</div>
+				</div>
+				
+				<div class="blank15"></div>
+				
+				{if $consignee_list}
+					{foreach from=$consignee_list item=consignee_item}
+					<div class="consignee_row">
+						<div class="consignee_item">
+						{$consignee_item.province}{$consignee_item.city} {$consignee_item.address} {$consignee_item.zip}
+						{$consignee_item.consignee} {$consignee_item.mobile}
+						</div>
+						<div class="consignee_op">
+							<a href="javascript:void(0);" class="edit_consignee" rel="{$consignee_item.id}">修改</a>
+							<a href="javascript:void(0);" class="del_consignee" rel="{$consignee_item.id}">删除</a>
+						</div>
+					</div>
+					{/foreach}
+				{else}
+				<div class="empty_tip">
+					还未设置任何配送地址
+				</div>			
+				{/if}
+		</div><!--full-->
+		
+		
+		<div class="blank"></div>
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

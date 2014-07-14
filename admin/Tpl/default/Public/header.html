@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<load href='__TMPL__Common/style/style.css' />
+<script type="text/javascript">
+ 	var VAR_MODULE = "{:conf("VAR_MODULE")}";
+	var VAR_ACTION = "{:conf("VAR_ACTION")}";
+	var MODULE_NAME	=	'<php>echo MODULE_NAME;</php>';
+	var ACTION_NAME	=	'<php>echo ACTION_NAME;</php>';
+	var ROOT = '__APP__';
+	var ROOT_PATH = '<PHP>echo APP_ROOT;</PHP>';
+	var CURRENT_URL = '{:trim($_SERVER['REQUEST_URI'])}';
+	var INPUT_KEY_PLEASE = "{%INPUT_KEY_PLEASE}";
+	var TMPL = '__TMPL__';
+	var APP_ROOT = '<PHP>echo APP_ROOT;</PHP>';
+</script>
+<load href='__TMPL__Common/js/jquery.js' />
+<load href='__TMPL__Common/js/jquery.timer.js' />
+<load href='__TMPL__Common/js/script.js' />
+<script type="text/javascript" src="__ROOT__/public/runtime/admin/lang.js"></script>
+<script type='text/javascript'  src='__ROOT__/admin/public/kindeditor/kindeditor.js'></script>
+</head>
+<body>
+<div id="info"></div>

@@ -1,0 +1,185 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/add_item.css";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/upload_deal_item_image.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/upload_deal_item_image.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/edit_deal_item.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/edit_deal_item.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/ajaxupload.js";
+?>
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box">
+
+			<div class="page_title">
+			回报设置 - {$deal_item.name} 
+			</div>
+			<div class="switch_nav">
+				<ul>
+					<li><a href="{url r="project#edit" p="id=$deal_item.id"}">项目介绍</a></li>		
+					<li class="current"><a href="{url r="project#add_item" p="id=$deal_item.id"}">回报设置</a></li>					
+				</ul>
+			</div>
+					
+			<div class="blank"></div>
+			
+			<div class="add_item_tip">				
+				<h1>小提示：</h1>
+				<ul>
+					<li>【建议设置3个以上的回报】，回报多样化更能提高关注度。</li>
+					<li>【建议设置几十、几百、上千元的支持档位】，回报差异化更能满足不同人的需求。</li>
+					<li>【建议设置有创意的回报】，与众不同的回报更能打动支持者。</li>
+				</ul>
+			</div>
+			
+			<div class="blank"></div>
+			<div class="link_dash"></div>
+			<div class="blank"></div>		
+					
+			<div id="add_item_form">
+				<form class="ajax_form" id="item_form" action="{url r="project#save_deal_item"}" method="post">		
+				<div class="public_left">									
+						
+						<div class="form_row">
+							<div class="blank15"></div>
+							<label class="title w100">支持金额:</label>
+							<input type="text" value="{function name="round" v=$item.price e=2}" class="textbox" name="price" style="width:100px;" />
+							<label class="tip_box">元</label>
+							<div class="blank15"></div>
+						</div>
+		
+						
+						<div class="form_row">
+							<label class="title w100">回报内容:</label>
+							<textarea name="description" class="textarea">{$item.description}</textarea>
+							<div class="blank15"></div>
+						</div>
+						
+						<div class="form_row">
+							<label class="title w100">说明图片:</label>
+							<div class="f_l">
+								<label class="fileupload" onclick="upd_file(this,'image_file');">
+								<input type="file" class="filebox" name="image_file" id="image_file"/>						
+								</label>
+								<label class="fileuploading hide" ></label>
+								
+							</div>
+							<div class="blank15"></div>
+						</div>
+						
+						<div class="form_row">
+							<label class="title w100">是否配送:</label>
+							<div class="select_box">
+								<select name="is_delivery">
+									<option value="0" {if $item.is_delivery eq 0}selected="selected"{/if}>否</option>
+									<option value="1" {if $item.is_delivery eq 1}selected="selected"{/if}>是</option>
+								</select>
+							</div>
+							<div class="blank15"></div>
+						</div>
+						
+						<div class="form_row" style="display:none;">
+	
+							<label class="title w100">运费:</label>
+							<input type="text" value="{function name="round" v=$item.delivery_fee e=2}" class="textbox" name="delivery_fee" style="width:100px;" />
+							<label class="tip_box">元</label>
+							<div class="blank15"></div>
+						</div>
+						
+						<div class="form_row">
+							<label class="title w100">是否限购:</label>
+							<div class="select_box">
+								<select name="is_limit_user">
+									<option value="0" {if $item.is_limit_user eq 0}selected="selected"{/if}>否</option>
+									<option value="1" {if $item.is_limit_user eq 1}selected="selected"{/if}>是</option>
+								</select>
+							</div>
+							<div class="blank15"></div>
+						</div>
+						
+						<div class="form_row" style="display:none;">
+
+							<label class="title w100">限购人数:</label>
+							<input type="text" value="{$item.limit_user}" class="textbox" name="limit_user" style="width:100px;" />
+							<label class="tip_box">人</label>
+							<div class="blank15"></div>
+						</div>
+						
+						<div class="form_row">
+					
+							<label class="title w100">回报时间:</label>
+							<label class="tip_box" style="padding-left:0px; padding-right:10px;">项目成功后</label>
+							<input type="text" value="{$item.repaid_day}" class="textbox" name="repaid_day" style="width:100px;" />
+							<label class="tip_box">天</label>
+							<div class="blank15"></div>
+						</div>
+				</div><!--end left-->
+				<div class="public_right">
+					<div class="deal_preview_title">编辑预览</div>
+					<div class="blank"></div>
+					<div class="item_preview">
+						<div id="support_price_box">支持￥<span id="support_price">{function name="round" v=$item.price e=2}</span>元<div class="blank"></div></div>						
+						<div>0位支持者&nbsp;&nbsp;&nbsp;&nbsp;<span id="limit_user_box" {if $item.limit_user eq 0}style="display:none;"{/if}>限额<span id="limit_user">{$item.limit_user}</span>位,剩余<span id="remain_user">{$item.limit_user}</span>位</span><div class="blank"></div></div>
+						<div id="repaid_content">{function name="nl2br" v=$item.description}</div>	
+										
+						<div id="image_box_outer" {if !$deal_item_images}style="display:none;"{/if}>
+							<div class="blank"></div>	
+							<div id="image_box">				
+								{foreach from=$deal_item_images item=image}
+								
+								<div class="image_item">
+									<span></span>
+									<img src="{function name="get_spec_image" v=$image.image w=50 h=50 g=1}" width=50 height=50 />
+									<input type="hidden" name="image[]" value="{$image.image}"  />
+								</div>
+								
+								{/foreach}
+							</div>	
+							<div class="blank1"></div>					
+						</div>
+						<div id="repaid_day_box">
+							<div class="blank"></div>
+							预计回报发放时间：项目成功结束后<span id="repaid_day">{$item.repaid_day}</span>天内
+							
+						</div>
+						<div id="delivery_box">
+							<div class="blank"></div>
+							运费 ￥<span id="delivery_fee_box">{function name="round" v=$item.delivery_fee e=2}</span>
+							
+						</div>
+						<div class="blank"></div>
+						<div class="ui-button_green">
+							<div>
+								<span>支持￥<font id="support_price_btn">{function name="round" v=$item.price e=2}</font>元</span>
+							</div>
+						</div>
+						<div class="blank1"></div>
+					</div>
+				</div><!--end right-->
+				<div class="blank"></div>
+				<div class="add_item_btn" style="width:250px;">
+				<div class="ui-button green" rel="green">
+							<div>
+								<span>保存回报设置</span>
+							</div>
+				</div>
+				<a href="{url r="project#add_item" p="id=$deal_item.id"}">取消设置</a>
+				</div>
+				<div class="blank"></div>
+				<input type="hidden" name="id" value="{$item.id}" />
+				<input type="hidden" name="deal_id" value="{$deal_item.id}" />
+				<input type="hidden" name="ajax" value="1" />
+				</form>
+			</div>
+			<div class="blank"></div>
+	
+	</div>
+</div>
+
+<div class="blank"></div>
+{include file="inc/footer.html"} 
+
+

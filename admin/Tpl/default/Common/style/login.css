@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+/* 公共样式 */
+body{background:#fff; font-size:12px; font-family:"verdana,Arial"  margin:0px; padding:0px; color:#404040; }
+div{margin:0 auto; padding:0;}
+input{ font-family:verdana,arial; font-weight:bold;}
+
+
+
+#login_msg{ text-align:center; color:#ff7b00; font-weight:bold; font-size:14px;}
+#verify{ cursor:pointer;}
+
+.login_button{ cursor:pointer;}

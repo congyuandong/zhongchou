@@ -1,0 +1,15 @@
+<div id="gotop"></div>
+<div class="blank"></div>
+<div class="footer">
+	<div class="wrap">
+		<div class="help_row">
+			<a href="{url r="faq"}" title="常见问题">常见问题</a>
+			{foreach from=$helps item=help}
+			 &nbsp;&nbsp;|&nbsp;&nbsp;<a href="{$help.url}" title="{$help.title}">{$help.title}</a>
+			{/foreach}
+		</div>
+		<div class="license">
+			{function name="app_conf" v="SITE_LICENSE"}
+		</div>
+	</div>
+</div>

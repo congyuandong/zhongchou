@@ -1,0 +1,49 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/deal.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">回收站</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="彻底删除" onclick="foreverdel();" />
+
+</div>
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		项目名称：<input type="text" class="textbox" name="name" value="{:trim($_REQUEST['name'])}" style="width:100px;" />
+		分类:<select name="cate_id">
+				<option value="0" <if condition="$_REQUEST['time_status'] eq 0">selected="selected"</if>>全部</option>
+				<foreach name="cate_list" item="cate_item">
+					<option value="{$cate_item.id}" <if condition="$_REQUEST['cate_id'] eq $cate_item['id']">selected="selected"</if>>{$cate_item.name}</option>
+				</foreach>
+			</select>
+		发起人ID: <input type="text" class="textbox" name="user_id" value="{:trim($_REQUEST['user_id'])}" style="width:30px;" />
+		<input type="hidden" value="Deal" name="m" />
+		<input type="hidden" value="submit_index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+		,name|msubstr:项目名称|200px:edit
+		,user_id|get_deal_user:发起人|50px
+		,limit_price|format_price:目标金额|100px
+		,create_time|to_date:创建时间" 
+	actionlist="restore:恢复, foreverdel:彻底删除" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

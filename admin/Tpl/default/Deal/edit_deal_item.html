@@ -1,0 +1,92 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/deal_item_edit.js' />
+<div class="main">
+<div class="main_title">{%EDIT} <a href="{:u("Deal/deal_item",array("id"=>$vo['deal_id']))}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form conf_tab" cellpadding=0 cellspacing=0 >
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">图片:</td>
+		<td class="item_input">
+			<html:imgUpload name = 'image[]' id='img0' value='$img_list.0' />
+			<html:imgUpload name = 'image[]' id='img1' value='$img_list.1' />
+			<html:imgUpload name = 'image[]' id='img2' value='$img_list.2' />
+			<html:imgUpload name = 'image[]' id='img3' value='$img_list.3' />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">价格:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="price" value="{$vo.price}" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">简介:</td>
+		<td class="item_input"><textarea name="description" class="textarea">{$vo.description}</textarea></td>
+	</tr>
+	<tr>
+		<td class="item_title">是否需要配送</td>
+		<td class="item_input">
+			<select name="is_delivery">
+				<option value="0" <if condition="$vo['is_delivery'] eq 0">selected="selected"</if> >否</option>
+				<option value="1" <if condition="$vo['is_delivery'] eq 1">selected="selected"</if> >是</option>
+			</select>
+		</td>
+	</tr>
+	<tr id="delivery_fee">
+		<td class="item_title">运费:</td>
+		<td class="item_input"><input type="text" class="textbox" name="delivery_fee" value="{$vo.delivery_fee}" /></td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">是否限购</td>
+		<td class="item_input">
+			<select name="is_limit_user">
+				<option value="0" <if condition="$vo['is_limit_user'] eq 0">selected="selected"</if> >否</option>
+				<option value="1" <if condition="$vo['is_limit_user'] eq 1">selected="selected"</if> >是</option>
+			</select>
+		</td>
+	</tr>
+	<tr id="limit_user">
+		<td class="item_title">限购人数:</td>
+		<td class="item_input"><input type="text" class="textbox" name="limit_user" value="{$vo.limit_user}" /></td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">成功后回报天数:</td>
+		<td class="item_input"><input type="text" class="textbox" name="repaid_day" value="{$vo.repaid_day}" /></td>
+	</tr>
+	
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>
+
+<div class="blank5"></div>
+	<table class="form" cellpadding=0 cellspacing=0>
+		<tr>
+			<td colspan=2 class="topTd"></td>
+		</tr>
+		<tr>
+			<td class="item_title"></td>
+			<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Deal" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="update_deal_item" />
+			<input type="hidden" name="deal_id" value="{$vo.deal_id}" />
+			<input type="hidden" name="id" value="{$vo.id}" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+			<input type="reset" class="button" value="{%RESET}" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="bottomTd"></td>
+		</tr>
+	</table> 		 
+</form>
+</div>
+<include file="Public:footer" />

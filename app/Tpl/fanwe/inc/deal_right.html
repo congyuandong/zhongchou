@@ -1,0 +1,152 @@
+<div class="deal_right_info">
+<div class="info_box">
+	<div class="info_title">支持人数</div>
+	<div class="info_content">{$deal_info.support_count}<span>&nbsp;位</span></div>
+</div>
+<div class="info_box">
+	<div class="info_title">支持金额</div>
+	<div class="info_content">¥{$deal_info.support_amount_format}</div>
+</div>
+{if $deal_info.end_time neq 0}				
+<div class="info_box">
+	<div class="info_title">剩余天数</div>
+	<div class="info_content">{if $deal_info.remain_days < 0}已过期{else}{$deal_info.remain_days}<span>&nbsp;天</span>{/if}</div>
+</div>
+{/if}
+<div class="deal_tip_box">
+{if $deal_info.begin_time > $now}
+<div class="deal_tip gray_tip">
+	<div>
+		此项目将在{function name="to_date" v=$deal_info.begin_time f="Y年m月d日H:i"}正式上线，
+		{if $deal_info.end_time neq 0}
+		必须在{function name="to_date" v=$deal_info.end_time f="Y年m月d日H:i"}之前达到 ¥{$deal_info.limit_price_format} 的目标才可成功。
+		{else}
+		必须达到 ¥{$deal_info.limit_price_format} 的目标才可成功。
+		{/if}
+	</div>
+</div>
+{/if}
+{if $deal_info.end_time < $now and $deal_info.end_time neq 0}
+<div class="deal_tip gray_tip">
+	<div>
+		此项目在{function name="to_date" v=$deal_info.end_time f="Y年m月d日H:i"}已经过期，
+		{if $deal_info.is_success eq 0}
+		未能达到 ¥{$deal_info.limit_price_format} 的目标。
+		{else}
+		成功筹到 ¥{$deal_info.support_amount_format}。
+		{/if}
+	</div>
+</div>
+{/if}
+
+{if ($deal_info.end_time > $now or $deal_info.end_time eq 0) and $deal_info.begin_time < $now }
+<div class="deal_tip green_tip">
+	<div>
+		{if $deal_info.end_time eq 0}
+		此项目必须达到 ¥{$deal_info.limit_price_format} 的目标，方可成功。
+		{else}
+		此项目必须在{function name="to_date" v=$deal_info.end_time f="Y年m月d日H:i"}之前，			
+		达到 ¥{$deal_info.limit_price_format} 的目标。	
+		{/if}			
+	</div>
+</div>
+{/if}
+</div><!--end deal_tip_box-->
+<div class="deal_item_list">
+	{foreach from=$deal_item_list item=deal_item}
+	<div class="deal_item">
+		<div class="deal_item_price">支持 ¥{$deal_item.price_format}</div>	
+		<div class="deal_item_support_count">{$deal_item.support_count}位支持者</div>
+		<div class="deal_item_description">{function name="nl2br" v=$deal_item.description}</div>	
+		<div class="deal_item_delivery_limit">
+			{if $deal_item.is_delivery eq 1}
+				{if $deal_item.delivery_fee eq 0}
+				运费：包邮
+				{else}
+				运费：¥{function name="round" v=$deal_item.delivery_fee e=2}
+				{/if}
+				&nbsp;&nbsp;
+			{/if}
+			
+			{if $deal_item.is_limit_user eq 1}
+				{if $deal_item.limit_user gt 0}
+				限额：{$deal_item.limit_user}位
+				{/if}
+			{/if}
+		</div>	
+		
+		{if $deal_item.images}
+		<div class="blank1"></div>	
+		<div class="deal_item_images">				
+			{foreach from=$deal_item.images item=image}
+			<div class="image_item">
+				<img src="{function name="get_spec_image" v=$image.image w=50 h=50 g=1}" rel="{function name="get_spec_image" v=$image.image w=570 h=430}" width=50 height=50 />
+			</div>
+			{/foreach}
+		</div>	
+		<div class="blank1"></div>					
+		{/if}
+		
+		<div class="deal_item_repaid">
+			{if $deal_item.repaid_day gt 0}
+			预计回报发放时间：项目成功结束后{$deal_item.repaid_day}天内
+			{/if}
+		</div>
+		<div class="blank"></div>
+		{if ($deal_info.end_time > $now or $deal_info.end_time eq 0) and $deal_info.begin_time < $now and $deal_info.is_effect eq 1 }
+			{if $deal_item.support_count < $deal_item.limit_user or $deal_item.limit_user eq 0}
+			<div class="ui-button green buy_deal_item" rel="green" url="{url r="cart" p="id=$deal_item.id"}">
+				<div>
+					<span>支持 ¥{$deal_item.price_format}</span>
+				</div>
+			</div>
+			{else}
+			<div class="ui-button gray" rel="gray" >
+				<div>
+					<span>已满额</span>
+				</div>
+			</div>
+			{/if}
+		{else}
+		<div class="ui-button gray" rel="gray">
+			<div>
+				<span>支持 ¥{$deal_item.price_format}</span>
+			</div>
+		</div>
+		{/if}
+		<div class="blank"></div>
+		
+	</div>
+	{/foreach}
+</div>
+</div>
+<div class="blank"></div>
+{if $deal_user_info}
+<div class="deal_user_box">
+<div class="deal_user_title">项目发起人</div>
+<div class="deal_user_avatar">
+{function name="show_avatar" p="$deal_user_info.id"}
+</div>
+<div class="deal_user_info">
+	<div class="deal_user_name">{$deal_user_info.user_name}</div>
+	<div class="deal_login_time">上次登录时间:{function name="to_date" v=$deal_user_info.login_time f="Y/m/d"}</div>
+	{if $deal_user_info.province neq '' or $deal_user_info.city neq ''}
+	<div class="deal_user_loc">{$deal_user_info.province}{$deal_user_info.city}</div>
+	{/if}
+	
+	<div class="author_row" style="padding:0px; color:#690;">	
+		<span onclick="send_message({$deal_user_info.id});" class="send_message" style="margin-left:0px;"></span>				
+		<span style="font-size:12px; padding-left:5px;">发信息</span>										
+	</div>
+</div>
+<div class='blank'></div>
+{function name="nl2br" v=$deal_user_info.intro}
+<div class='blank'></div>
+<div class="user_weibo_list">
+{foreach from=$deal_user_info.weibo_list item=weibo}
+<a href="{$weibo.weibo_url}" target="_blank">{$weibo.weibo_url}</a>
+<div class="blank1"></div>
+{/foreach}
+</div>
+</div>
+{/if}

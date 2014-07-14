@@ -1,0 +1,82 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">{%INSTALL} <a href="{:u("ApiLogin/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%SMS_NAME}:</td>
+		<td class="item_input">
+			{$data.name}
+			<input type="hidden" value="{$data.name}" name="name" />
+			<input type="hidden" value="{$data.is_weibo|intval}" name="is_weibo" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CLASS_NAME}:</td>
+		<td class="item_input">
+			{$data.class_name}
+			<input type="hidden" value="{$data.class_name}" name="class_name" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%ICON}:</td>
+		<td class="item_input">
+			<html:imgUpload name = 'icon' id='icon' />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%BICON}:</td>
+		<td class="item_input">
+			<html:imgUpload name = 'bicon' id='bicon' />
+		</td>
+	</tr>
+	
+	<if condition="$data['config']">
+	<tr>
+		<td class="item_title">{%CONFIG_INFO}:</td>
+		<td class="item_input">
+			<foreach name="data.config" item="config">
+				<php>$config_name = $key;</php>
+				<span class="cfg_title">{:trim($data['lang'][$key])}:</span>
+				<span class="cfg_content">
+				<if condition="$config['INPUT_TYPE'] eq 0">
+				<input type="text" class="textbox" name="config[{$key}]" value="" />
+				<elseif condition="$config['INPUT_TYPE'] eq 2" />
+				<input type="password" class="textbox" name="config[{$key}]" value="" />
+				<else />
+				<select name="config[{$key}]" >
+					<foreach name="config.VALUES" item="val">
+						<option value="{$val}">{:trim($data['lang'][$config_name."_".$val])}</option>
+					</foreach>
+				</select>
+				</if>
+				</span>
+				<div class="blank5"></div>
+			</foreach>
+		</td>
+	</tr>
+	</if>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="ApiLogin" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="insert" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%ADD}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

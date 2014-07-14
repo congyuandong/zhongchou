@@ -1,0 +1,52 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/message.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/message.js";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/message.css";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+		<div class="page_title">
+			与 <a href="{url r="home" p="id=$dest_user_info.id"}" class="linkgreen">{$dest_user_info.user_name}</a> 的私信记录
+		</div>
+		<div class="switch_nav" style="height:1px;">
+		</div>
+		
+		<div class="full">
+		{if $message_list}
+		
+		{foreach from=$message_list item=message_item}
+		<div class="contact_item">
+			<div class="contact_avatar">{function name="show_avatar" p="$message_item.dest_user_id" t="small"}</div>
+			<div class="contact_info">
+				{if $message_item.message_type eq 'inbox'}
+				<a href="{url r="home" p="id=$message_item.dest_user_id"}" class="linkgreen">{$message_item.dest_user_name}</a> : {function name="nl2br" v=$message_item.message}
+				{/if}
+				{if $message_item.message_type eq 'outbox'}
+				发送给 <a href="{url r="home" p="id=$message_item.dest_user_id"}" class="linkgreen">{$message_item.dest_user_name}</a> : {function name="nl2br" v=$message_item.message}
+				{/if}
+				<div class="blank"></div>
+				<div class="message_pass_date">{function name="pass_date" v=$message_item.create_time}</div>
+				<div class="message_op"> <a href="javascript:void(0);" onclick="send_message({$message_item.dest_user_id});" class="linkgreen">回复</a> | <a href="{url r="message#delmessage" p="id=$message_item.id"}" class="linkgreen delmessage">删除</a></div>
+				<div class="blank5"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+		{/foreach}
+		
+		<div class="blank"></div>
+		<div class="pages">{$pages}</div>
+		{else}
+		<div class="empty_tip">没有任何私信记录</div>
+		{/if}
+		</div>
+				
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

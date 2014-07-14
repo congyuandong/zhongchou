@@ -1,0 +1,32 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/home.css";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/discover.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/discover.js";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+
+<div class="blank"></div>
+{include file="inc/home_user_info.html"}
+<div class="blank"></div>
+<div class="wrap">
+	
+	<div class="f_l">
+		<ul class="tab-nav">
+			<li class="current"><a href="{url r="home" p="id=$home_user_info.id"}">发起的项目</a></li>
+			<li><a href="{url r="home#support" p="id=$home_user_info.id"}">支持的项目</a></li>
+			
+		</ul>
+	</div>
+
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div id="pin_box">
+	{include file="inc/deal_list.html"}
+	</div>	
+	<div class="blank"></div>
+	<div id="pin_loading" rel="{url r="ajax#homeindex" p="id=$home_user_info.id&p=$current_page"}">正在努力加载</div>	
+	<div class="pages">{$pages}</div>
+</div>
+{include file="inc/footer.html"} 

@@ -1,0 +1,60 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+
+<script type="text/javascript">
+	function send_demo()
+	{		
+		$.ajax({ 
+				url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=send_demo&test_mail="+$.trim($("input[name='test_email']").val()), 
+				data: "ajax=1",
+				dataType: "json",
+				success: function(obj){
+					if(obj.status==0)
+					{
+						alert(obj.info);
+					}
+					else
+					$("#info").html(obj.info);
+				}
+		});
+	}
+	$(document).ready(function(){
+		$("input[name='test_mail_btn']").bind("click",function(){
+			var mail = $.trim($("input[name='test_email']").val());	
+			if(mail!='')
+			send_demo();
+		});
+	});
+</script>
+<div class="main">
+<div class="main_title">{$main_title} 
+			<input type="text" class="textbox" name="test_email" />
+			<input type="button" class="button" name="test_mail_btn" value="{%TEST}" />
+</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="add();" />
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel();" />
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="serveritem" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+	,smtp_server:{%SMTP_SERVER}
+	,smtp_name:{%SMTP_NAME}
+	,use_limit:{%USE_LIMIT}
+	,total_use:{%TOTAL_USE}
+	,is_reset|get_status:{%IS_RESET}
+	,is_effect|get_is_effect=$serveritem['id']:{%IS_EFFECT}" 
+	actionlist="edit:{%EDIT}, foreverdel:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

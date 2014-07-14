@@ -1,0 +1,7 @@
+.contact_count{ font-size:14px; color:#999; padding:10px 0px; margin-bottom:20px; border-bottom:1px #d5d5d5 solid; }
+.contact_item{ padding:10px 0px; height:60px; border-bottom:#d5d5d5 solid 1px; color:#666; line-height:22px;}
+.contact_avatar{ float:left; width:48px; height:48px;}
+.contact_info{ float:left; width:850px; font-size:14px; padding:0px 10px 10px 10px; }
+.message_pass_date{ color:#ccc; float:left;}
+.message_op{ float:right; font-size:12px;}
+.has_new{ display:inline-block; background:url(../images/new_pm.gif) no-repeat; width:18px; height:12px; font-size:0px; line-height:0px; float:left; margin-top:5px; margin-left:10px; }

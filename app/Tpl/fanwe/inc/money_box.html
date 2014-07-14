@@ -1,0 +1,10 @@
+<div class="money_box">
+			<div class="credit_box">帐户余额 <span class="price">{function name="format_price" v=$user_info.money p=2}</span> 元</div>
+			<div class="blank"></div>
+			<div class="incharge_tip">充值到{function name="app_conf" v="SITE_NAME"}，方便支持项目！
+			 <a href="{url r="account#incharge"}">立即充值</a>&nbsp;
+			 {if $user_info.money gt 0}
+			 <a href="{url r="account#refund"}">我要提现</a>
+			 {/if}
+			</div>
+</div>

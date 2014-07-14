@@ -1,0 +1,55 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/message.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/message.js";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/message.css";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+		<div class="page_title">
+			私信
+		</div>
+		<div class="switch_nav" style="height:1px;">
+		</div>
+		
+		<div class="full">
+		{if $contact_list}
+		<div class="contact_count">{$contact_count}个联系人</div>
+		{foreach from=$contact_list item=contact_item}
+		<div class="contact_item">
+			<div class="contact_avatar">{function name="show_avatar" p="$contact_item.dest_user_id" t="small"}</div>
+			<div class="contact_info">
+				{if $contact_item.message_type eq 'inbox'}
+				<a href="{url r="home" p="id=$contact_item.dest_user_id"}" class="linkgreen">{$contact_item.dest_user_name}</a> : {function name="msubstr" v=$contact_item.message b=0 e=150}
+				{/if}
+				{if $contact_item.message_type eq 'outbox'}
+				发送给 <a href="{url r="home" p="id=$contact_item.dest_user_id"}" class="linkgreen">{$contact_item.dest_user_name}</a> : {function name="msubstr" v=$contact_item.message b=0 e=150}
+				{/if}
+				
+				<div class="blank"></div>
+				<span class="message_pass_date">{function name="pass_date" v=$contact_item.create_time}</span>
+				{if $contact_item.has_new gt 0}
+				<span class="has_new"></span>
+				{/if}
+				<div class="message_op"><a href="{url r="message#history" p="id=$contact_item.dest_user_id"}" class="linkgreen">共{$contact_item.total}条对话</a> | <a href="javascript:void(0);" onclick="send_message({$contact_item.dest_user_id});" class="linkgreen">回复</a> | <a href="{url r="message#delcontact" p="id=$contact_item.dest_user_id"}" class="linkgreen delcontact">删除</a></div>
+				<div class="blank5"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+		{/foreach}
+		<div class="blank"></div>
+		<div class="pages">{$pages}</div>
+		{else}
+		<div class="empty_tip">没有任何私信记录</div>
+		{/if}
+		</div>
+				
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

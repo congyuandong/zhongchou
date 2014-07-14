@@ -1,0 +1,12 @@
+.support_price{ font-size:20px; }
+.support_price span{ color:#c00; font-weight:bolder; font-size:30px;}
+.delivery_fee{ font-family:arial; font-size:14px; font-weight:normal;}
+
+.form_title{ font-size:16px; font-weight:bolder; height:35px; line-height:35px; border-bottom:#ccc solid 1px; margin-bottom:10px;}
+.form_title .f_l{ width:100px;}
+.form_title .f_r{ font-weight:normal;}
+.consignee_radio_row{ padding:5px 0px; height:25px;}
+.consignee_radio_row .cbo{ float:left; width:30px;}
+.consignee_radio_row .cnt{ float:left; width:550px;}
+
+.form_content .textarea{ background:#fafafa; padding:7px; color:#8c8c8c; border:#ccc solid 1px; width:585px; font-size:14px; float:left; height:100px;  min-height:100px; max-height:100px; min-width:585px; max-width:585px;}

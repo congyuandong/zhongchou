@@ -1,0 +1,5 @@
+.consignee_row{ padding:10px; height:20px; font-size:14px;}
+.consignee_item{ float:left; }
+.consignee_op{ float:right;}
+.consignee_op a{ color:#690; text-decoration:none; }
+.consignee_op a:hover{ color:#9c0; text-decoration:none; }

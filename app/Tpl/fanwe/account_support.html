@@ -1,0 +1,104 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_list.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_list.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/account_support.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/account_support.js";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/account.css";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<div class="blank"></div>
+
+<div class="shadow_bg">
+	<div class="wrap white_box"">
+		<div class="page_title">
+			我的项目
+		</div>
+		<div class="switch_nav">
+			<ul>
+				<li><a href="{url r="account#index"}">支持的项目</a></li>
+				<li class="current"><a href="{url r="account#project"}">我的项目</a></li>
+				<li><a href="{url r="account#focus"}">关注的项目</a></li>
+				<li><a href="{url r="account#credit"}">收支明细</a></li>
+				
+			</ul>
+		</div>
+		
+		<div class="blank"></div>		
+		{include file="inc/money_box.html"} 		
+
+		<div class="full">
+		<div class="deal_name_title">
+		{$deal_info.name} 支持记录
+		</div>
+		{if $support_list}
+		<table class="data-table">
+			{foreach from=$support_list item=support_item}
+			<tr>
+				<td class="data-title">支持者</td>
+				<td width=193 class="tl"><a href="{url r="home" p="id=$support_item.user_id"}" class="linkgreen" target="_blank">{$support_item.user_name}</a></td>
+				<td class="data-title">支持金额</td>
+				<td width=193 class="tl">
+					{if $support_item.delivery_fee gt 0}
+					{function name="format_price" v=$support_item.deal_price}+运费{function name="format_price" v=$support_item.delivery_fee}={function name="format_price" v=$support_item.total_price}
+					{else}
+					{function name="format_price" v=$support_item.total_price}
+					{/if}
+				</td>
+				<td class="data-title">下单时间</td>
+				<td width=193 class="tl">{function name="to_date" v=$support_item.create_time}</td>
+			</tr>
+			{if $support_item.province neq '' or  $support_item.city neq ''}
+			<tr>
+				<td class="data-title">配送信息</td>
+				<td colspan="5" class="tl">
+				地址:{$support_item.province}{$support_item.city}{$support_item.address} 邮编:{$support_item.zip} 收件人:{$support_item.consignee} 电话:{$support_item.mobile}
+				</td>				
+			</tr>
+			{/if}
+			{if $support_item.support_memo neq ''}
+			<tr>
+				<td class="data-title">备注</td>
+				<td colspan="5" class="tl">{function name="nl2br" v=$support_item.support_memo}</td>				
+			</tr>
+			{/if}
+			<tr>
+				<td class="data-title">回报设置</td>
+				<td colspan="5" class="tl">
+					<form id="repay_form_{$support_item.id}" class="repay_form" action="{url r="account#save_repay" p="id=$support_item.id"}">
+					<input type="hidden" name="ajax" value="1" />
+					<textarea class="repay_memo" name="repay_memo">{$support_item.repay_memo}</textarea>
+					<div class="ui-button green set_repay" rel="green" id="{$support_item.id}">
+						<div>
+							<span>立即设置回报</span>
+						</div>
+					</div>	
+					<div class="blank1"></div>
+					<span class="repay_tip">请设置回报内容，如需配送的请输入相应的配送信息与单号。</span>
+					</form>
+				</td>				
+			</tr>
+			<tr>
+				<td colspan="6" class="data-split">					
+				</td>				
+			</tr>
+			{/foreach}
+		</table>
+		
+		{else}
+		<div class="empty_tip">
+			没有任何支持记录
+		</div>
+		{/if}
+		
+		
+		</div>
+		<div class="blank"></div>
+		<div class="pages">{$pages}</div>
+		<div class="blank"></div>
+		
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

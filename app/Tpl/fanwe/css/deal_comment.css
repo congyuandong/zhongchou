@@ -1,0 +1,19 @@
+.comment_form textarea{ min-width:550px; width:550px; max-width:550px; border:#ccc solid 1px; height:80px; padding:5px; color:#666; font-size:14px; line-height:18px; border-radius:3px;  min-height:80px; max-height:80px;}
+
+.comment-btn{ padding:0px 10px 0px 0px; }
+.syn_weibo{ float:left;}
+.send_btn{ float:right;}
+.syn_weibo input{float:left;}
+.syn_weibo span{ font-size:12px; float:left; line-height:18px; _line-height:22px; *line-height:22px;}
+
+.comment_item{ border-top:1px solid #d5d5d5; padding-top:15px; padding-bottom:10px;}
+.comment_user_avatar{ width:50px; height:50px; float:left; padding-top:5px; }
+
+.comment_content{ float:left; width:500px; margin-left:15px; line-height:18px; font-size:12px;}
+.comment_op{ float:right; font-size:12px;}
+.pass_time{ color:#ccc;}
+
+.reply_box{ display:none; }
+.reply_content textarea{  border:#ccc solid 1px; height:60px; padding:5px; color:#666; font-size:14px; line-height:18px; border-radius:3px; min-width:490px; width:490px; max-width:490px; min-height:60px; max-height:60px; }
+
+.delcomment{ display:none;}

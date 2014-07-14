@@ -1,0 +1,52 @@
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/upload_log_image.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/upload_log_image.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/ajaxupload.js";
+?>
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<div class="full" style="padding-right:20px;">
+<form id="add_update_form" action="{url r="deal#save_update"}">				
+				
+				<div class="form_row">
+					<div class="blank15"></div>
+					<label class="title w100">动态内容:</label>
+					<textarea name="log_info" class="textarea"></textarea>
+					<div class="blank15"></div>
+				</div>
+				
+				<div class="form_row">
+					<label class="title w100">相关图片:</label>
+					<div class="f_l">
+						<label class="fileupload" onclick="upd_file(this,'image_file');">
+						<input type="file" class="filebox" name="image_file" id="image_file"/>						
+						</label>
+						<label class="fileuploading hide" ></label>						
+					</div>
+					<div class="log_image_upd">
+							<img width="50" height="50" src="" />
+							<input type="hidden" name="image" value="" />
+					</div>
+					<div class="blank15"></div>
+				</div>
+				
+				<div class="form_row">
+					<label class="title w100">视频地址:</label>
+					<input type="text"  name="vedio" class="textbox" value="" />
+					<div class="blank15"></div>
+				</div>
+		
+				
+				
+				<div class="submit_btn_row">
+					<div class="ui-button green" rel="green">
+						<div>
+							<span>保存</span>
+						</div>
+					</div>
+					<input type="hidden" value="1" name="ajax" />
+					<input type="hidden" value="{$deal_info.id}" name="id" />
+					<div class="blank15"></div>
+				</div>
+				
+			</form>
+			</div>

@@ -1,0 +1,27 @@
+{include file="inc/header.html"} 
+<?php
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/comment.css";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/comment.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/comment.js";
+?>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
+<div class="blank"></div>
+<div class="shadow_bg">
+	<div class="wrap white_box">		
+		{include file="inc/comment_header.html"}		
+		<div class="full deal_update">
+			{if $comment_list}
+			{foreach from=$comment_list item=comment_item}
+			{include file="inc/comment_index_item.html"}
+			{/foreach}
+			{else}
+			<div class="empty_tip">没有收到任何评论</div>
+			{/if}
+			<div class="blank"></div>
+			<div class="pages">{$pages}</div>
+		</div>
+	</div>
+</div>
+<div class="blank"></div>
+{include file="inc/footer.html"} 

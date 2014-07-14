@@ -1,0 +1,49 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/user.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="add();" />
+	<input type="button" class="button" value="{%DEL}" onclick="del();" />
+</div>
+
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		{%USER_NAME}：<input type="text" class="textbox" name="user_name" value="{:trim($_REQUEST['user_name'])}" style="width:100px;" />
+		{%USER_EMAIL}：<input type="text" class="textbox" name="email" value="{:trim($_REQUEST['email'])}" style="width:100px;" />
+		<input type="hidden" value="User" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="user" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+			,user_name:{%USER_NAME}:edit
+			,email:{%USER_EMAIL}
+			,money|format_price:{%USER_MONEY}
+			,login_ip:{%LOGIN_IP}
+			,login_time|to_date:{%LOGIN_TIME}
+			,build_count:项目数
+			,support_count:支持数
+			,focus_count:关注数
+			,is_effect|get_is_effect=$user['id']:{%IS_EFFECT}" 
+	actionlist="edit:{%EDIT}, del:{%DEL}, account:{%USER_ACCOUNT},account_detail:{%USER_ACCOUNT_DETAIL},consignee:{%USER_CONSIGNEE_INDEX},weibo:{%USER_WEIBO_INDEX}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

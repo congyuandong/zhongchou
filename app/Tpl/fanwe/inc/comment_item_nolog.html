@@ -1,0 +1,40 @@
+<div class="comment_item">
+	<div class="comment_user_avatar">{function name="show_avatar" p="$comment_item.user_id" t="small"}</div>
+	<div class="comment_content">
+		<a href="{url r="home" p="id=$comment_item.user_id"}" class="linkgreen">{$comment_item.user_name}:</a>&nbsp;{function name="nl2br" v=$comment_item.content} &nbsp;&nbsp;<span class="pass_time">{function name="pass_date" v=$comment_item.create_time}</span>
+		<div class="blank1"></div>
+		<div class="comment_op">
+			{if $comment_item.user_id eq $user_info.id}
+			<a href="{url r="deal#delcomment" p="id=$comment_item.id"}" class="linkgreen delcomment">删除</a>
+			{/if}
+			<a href="javascript:void(0);" class="linkgreen replycomment" rel="{$comment_item.id}">回复</a>			
+		</div>
+		<div class="blank1"></div>
+		<div class="reply_box" id="reply_box_{$comment_item.id}">
+			<div class="blank"></div>
+			<form name="comment_form" class="comment_form" action="{url r="deal#savedealcomment" p="id=$comment_item.deal_id&pid=$comment_item.id"}">		
+			<div class="reply_content">
+				<textarea name="content">回复 {$comment_item.user_name}:</textarea>
+				<input type="hidden" name="ajax" value="1" />
+				<input type="hidden" name="comment_pid" value="{$comment_item.id}" />
+			</div>
+			<div class="blank"></div>
+			<span class="syn_weibo">
+				<input type="checkbox" name="syn_weibo" value="1" />
+				<span>同时发布至我的微博 </span>
+			</span>	
+			<div>			
+			<div class="ui-button green send_btn" rel="green">
+					<div>
+						<span>发送</span>
+					</div>
+			</div>	
+			</div>
+			<div class="blank"></div>
+			
+			</form>
+		</div><!--end reply_box-->
+	</div>
+	
+	<div class="blank5"></div>
+</div>

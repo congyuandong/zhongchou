@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{:conf("APP_NAME")}{:l("ADMIN_PLATFORM")}</title>
+<load href='__TMPL__Common/style/style.css' />
+<load href='__TMPL__Common/style/footer.css' />
+
+</head>
+
+<body>
+	<div class="footer">{:conf("APP_NAME")}{:l("ADMIN_PLATFORM")} {%APP_VERSION}:{:conf("DB_VERSION")}<php>if(app_conf("APP_SUB_VER")){</php>.{:app_conf("APP_SUB_VER")}<PHP>}</PHP>
+	 </div>	
+</body>
+</html>

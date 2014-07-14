@@ -1,0 +1,55 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+//完全删除
+function foreverdel_account_detail(id)
+{
+	if(!id)
+	{
+		idBox = $(".key:checked");
+		if(idBox.length == 0)
+		{
+			alert(LANG['DELETE_EMPTY_WARNING']);
+			return;
+		}
+		idArray = new Array();
+		$.each( idBox, function(i, n){
+			idArray.push($(n).val());
+		});
+		id = idArray.join(",");
+	}
+	if(confirm(LANG['CONFIRM_DELETE']))
+	$.ajax({ 
+			url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=foreverdelete_account_detail&id="+id, 
+			data: "ajax=1",
+			dataType: "json",
+			success: function(obj){
+				$("#info").html(obj.info);
+				if(obj.status==1)
+				location.href=location.href;
+			}
+	});
+}
+</script>
+<div class="main">
+<div class="main_title">{$user_info.user_name} {%USER_ACCOUNT_DETAIL}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel_account_detail();" />
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="log" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,log_info:{%USER_LOG_INFO},log_time|to_date:{%USER_LOG_TIME},money|format_price:{%LOG_MONEY},log_admin_id|get_admin_name:{%LOG_ADMIN}" 
+	actionlist="foreverdel_account_detail:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />
