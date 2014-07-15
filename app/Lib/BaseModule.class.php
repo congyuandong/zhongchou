@@ -47,6 +47,7 @@ class BaseModule{
 		(MODULE_NAME == "account"&&ACTION_NAME=="refund")||
 		(MODULE_NAME == "news"&&ACTION_NAME=="index")||
 		(MODULE_NAME == "news"&&ACTION_NAME=="fav")||
+		(MODULE_NAME == "stock"&&ACTION_NAME=="index")||
 		(MODULE_NAME == "comment"&&ACTION_NAME=="index")||
 		(MODULE_NAME == "comment"&&ACTION_NAME=="send")||
 		(MODULE_NAME == "message"&&ACTION_NAME=="index")||
