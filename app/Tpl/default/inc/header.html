@@ -3,13 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=11;IE=10;IE=9;IE=8;IE=edge" />
-<title>众筹方</title>
+<title>清大众筹</title>
 <?php
-$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/style_new.css";
+$this->_var['dpagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
 $this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/jquery-1.7.min.js";
 $this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/heustudio.jquery.min.js";
 ?>
-<!--link href="style/style.css" rel="stylesheet" charset="utf-8" /-->
 <link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$dpagecss"}" />
 <script type="text/javascript" src="{function name="parse_script" v="$dpagejs" c="$dcpagejs"}"></script>
 </head>
@@ -21,12 +20,8 @@ $this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/heustudio.jquery.min.js
     <div class="left logo"><a href=""><img src="{$TMPL}/images/logo.png" /></a></div>
     <div class="right userbar"> <a href="javascript:;" class="login">登录</a>|<a href="javascript:;" class="reg">注册</a> </div>
     <ul class="right navi">
-      <!--li class="hover"><a href="index.php" class="home">首页</a></li>
-      <li><a href="index.php?ctl=stock" class="project">股权众筹</a></li>
-      <li><a href="{$TMPL}/bond.html" class="investor">债券众筹</a></li>
-      <li><a href="{$TMPL}/transfer.html" class="attom">众筹转让</a></li-->
         {foreach from=$nav_list item=nav_item}
-          <li><a href="{$nav_item.url}" class="investor">{$nav_item.name}</a></li>
+          <li><a href="{$nav_item.url}" class="navi_{$nav_item.sort}">{$nav_item.name}</a></li>
         {/foreach}
     </ul>
   </div>

@@ -95,6 +95,9 @@ class ChildIds
 	}
 }
 
+function format_time($time,$format = 'Y年m月d日'){
+	return date($format, $time);
+}
 
 //获取相应规格的图片地址
 //gen=0:保持比例缩放，不剪裁,如高为0，则保证宽度按比例缩放  gen=1：保证长宽，剪裁

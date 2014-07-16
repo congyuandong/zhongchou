@@ -1,0 +1,174 @@
+{include file="inc/header.html"} 
+<div class="wrap level body">
+  <div class="titlebar">
+    <h1 class="left">{$stock_info.name}</h1>
+    <div class="right location"><span class="hover">首页</span> &gt; <span class="hover">股权众筹</span> &gt; <span>项目详情</span></div>
+  </div>
+  <div class="level info">
+  	<ul class="left underway list">
+      <li>
+        <div class="left img"> <a href="javascript:;"><img src="{$stock_info.image}" width="256px" height="135px" /></a></div>
+        <div class="right">
+          <div class="namebar"> <span class="left name"><a href="javascript:;">{$stock_info.name}</a></span> <span class="right status">{$stock_info.deal_type}</span> </div>
+          <div class="progressbar">
+            <div class="left gray">
+              <div class="left yellow"></div>
+            </div>
+            <div class="right percent">35%</div>
+          </div>
+          <div class="money">
+            <div class="left">
+              <p>￥{$stock_info.current_amount}</p>
+              <p>当前融资</p>
+            </div>
+            <div class="left">
+              <p>￥{$stock_info.limit_price}</p>
+              <p>融资总额</p>
+            </div>
+            <div class="left">
+              <p>￥{$stock_info.min_price}</p>
+              <p>单投资人最低出资</p>
+            </div>
+          </div>
+          <div class="course">约谈 <span>{$stock_info.talk_count}</span>　 　关注 <span>{$stock_info.focus_count}</span>　 　认购结束 <span>{$stock_info.support_count}</span></div>
+        </div>
+      </li>
+      </ul>
+      <div class="right operate">
+      	<div class="remain">剩余<span>22</span>天</div>
+        <div class="offer">已认购：<span>￥{$stock_info.support_amount}</span> <a href="javascript:;">认购</a></div>
+      </div>
+  </div>
+  <div class="intro">
+  	<div class="left about">
+    	<ul class="tabmenu">
+        	<li class="hover" data="presentation">项目介绍</li><li data="plan">融资计划书</li><li data="comments">讨论区</li>
+        </ul>
+        <div class="tabitem presentation">
+        	<h1 id="i1">重要提示</h1>
+            <div class="text">
+            	{$stock_info.hint}
+            </div>
+            <h1 id="i2">公司介绍</h1>
+            <div class="text">{$stock_info.brief}</div>
+            <h1 id="i3">投资者保护</h1>
+            <div class="text">{$stock_info.protect}</div>
+            <h1 id="i4">信息披露</h1>
+            <div class="text">{$stock_info.inf_expose}</div>
+            <h1 id="i5">融资计划</h1>
+            <div class="text">{$stock_info.plan}</div>
+            <h1 id="i5">财务情况</h1>
+            <div class="text">{$stock_info.finance}</div>
+            <h1 id="i7">优势和劣势</h1>
+            <div class="text">{$stock_info.good_bad}</div>
+            <h1 id="i8">市场分析</h1>
+            <div class="text">{$stock_info.market}</div>
+            <h1 id="i9">商业模式</h1>
+            <div class="text">{$stock_info.bus_model}</div>
+            <h1 id="i10">风险控制</h1>
+            <div class="text">{$stock_info.risk}</div>
+            <h1 id="i11">团队介绍</h1>
+            <div class="text">{$stock_info.team}</div>
+            <ul class="sidemenu">
+            	<li class="hover"><a href="#i1">重要提示</a></li>
+                <li><a href="#i2">公司介绍</a></li>
+                <li><a href="#i3">投资者保护</a></li>
+                <li><a href="#i4">信息披露</a></li>
+                <li><a href="#i5">融资计划</a></li>
+                <li><a href="#i6">财务情况</a></li>
+                <li><a href="#i7">优势和劣势</a></li>
+                <li><a href="#i8">市场分析</a></li>
+                <li><a href="#i9">商业模式</a></li>
+                <li><a href="#i10">风险控制</a></li>
+                <li><a href="#i11">团队介绍</a></li>
+            </ul>
+        </div>
+        <div class="tabitem plan">
+        	<ul>
+            	<li><span class="left">雪诗尼酒窖商业计划书</span><span class="right"><a href="javascript:;"><img src="{$TMPL}/images/download_btn.png" /></a></span></li>
+            </ul>
+        </div>
+        <div class="tabitem comments">
+        	<div class="textarea">
+            	<textarea></textarea>
+                <div class="right"><input type="submit" value="发布" class="cbtn" /></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="filterbar">
+            	<span class="hover">全部</span><span>只看发起人</span>
+            </div>
+            <ul>
+            	<li class="comment">
+                	<div class="left head"><img src="images/head.png" /></div>
+                    <div class="right">
+                    	<div class="nick">黄鑫磊（黄sir） <span>21小时前</span></div>
+                        <div class="text">黄总的想法跟我沟通过，我想筹备一个万人爱上阅读的计划，想法还不完善，不知道可以聊一下不，让大家给我提出意见</div>
+                        <div class="replylink"><a href="javascript:;">详情</a> <a href="javascript:;">评论（1）</a></div>
+                    </div>
+                    <div class="right reply1">
+                    	<div class="triangle"></div>
+                        <textarea></textarea>
+                        <input type="button" class="cbtn" value="评论" />
+                    </div>
+                    <ul>
+                    	<li class="comment reply">
+                            <div class="left head"><img src="images/head.png" /></div>
+                            <div class="right">
+                                <div class="left nick">黄鑫磊（黄sir）<span class="text">黄总的想法跟我沟通过，我想筹备一个万人爱上阅读的计划，想法还不完善，不知道可以聊一下不，让大家给我提出意见</span><span>(22小时前)</span></div>
+                                <div class="right replylink"><a href="javascript:;">回复</a></div>
+                            </div>
+                            <div class="right reply2">
+                                <div class="triangle"></div>
+                                <textarea placeholder="回复 黄鑫磊（黄sir）："></textarea>
+                                <input type="button" class="cbtn" value="评论" />
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="comment">
+                	<div class="left head"><img src="images/head.png" /></div>
+                    <div class="right">
+                    	<div class="nick">黄鑫磊（黄sir） <span>21小时前</span></div>
+                        <div class="text">黄总的想法跟我沟通过，我想筹备一个万人爱上阅读的计划，想法还不完善，不知道可以聊一下不，让大家给我提出意见</div>
+                        <div class="replylink"><a href="javascript:;">详情</a> <a href="javascript:;">评论（0）</a></div>
+                    </div>
+                    <div class="right reply1">
+                    	<div class="triangle"></div>
+                        <textarea></textarea>
+                        <input type="button" class="cbtn" value="评论" />
+                    </div>
+                </li>
+                <li class="comment">
+                	<div class="left head"><img src="images/head.png" /></div>
+                    <div class="right">
+                    	<div class="nick">黄鑫磊（黄sir） <span>21小时前</span></div>
+                        <div class="text">黄总的想法跟我沟通过，我想筹备一个万人爱上阅读的计划，想法还不完善，不知道可以聊一下不，让大家给我提出意见</div>
+                        <div class="replylink"><a href="javascript:;">详情</a> <a href="javascript:;">评论（0）</a></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="right investinfo">
+		<h1>投标情况</h1>
+        <table>
+        	<tr><th class="s">时 间</th><th class="r">投资人</th><th class="q">投资金额</th></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+        </table>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+{include file="inc/footer.html"} 

@@ -1,0 +1,54 @@
+{include file="inc/header.html"} 
+<div class="wrap level body">
+  <div class="titlebar">
+    <h1 class="left transferbg">{$transfer_info.name}</h1>
+    <div class="right location"><span class="hover">首页</span> &gt; <span class="hover">众筹转让</span> &gt; <span>项目详情</span></div>
+  </div>
+  <div class="tipbar">
+  	尊敬的投资人，如果您所购买的债权出现借款人 <span class="y">提前还款</span>，您的预期收益将会减少，尤其在您的 <span class="g">购买价格高于公允价值</span> 的情况下，特此提示，请您知悉。
+  </div>
+  <div class="level info minh">
+  	<ul class="left list transfer">
+      <li class="b">
+        <div class="right">
+          <div class="nbar"><span class="left bygc">债权转让编号 {$transfer_info.tran_code}</span> <span class="right status bygb">进行中</span></div>
+          <div class="money">
+            <div class="left">
+              <p class="y">{$transfer_info.tran_scale_real}%</p>
+              <p>实际年化</p>
+            </div>
+            <div class="left">
+              <p class="y">{$transfer_info.tran_scale_goal}%</p>
+              <p>原标年化</p>
+            </div>
+            <div class="left">
+              <p class="b">￥{$transfer_info.limit_price}万</p>
+              <p>债权总价</p>
+            </div>
+            <div class="left">
+              <p class="b">￥{$transfer_info.tran_price}万</p>
+              <p>转让价格</p>
+            </div>
+            <div class="left">
+              <p class="b">￥{$transfer_info.pub_price}万</p>
+              <p>公允价值</p>
+            </div>
+            <div class="left">
+              <p class="b">{$transfer_info.last_day}天</p>
+              <p>剩余期限</p>
+            </div>
+          </div>
+        </div>
+      </li>
+      </ul>
+      <div class="right operate">
+      	<div class="remain">剩余<span class="bygc">{$transfer_info.last_day}</span>天</div>
+        <div class="offer"><a href="javascript:;" class="by">投标</a></div>
+      </div>
+  </div>
+  <div class="intro">
+  	
+  </div>
+</div>
+<div class="clearfix"></div>
+{include file="inc/footer.html"} 

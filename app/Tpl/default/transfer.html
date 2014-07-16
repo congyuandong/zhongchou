@@ -1,0 +1,38 @@
+{include file="inc/header.html"} 
+<!-- location filter -->
+<div class="wrap level body">
+  <div class="titlebar">
+  	<div class="left location">当前位置：<span class="hover">首页</span> &gt; <span class="hover">众筹转让</span> &gt; <span>列表</span></div>
+  </div>
+  <div class="filterpart">
+  	<div class="type">
+    	<span>企业类型：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">股权转让</a></span><span><a href="javascript:;">众筹转让</a></span>
+    </div>
+    <div class="status">
+    	<span>转让期限：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">3个月以下</a></span><span><a href="javascript:;">3-6 个月</a></span><span><a href="javascript:;">6-9 个月</a></span><span><a href="javascript:;">9-12 个月</a></span><span><a href="javascript:;">12 个月以上</a></span>
+    </div>
+    <div class="trade">
+    	<span>预期利率：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">50万以下</a></span><span><a href="javascript:;">50万-100万</a></span><span><a href="javascript:;">100万-150万</a></span><span><a href="javascript:;">150万-200万</a></span><span><a href="javascript:;">200万以上</a></span>
+    </div>
+    <div class="area">
+    	<span>项目状态：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">已完成</a></span><span><a href="javascript:;">进行中</a></span>
+    </div>
+  </div>
+
+<!-- list -->
+<ul class="underway list transferlist">
+{foreach from=$transfer_list item=transfer_item}
+      <li>
+          <div class="namebar"><span class="left name"><a href="{url r="showtransfer" p="id=$transfer_item.id"}">{$transfer_item.name}</a></span><span class="left">债权转让编号 {$transfer_item.tran_code}</span><span class="right {if $transfer_item.com_type eq '债权转让'}bg{else}bp{/if}">{$transfer_item.com_type}</span><span class="right bb">{$transfer_item.tran_code}</span></div>
+          <div class="binfo">
+            <div class="left dm">实际年化 <span class="y">{$transfer_item.tran_scale_real}%</span><span class="gg">/</span>原标年化 <span class="y">{$transfer_item.tran_scale_goal}%</span><span class="gg">/</span>债权总额 <span class="b">{$transfer_item.limit_price}万</span><span class="gg">/</span>转让价格 <span class="b">{$transfer_item.tran_price}万</span><span class="gg">/</span>公允价值 <span class="b">{$transfer_item.pub_price}万</span><span class="gg">/</span>剩余期限 <span class="b">{$transfer_item.last_day}天</span></div>
+          </div>
+          <div class="cctext">{$transfer_item.description}<a href="{url r="showtransfer" p="id=$transfer_item.id"}" class="y">更多&gt;&gt;</a></div>
+      </li>
+{/foreach}
+</ul>
+<ul class="left page_navi">{$page}</ul>
+<div class="right page_num">{$pagenum}</div>
+</div>
+<div class="clearfix"></div>
+{include file="inc/footer.html"} 

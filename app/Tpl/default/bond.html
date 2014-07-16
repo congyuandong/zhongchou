@@ -1,0 +1,47 @@
+{include file="inc/header.html"} 
+<!-- location filter -->
+<div class="wrap level body">
+  <div class="titlebar">
+  	<div class="left location">当前位置：<span class="hover">首页</span> &gt; <span class="hover">债券众筹</span> &gt; <span>列表</span></div>
+  </div>
+  <div class="filterpart">
+  	<div class="type">
+    	<span>企业类型：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">拟挂牌企业股权众筹</a></span><span><a href="javascript:;">已挂牌企业再融资股权众筹</a></span><span><a href="javascript:;">其他股权众筹</a></span>
+    </div>
+    <div class="status">
+    	<span>项目期限：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">3个月以下</a></span><span><a href="javascript:;">3-6 个月</a></span><span><a href="javascript:;">6-9 个月</a></span><span><a href="javascript:;">9-12 个月</a></span><span><a href="javascript:;">12 个月以上</a></span>
+    </div>
+    <div class="trade">
+    	<span>预期利率：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">5%以下</a></span><span><a href="javascript:;">5%-6%</a></span><span><a href="javascript:;">6%-7%</a></span><span><a href="javascript:;">7%-8%</a></span><span><a href="javascript:;">8%以上</a></span>
+    </div>
+    <div class="area">
+    	<span>项目状态：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">投标中</a></span><span><a href="javascript:;">还款中</a></span><span><a href="javascript:;">还款完成</a></span>
+    </div>
+  </div>
+
+<!-- list -->
+<ul class="underway list bondlist">
+{foreach from=$bond_list item=bond_item}
+      <li class="{if $bond_item.deal_status eq '还款完成'}yellow{/if}{if $bond_item.deal_status eq '还款中'}green{/if}{if $bond_item.deal_status eq '投标中'}blue{/if}">
+        <div class="left s">{if $bond_item.deal_status eq '还款完成'}完{/if}{if $bond_item.deal_status eq '还款中'}还{/if}{if $bond_item.deal_status eq '投标中'}中{/if}</div>
+        <div class="right">
+          <div class="namebar"><span class="left name"><a href="{url r="showbond" p="id=$bond_item.id"}">{$bond_item.name}</a></span><span class="left ctext">融资企业：{$bond_item.com_name}</span><span class="right status">{$bond_item.deal_status}</span><span class="right cstatus">{$bond_item.com_type}</span></div>
+          <div class="binfo">
+            <div class="left dm">年化利率 <span class="byg">{$bond_item.bond_scale}%</span><span class="g">/</span>截止日期 <span class="byg">{function name="format_time" v=$bond_item.end_time f="Y-m-d"}</span><span class="g">/</span>融资金额<span class="byg">￥{$bond_item.limit_price}万</span><span class="g">/</span>授信额度 <span class="byg">￥{$bond_item.min_price}万</span></div>
+            <div class="left progressbar">
+              <div class="left gray">
+                <div class="left"></div>
+              </div>
+              <div class="right percent">35%</div>
+            </div>
+          </div>
+          <div class="cctext">{$bond_item.description}<a href="{url r="showbond" p="id=$bond_item.id"}">更多&gt;&gt;</a></div>
+        </div>
+      </li>
+{/foreach}
+</ul>
+<ul class="left page_navi">{$page}</ul>
+<div class="right page_num">{$pagenum}</div>
+</div>
+<div class="clearfix"></div>
+{include file="inc/footer.html"} 

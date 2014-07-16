@@ -26,7 +26,7 @@ class Page  {
     // 分页栏每页显示的页数
     protected $rollPage   ;
 	// 分页显示定制
-    protected $config  =	array('header'=>'条记录','prev'=>'上一页','next'=>'下一页','first'=>'第一页','last'=>'最后一页','theme'=>' %totalRow% %header% %nowPage%/%totalPage% 页 %upPage% %downPage% %first%  %prePage%  %linkPage%  %nextPage% %end%');
+    protected $config  =	array('header'=>'条记录','prev'=>'<','next'=>'>','first'=>'|<','last'=>'>|','theme'=>'%first%  %prePage%  %linkPage%  %nextPage% %end%');
 
     /**
      +----------------------------------------------------------
@@ -90,6 +90,10 @@ class Page  {
      * @access public
      +----------------------------------------------------------
      */
+	 public function shownum() {
+        if(0 == $this->totalRows) return '';
+		return '第<span>'.$this->nowPage.'</span>/'.$this->totalPages.'页 共<span>'.$this->totalRows.'</span>条记录';
+	 }
     public function show() {
         if(0 == $this->totalRows) return '';
         $p = 'p';
@@ -108,13 +112,13 @@ class Page  {
         $upRow   = $this->nowPage-1;
         $downRow = $this->nowPage+1;
         if ($upRow>0){
-            $upPage="<a href='".$this->get_page_link($url,$upRow)."'>".$this->config['prev']."</a>";
+            $upPage="<li><a href='".$this->get_page_link($url,$upRow)."'>".$this->config['prev']."</a></li>";
         }else{
             $upPage="";
         }
 
         if ($downRow <= $this->totalPages){
-            $downPage="<a href='".$this->get_page_link($url,$downRow)."'>".$this->config['next']."</a>";
+            $downPage="<li><a href='".$this->get_page_link($url,$downRow)."'>".$this->config['next']."</a></li>";
         }else{
             $downPage="";
         }
@@ -124,8 +128,8 @@ class Page  {
             $prePage = "";
         }else{
             $preRow =  $this->nowPage-$this->rollPage;
-            $prePage = "<a href='".$this->get_page_link($url,$preRow)."' >上".$this->rollPage."页</a>";
-            $theFirst = "<a href='".$this->get_page_link($url,1)."' >".$this->config['first']."</a>";
+            $prePage = "<li><a href='".$this->get_page_link($url,$preRow)."' >上".$this->rollPage."页</a></li>";
+            $theFirst = "<li><a href='".$this->get_page_link($url,1)."' >".$this->config['first']."</a></li>";
         }
         if($nowCoolPage == $this->coolPages){
             $nextPage = "";
@@ -134,8 +138,8 @@ class Page  {
             $nextRow = $this->nowPage+$this->rollPage;
             if($nextRow>$this->totalPages)$nextRow = $this->totalPages;
             $theEndRow = $this->totalPages;
-            $nextPage = "<a href='".$this->get_page_link($url,$nextRow)."' >下".$this->rollPage."页</a>";
-            $theEnd = "<a href='".$this->get_page_link($url,$theEndRow)."' >".$this->config['last']."</a>";
+            $nextPage = "<li><a href='".$this->get_page_link($url,$nextRow)."' >下".$this->rollPage."页</a></li>";
+            $theEnd = "<li><a href='".$this->get_page_link($url,$theEndRow)."' >".$this->config['last']."</a></li>";
         }
         // 1 2 3 4 5
         $linkPage = "";
@@ -143,13 +147,13 @@ class Page  {
             $page=($nowCoolPage-1)*$this->rollPage+$i;
             if($page!=$this->nowPage){
                 if($page<=$this->totalPages){
-                    $linkPage .= "&nbsp;<a href='".$this->get_page_link($url,$page)."'>&nbsp;".$page."&nbsp;</a>";
+                    $linkPage .= "&nbsp;<li><a href='".$this->get_page_link($url,$page)."'>&nbsp;".$page."&nbsp;</a></li>";
                 }else{
                     break;
                 }
             }else{
                 if($this->totalPages != 1){
-                    $linkPage .= "&nbsp;<span class='current'>".$page."</span>";
+                    $linkPage .= "&nbsp;<li><a href='javascript:;' class='hover'>".$page."</a></li>";
                 }
             }
         }

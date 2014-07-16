@@ -1,0 +1,49 @@
+{include file="inc/header.html"} 
+<!-- location filter -->
+<div class="wrap level body">
+  <div class="titlebar">
+  	<div class="left location">当前位置：<span class="hover">首页</span> &gt; <span class="hover">股权众筹</span> &gt; <span>列表</span></div>
+  </div>
+  <div class="filterpart">
+  	<div class="type">
+    	<span>企业类型：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">拟挂牌企业股权众筹</a></span><span><a href="javascript:;">已挂牌企业再融资股权众筹</a></span><span><a href="javascript:;">其他股权众筹</a></span>
+    </div>
+    <div class="status">
+    	<span>项目属性：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">筹资中</a></span><span><a href="javascript:;">即将开始</a></span><span><a href="javascript:;">成功项目</a></span>
+    </div>
+    <div class="trade">
+    	<span>所属行业：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">医疗健康</a></span><span><a href="javascript:;">文化传媒</a></span><span><a href="javascript:;">互联网与移动互联网</a></span><span><a href="javascript:;">TMT</a></span><span><a href="javascript:;">节能环保</a></span><span><a href="javascript:;">消费服务</a></span><span><a href="javascript:;">现代农业</a></span><span><a href="javascript:;">高端制造</a></span><span><a href="javascript:;">新能源</a></span><span><a href="javascript:;"> 新材料</a></span><span class="extend"><a href="javascript:;">更多</a></span>
+    </div>
+    <div class="area">
+    	<span>所属地区：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">浙江</a></span><span><a href="javascript:;">北京</a></span><span><a href="javascript:;">上海</a></span><span><a href="javascript:;">天津</a></span><span><a href="javascript:;">重庆</a></span><span><a href="javascript:;">河北</a></span><span><a href="javascript:;">山西</a></span><span><a href="javascript:;">内蒙古</a></span><span><a href="javascript:;">辽宁</a></span><span><a href="javascript:;">吉林</a></span><span><a href="javascript:;">黑龙江</a></span><span><a href="javascript:;">江苏</a></span><span><a href="javascript:;">安徽</a></span><span><a href="javascript:;">福建</a></span><span><a href="javascript:;">江西</a></span><span><a href="javascript:;">山东</a></span><span class="ep"><a href="javascript:;">河南</a></span><span class="ep"><a href="javascript:;">湖北</a></span><span class="ep"><a href="javascript:;">湖南</a></span><span class="ep"><a href="javascript:;">广东</a></span><span class="ep"><a href="javascript:;">广西</a></span><span class="ep"><a href="javascript:;">海南</a></span><span class="ep"><a href="javascript:;">四川</a></span><span class="ep"><a href="javascript:;">贵州</a></span><span class="ep"><a href="javascript:;">云南</a></span><span class="ep"><a href="javascript:;">西藏</a></span><span class="ep"><a href="javascript:;">陕西</a></span><span class="ep"><a href="javascript:;">甘肃</a></span><span class="ep"><a href="javascript:;">青海</a></span><span class="ep"><a href="javascript:;">宁夏</a></span><span class="ep"><a href="javascript:;">新疆</a></span><span class="ep"><a href="javascript:;">港澳台</a></span><span class="ep"><a href="javascript:;">海外</a></span><span class="extend pack"><a href="javascript:;">收起</a></span>
+    </div>
+  </div>
+
+<!-- list -->
+<ul class="underway list stock">
+{foreach from=$stock_list item=stock_item}
+      <li>
+        <div class="left img"> <a href="{url r="showstock" p="id=$stock_item.id"}"><img src="{$stock_item.image}" width="314px" height="162px" /></a>
+        </div>
+        <div class="right">
+          <div class="namebar"> <span class="left name"><a href="{url r="showstock" p="id=$stock_item.id"}">{$stock_item.name}</a></span><span class="left local">{$stock_item.province} • | </span><span class="clazz"><a href="javascript:;">{$stock_item.cate}</a></span> <span class="right status">{$stock_item.deal_type}</span><span class="right cstatus">{$stock_item.com_type}</span></div>
+          <div class="desc">{$stock_item.description}</div>
+          <div class="progressbar">
+            <div class="left gray">
+              <div class="left yellow"></div>
+            </div>
+            <div class="right percent">35%</div>
+          </div>
+          <div class="money">
+            <div class="left">当前融资：<span>￥{$stock_item.current_amount}</span>融资总额：<span>￥{$stock_item.limit_price}</span>认购起点：<span>￥{$stock_item.min_price}</span>出让股权比例：<span>{$stock_item.stock_scale}</span></div>
+          </div>
+          <div class="right course">约谈 <span>{$stock_item.talk_count}</span>　/　关注 <span>{$stock_item.focus_count}</span>　/　认购结束 <span>{$stock_item.support_count}</span></div>
+        </div>
+      </li>
+{/foreach}
+</ul>
+<ul class="left page_navi">{$page}</ul>
+<div class="right page_num">{$pagenum}</div>
+</div>
+<div class="clearfix"></div>
+{include file="inc/footer.html"} 

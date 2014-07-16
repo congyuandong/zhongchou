@@ -1,0 +1,101 @@
+{include file="inc/header.html"} 
+<div class="wrap level body">
+  <div class="titlebar">
+    <h1 class="left">{$bond_info.name}</h1>
+    <div class="right location"><span class="hover">首页</span> &gt; <span class="hover">债券众筹</span> &gt; <span>项目详情</span></div>
+  </div>
+  <div class="level info">
+  	<ul class="left list bond">
+      <li class="b">
+        <div class="left s">{if $bond_info.deal_status eq '还款完成'}完{/if}{if $bond_info.deal_status eq '还款中'}还{/if}{if $bond_info.deal_status eq '投标中'}中{/if}</div>
+        <div class="right">
+          <div class="local"> <span class="left cctext">{$bond_info.province} • |</span><span class="left bygc">{$bond_info.description}</span> <span class="right status bygb">{$bond_info.deal_status}</span><span class="right y">{$bond_info.com_type}</span> </div>
+          <div class="progressbar">
+            <div class="left gray">
+              <div class="left"></div>
+            </div>
+            <div class="right percent bygc">35%</div>
+          </div>
+          <div class="money">
+            <div class="left">
+              <p>{$bond_info.bond_scale}%</p>
+              <p>年化利率</p>
+            </div>
+            <div class="left">
+              <p>{function name="format_time" v=$bond_item.end_time f="Y-m-d"}</p>
+              <p>截止日期</p>
+            </div>
+            <div class="left">
+              <p>￥{$bond_info.limit_price}万</p>
+              <p>融资金额</p>
+            </div>
+            <div class="left">
+              <p>￥{$bond_info.min_price}万</p>
+              <p>授信额度</p>
+            </div>
+          </div>
+          <div class="cctext">已经完成投标 571,809.97 元 , 即刻投资收益自 2014-07-13 起算，每万元预期收益 1,106.03 元</div>
+        </div>
+      </li>
+      </ul>
+      <div class="right operate">
+      	<div class="remain">剩余<span class="bygc">22</span>天</div>
+        <div class="offer">已认购：<span>￥{$bond_info.support_amount}万</span> <a href="javascript:;" class="bygb">投标</a></div>
+      </div>
+  </div>
+  <div class="intro">
+  	<div class="left about">
+    	<ul class="tabmenu">
+        	<li class="hover" data="projectinfo">项目信息</li><li data="riskinfo">风险信息</li><li data="file">相关文件</li><li data="plan">还款计划</li>
+        </ul>
+        <div class="tabitem projectinfo">
+        	<table class="t1">
+            	<tr><td class="ti">融资企业</td><td class="te">{$bond_info.com_name}</td><td class="ti">本期融资金额</td><td class="ts">{$bond_info.limit_price}万</td></tr>
+                <tr><td class="ti">融资企业代理人</td><td class="te">{$bond_info.user_name}万<a href="javascript:;">所有融资项目</a></td><td class="ti">本次授信额度</td><td class="ts">{$bond_info.min_price}万</td></tr>
+                <tr><td class="ti">项目区域位置</td><td class="te">{$bond_info.province}</td><td class="ti">还款日期</td><td class="ts">{function name="format_time" v=$bond_item.end_time f="Y-m-d"}</td></tr>
+                <tr><td class="ti">年化利率</td><td class="te">{$bond_info.bond_scale}%</td><td class="ti">投标截止日期</td><td class="ts">{function name="format_time" v=$bond_item.end_time f="Y-m-d"}</td></tr>
+                <tr><td class="ti">资金用途</td><td class="te" colspan="3">{$bond_info.description}</td></tr>
+                <tr><td class="ti">借款用途</td><td class="te" colspan="3">{$bond_info.goal}</td></tr>
+                <tr><td class="ti">还款来源</td><td class="te"  colspan="3">{$bond_info.ref_source}</td></tr>
+            </table>
+            <h1 class="h1">企业信息</h1>
+            <h2>企业基本信息</h2>
+            {$bond_info.com_inf}
+            <h2>财务状况</h2>
+            {$bond_info.finance}
+        </div>
+        <div class="tabitem riskinfo">
+        	<h1 class="h1">项目风险保障</h1>
+            {$bond_info.risk_inf}
+        </div>
+        <div class="tabitem file">
+        	<h1 class="h1">相关资料</h1>
+            {$bond_info.files}
+        </div>
+        <div class="tabitem plan">
+        	{$bond_info.ref_plan}
+        </div>
+    </div>
+    <div class="right investinfo">
+		<h1>投标情况</h1>
+        <table>
+        	<tr><th class="s">时 间</th><th class="r">投资人</th><th class="q">投资金额</th></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+        </table>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+{include file="inc/footer.html"} 
