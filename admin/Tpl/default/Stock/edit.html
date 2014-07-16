@@ -1,0 +1,280 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript" src="__ROOT__/system/region.js"></script>	
+<load href='__TMPL__Common/js/deal_edit.js' />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<div class="main">
+<div class="main_title">{%EDIT} <a href="{:u("Stock/stock_index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form conf_tab" cellpadding=0 cellspacing=0 >
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+
+	<tr>
+		<td class="item_title">名称:</td>
+		<td class="item_input"><input type="text" class="textbox require" value="{$vo.name}" name="name" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">发起人ID:</td>
+		<td class="item_input"><input type="text" class="textbox" value="{$vo.user_id}" name="user_id" style="width:30px;" /> <span class='tip_span'>不填写表示管理员发起</span></td>
+	</tr>
+	<tr>
+		<td class="item_title">图片:</td>
+		<td class="item_input">
+			<html:imgUpload name = 'image' id='image' value='$vo.image'/>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">一句话描述:</td>
+		<td class="item_input">
+		<textarea name="description" value="{$vo.description}" class="textarea"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">参考上线天数:</td>
+		<td class="item_input"><input type="text" class="textbox" name="deal_days" value="{$vo.deal_days}"/></td>
+	</tr>
+	<tr>
+		<td class="item_title">开始时间:</td>
+		<td class="item_input">
+			<input type="text" class="textbox require" name="begin_time" id="begin_time" value="{$vo.begin_time}" onfocus="this.blur(); return showCalendar('begin_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_begin_time');" />
+			<input type="button" class="button" id="btn_begin_time" value="{%SELECT_TIME}" onclick="return showCalendar('begin_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_begin_time');" />	
+			<input type="button" class="button" value="{%CLEAR_TIME}" onclick="$('#begin_time').val('');" />	
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">结束时间:</td>
+		<td class="item_input">
+			<input type="text" class="textbox require" name="end_time" id="end_time" value="{$vo.end_time}" onfocus="this.blur(); return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />
+			<input type="button" class="button" id="btn_end_time" value="{%SELECT_TIME}" onclick="return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />	
+			<input type="button" class="button" value="{%CLEAR_TIME}" onclick="$('#end_time').val('');" />
+
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">已认购:</td>
+		<td class="item_input"><input type="text" class="textbox" name="support_amount" value="{$vo.support_amount}"/></td>
+	</tr>
+
+	<tr>
+		<td class="item_title">融资总额:</td>
+		<td class="item_input"><input type="text" class="textbox" name="limit_price" value="{$vo.limit_price}"/></td>
+	</tr>
+
+	<tr>
+		<td class="item_title">认购起点:</td>
+		<td class="item_input"><input type="text" class="textbox" name="min_price" value="{$vo.min_price}"/></td>
+	</tr>
+
+	<tr>
+		<td class="item_title">当前融资:</td>
+		<td class="item_input"><input type="text" class="textbox" name="current_amount" value="{$vo.current_amount}"/></td>
+	</tr>
+
+	<tr>
+		<td class="item_title">出让比例:</td>
+		<td class="item_input"><input type="text" class="textbox" name="stock_scale" value="{$vo.stock_scale}"/></td>
+	</tr>
+
+	<tr>
+		<td class="item_title">所属行业:</td>
+		<td class="item_input">
+			<select name="cate" class="require">
+				<option value="0">请选择</option>
+				<foreach name="cate_list" item="cate_item">
+					<option value="{$cate_item.name}" <if condition="$vo['cate'] eq $cate_item['name']">selected="selected"</if> >{$cate_item.name}</option>
+				</foreach>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">项目属性:</td>
+		<td class="item_input">
+			<label>筹资中<input type="radio" name="deal_type" value="筹资中" <if condition="$vo['deal_type'] eq '筹资中' ">checked="checked"</if> /></label>
+			<label>即将开始<input type="radio" name="deal_type" value="即将开始" <if condition="$vo['deal_type'] eq '即将开始' ">checked="checked"</if> /></label>
+			<label>成功项目<input type="radio" name="deal_type" value="成功项目" <if condition="$vo['deal_type'] eq '成功项目' ">checked="checked"</if> /></label>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">企业类型:</td>
+		<td class="item_input">
+			<label>拟挂牌<input type="radio" name="com_type" value="拟挂牌" <if condition="$vo['com_type'] eq '拟挂牌' ">checked="checked"</if> /></label>
+			<label>已挂牌<input type="radio" name="com_type" value="已挂牌" <if condition="$vo['com_type'] eq '已挂牌' ">checked="checked"</if> /></label>
+			<label>其他<input type="radio" name="com_type" value="其他" <if condition="$vo['com_type'] eq '其他' ">checked="checked"</if> /></label>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">约谈次数:</td>
+		<td class="item_input"><input type="text" class="textbox" name="talk_count" value="{$vo.talk_count}"/></td>
+	</tr>
+
+	<tr>
+		<td class="item_title">关注次数:</td>
+		<td class="item_input"><input type="text" class="textbox" name="focus_count" value="{$vo.focus_count}"/></td>
+	</tr>
+
+	<tr>
+		<td class="item_title">支持次数:</td>
+		<td class="item_input"><input type="text" class="textbox" name="support_count" value="{$vo.support_count}"/></td>
+	</tr>
+
+	<!--tr>
+		<td class="item_title">上架:</td>
+		<td class="item_input">
+			<label>{%IS_EFFECT_1}<input type="radio" name="is_effect" value="1" checked="checked" /></label>
+			<label>{%IS_EFFECT_0}<input type="radio" name="is_effect" value="0" /></label>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">简介:</td>
+		<td class="item_input">
+			<textarea name="brief" class="textarea"></textarea>
+		</td>
+	</tr-->
+	
+	<tr>
+		<td class="item_title">重要提示:</td>
+		<td class="item_input">
+			 <html:editor id="hint" name="hint" content="{$vo.hint}" type="KINDEDITOR"  />
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">公司简介:</td>
+		<td class="item_input">
+			 <html:editor id="brief" name="brief" content="{$vo.brief}" type="KINDEDITOR" />
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">投资者保护机制:</td>
+		<td class="item_input">
+			 <html:editor id="protect" name="protect" content="{$vo.protect}" type="KINDEDITOR"  />
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">信息披露安排:</td>
+		<td class="item_input">
+			 <html:editor id="inf_expose" name="inf_expose" content="{$vo.inf_expose}" type="KINDEDITOR"  />
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">融资计划:</td>
+		<td class="item_input">
+			 <html:editor id="plan" name="plan" content="{$vo.plan}" type="KINDEDITOR" />
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">财务情况:</td>
+		<td class="item_input">
+			 <html:editor id="finance" name="finance" content="{$vo.finance}" type="KINDEDITOR"  />
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">优势和劣势:</td>
+		<td class="item_input">
+			 <html:editor id="good_bad" name="good_bad" content="{$vo.good_bad}" type="KINDEDITOR"  />
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">市场分析:</td>
+		<td class="item_input">
+			 <html:editor id="market" name="market" content="{$vo.market}" type="KINDEDITOR"  />
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">商业模式:</td>
+		<td class="item_input">
+			 <html:editor id="bus_model" name="bus_model" content="{$vo.bus_model}" type="KINDEDITOR"  />
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">风险控制:</td>
+		<td class="item_input">
+			 <html:editor id="risk" name="risk" content="{$vo.risk}" type="KINDEDITOR"  />
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">团队介绍:</td>
+		<td class="item_input">
+			 <html:editor id="team" name="team" content="{$vo.team}" type="KINDEDITOR"  />
+		</td>
+	</tr>
+	
+	<!--tr>
+		<td class="item_title">标签:</td>
+		<td class="item_input"><input type="text" class="textbox" name="tags" style="width:500px;" /> <span class='tip_span'>用空格分隔</span></td>
+	</tr-->
+	
+	<tr>
+		<td class="item_title">所属地区:</td>
+		<td class="item_input">
+			<select name="province">				
+			<option value="" rel="0">请选择省份</option>
+			<foreach name="region_lv2" item="region">
+				<option value="{$region.name}" rel="{$region.id}" <if condition="$region['selected']">selected="selected"</if>>{$region.name}</option>
+			</foreach>
+			</select>
+			
+			<select name="city">				
+			<option value="" rel="0">请选择城市</option>
+			<foreach name="region_lv3" item="region">
+				<option value="{$region.name}" rel="{$region.id}" <if condition="$region['selected']">selected="selected"</if>>{$region.name}</option>
+			</foreach>
+			</select>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">排序:</td>
+		<td class="item_input"><input type="text" class="textbox" name="sort" value="{$vo.sort}"/></td>
+	</tr>
+
+	
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>
+
+<div class="blank5"></div>
+	<table class="form" cellpadding=0 cellspacing=0>
+		<tr>
+			<td colspan=2 class="topTd"></td>
+		</tr>
+		<tr>
+			<td class="item_title"></td>
+			<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Stock" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+			<input type="hidden" name="id" value="{$vo.id}" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+			<input type="reset" class="button" value="{%RESET}" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="bottomTd"></td>
+		</tr>
+	</table> 		 
+</form>
+</div>
+<include file="Public:footer" />
