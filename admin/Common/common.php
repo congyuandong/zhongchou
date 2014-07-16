@@ -58,7 +58,10 @@ function write_timezone($zone='')
 	    @file_put_contents(get_real_path()."public/timezone_config.php",$timezone_config_str);
 }
 
-
+function format_sacle($v)
+{
+	return $v."%";
+}
 
 //后台日志记录
 function save_log($msg,$status)
@@ -263,14 +266,15 @@ function get_deal_user($uid)
 function get_to_date($time)
 {
 	if($time==0)return "长期";
-	if($time<get_gmtime())
-	{
-		return "<span style='color:#f30;'>过期</span>";
-	}
-	else 
-	{
-		return  "<span>".to_date($time,"Y/m/d H:i")."</span>";
-	}
+	return  "<span>".to_date($time,"Y/m/d H:i")."</span>";
+	// if($time<get_gmtime())
+	// {
+	// 	return "<span style='color:#f30;'>过期</span>";
+	// }
+	// else 
+	// {
+	// 	return  "<span>".to_date($time,"Y/m/d H:i")."</span>";
+	// }
 }
 
 function get_title($title)

@@ -55,6 +55,8 @@ class DealAction extends CommonAction{
 		$this->assign("cate_list",$cate_list);
 		$this->display ();
 	}
+
+	
 	
 	public function submit_index()
 	{

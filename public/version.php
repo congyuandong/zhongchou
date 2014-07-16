@@ -1,6 +1,6 @@
 <?php 
 return array(
-	'APP_NAME'	=>	'方维众筹系统  fanwe.com ',
+	'APP_NAME'	=>	'清大众筹  QD ',
 	'APP_SUB_VER'	=>	51,
 );
 ?>
