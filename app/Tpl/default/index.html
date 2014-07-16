@@ -23,18 +23,19 @@
     <li data="transfer"><a href="javascript:;">众筹转让</a></li>
   </ul>
   <div class="tabitem stock">
-    <!-- underway -->
+  	<!-- underway -->
   <div class="wrap level">
     <div class="title"> <span class="left">融资中项目</span><span class="right"><a href="javascript:;">更多&gt;</a></span> </div>
     <ul class="list">
+    {foreach from=$stock_list item=stock_item}
       <li>
-        <div class="img"> <a href="javascript:;"><img src="{$TMPL}/images/e1.png" width="314px" height="162px" /></a>
+        <div class="img"> <a href="javascript:;"><img src="{$stock_item.image}" width="314px" height="162px" /></a>
           <div class="tip">
-            <p class="intro">面是四川的宜宾燃面，是当地最具特色的汉族传统小吃之一，原名叙府燃面</p>
+            <p class="intro">{$stock_item.description}</p>
             <p class="remain">剩余：23天</p>
           </div>
         </div>
-        <div class="namebar"> <span class="left name"><a href="javascript:;">比目鱼儿童主题乐园</a></span> <span class="right status">融资中</span> </div>
+        <div class="namebar"> <span class="left name"><a href="{$stock_item.url}">{$stock_item.name}</a></span> <span class="right status">{$stock_item.deal_type}</span> </div>
         <div class="progressbar">
           <div class="left gray">
             <div class="left yellow"></div>
@@ -43,83 +44,22 @@
         </div>
         <div class="money">
           <div class="left">
-            <p>￥200,000</p>
-            <p>项目方出资</p>
+            <p>￥{$stock_item.current_amount}</p>
+            <p>当前融资</p>
           </div>
           <div class="left">
-            <p>￥2,000,000</p>
+            <p>￥{$stock_item.limit_price}</p>
             <p>融资总额</p>
           </div>
           <div class="left">
-            <p>￥4,000</p>
+            <p>￥{$stock_item.min_price}</p>
             <p>单投资人最低出资</p>
           </div>
         </div>
-        <div class="cinfo"><span class="location">北京</span><span class="clazz"><a href="javascript:;">医疗健康</a></span><span class="right status">已挂牌企业</span></div>
-        <div class="course">约谈 <span>23</span>　/　关注 <span>1,088</span>　/　认购结束 <span>3,555</span></div>
+        <div class="cinfo"><span class="location">{$stock_item.province}</span><span class="clazz"><a href="javascript:;">{$stock_item.cate}</a></span><span class="right status">{$stock_item.com_type}</span></div>
+        <div class="course">约谈 <span>{$stock_item.talk_count}</span>　/　关注 <span>{$stock_item.focus_count}</span>　/　认购结束 <span>{$stock_item.support_count}</span></div>
       </li>
-      <li>
-        <div class="img"> <a href="javascript:;"><img src="{$TMPL}/images/e1.png" width="314px" height="162px" /></a>
-          <div class="tip">
-            <p class="intro">面是四川的宜宾燃面，是当地最具特色的汉族传统小吃之一，原名叙府燃面</p>
-            <p class="remain">剩余：23天</p>
-          </div>
-        </div>
-        <div class="namebar"> <span class="left name"><a href="javascript:;">比目鱼儿童主题乐园</a></span> <span class="right status">融资中</span> </div>
-        <div class="progressbar">
-          <div class="left gray">
-            <div class="left yellow"></div>
-          </div>
-          <div class="right percent">60%</div>
-        </div>
-        <div class="money">
-          <div class="left">
-            <p>￥200,000</p>
-            <p>项目方出资</p>
-          </div>
-          <div class="left">
-            <p>￥2,000,000</p>
-            <p>融资总额</p>
-          </div>
-          <div class="left">
-            <p>￥4,000</p>
-            <p>单投资人最低出资</p>
-          </div>
-        </div>
-        <div class="cinfo"><span class="location">北京</span><span class="clazz"><a href="javascript:;">医疗健康</a></span><span class="right status">已挂牌企业</span></div>
-        <div class="course">约谈 <span>23</span>　/　关注 <span>1,088</span>　/　认购结束 <span>3,555</span></div>
-      </li>
-      <li>
-        <div class="img"> <a href="javascript:;"><img src="{$TMPL}/images/e1.png" width="314px" height="162px" /></a>
-          <div class="tip">
-            <p class="intro">面是四川的宜宾燃面，是当地最具特色的汉族传统小吃之一，原名叙府燃面</p>
-            <p class="remain">剩余：23天</p>
-          </div>
-        </div>
-        <div class="namebar"> <span class="left name"><a href="javascript:;">比目鱼儿童主题乐园</a></span> <span class="right status">融资中</span> </div>
-        <div class="progressbar">
-          <div class="left gray">
-            <div class="left yellow"></div>
-          </div>
-          <div class="right percent">29%</div>
-        </div>
-        <div class="money">
-          <div class="left">
-            <p>￥200,000</p>
-            <p>项目方出资</p>
-          </div>
-          <div class="left">
-            <p>￥2,000,000</p>
-            <p>融资总额</p>
-          </div>
-          <div class="left">
-            <p>￥4,000</p>
-            <p>单投资人最低出资</p>
-          </div>
-        </div>
-        <div class="cinfo"><span class="location">北京</span><span class="clazz"><a href="javascript:;">医疗健康</a></span><span class="right status">已挂牌企业</span></div>
-        <div class="course">约谈 <span>23</span>　/　关注 <span>1,088</span>　/　认购结束 <span>3,555</span></div>
-      </li>
+      {/foreach}
     </ul>
   </div>
   <div class="clearfix"></div>
@@ -129,7 +69,7 @@
     <div class="title"> <span class="left">预热中项目</span><span class="right"><a href="javascript:;">更多&gt;</a></span> </div>
     <ul class="list">
       <li class="preheat">
-        <div class="img"> <a href="javascript:;"><img src="{$TMPL}/images/e1.png" width="314px" height="162px" /></a>
+        <div class="img"> <a href="javascript:;"><img src="images/e1.png" width="314px" height="162px" /></a>
           <div class="tip">
             <p class="intro">面是四川的宜宾燃面，是当地最具特色的汉族传统小吃之一，原名叙府燃面</p>
             <p class="remain">剩余：23天</p>
@@ -155,7 +95,7 @@
         <div class="course">约谈 <span>23</span>　/　关注 <span>1,088</span>　/　认购结束 <span>3,555</span></div>
       </li>
       <li class="preheat">
-        <div class="img"> <a href="javascript:;"><img src="{$TMPL}/images/e1.png" width="314px" height="162px" /></a>
+        <div class="img"> <a href="javascript:;"><img src="images/e1.png" width="314px" height="162px" /></a>
           <div class="tip">
             <p class="intro">面是四川的宜宾燃面，是当地最具特色的汉族传统小吃之一，原名叙府燃面</p>
             <p class="remain">剩余：23天</p>
@@ -181,7 +121,7 @@
         <div class="course">约谈 <span>23</span>　/　关注 <span>1,088</span>　/　认购结束 <span>3,555</span></div>
       </li>
       <li class="preheat">
-        <div class="img"> <a href="javascript:;"><img src="{$TMPL}/images/e1.png" width="314px" height="162px" /></a>
+        <div class="img"> <a href="javascript:;"><img src="images/e1.png" width="314px" height="162px" /></a>
           <div class="tip">
             <p class="intro">面是四川的宜宾燃面，是当地最具特色的汉族传统小吃之一，原名叙府燃面</p>
             <p class="remain">剩余：23天</p>
@@ -215,7 +155,7 @@
     <div class="title"> <span class="left">融资成功项目</span><span class="right"><a href="javascript:;">更多&gt;</a></span> </div>
     <ul class="list">
       <li class="finished">
-        <div class="img"> <a href="javascript:;"><img src="{$TMPL}/images/e1.png" width="314px" height="162px" /></a>
+        <div class="img"> <a href="javascript:;"><img src="images/e1.png" width="314px" height="162px" /></a>
           <div class="tip">
             <p class="intro">面是四川的宜宾燃面，是当地最具特色的汉族传统小吃之一，原名叙府燃面</p>
             <p class="remain">剩余：23天</p>
@@ -246,7 +186,7 @@
         <div class="course">约谈 <span>23</span>　/　关注 <span>1,088</span>　/　认购结束 <span>3,555</span></div>
       </li>
       <li class="finished">
-        <div class="img"> <a href="javascript:;"><img src="{$TMPL}/images/e1.png" width="314px" height="162px" /></a>
+        <div class="img"> <a href="javascript:;"><img src="images/e1.png" width="314px" height="162px" /></a>
           <div class="tip">
             <p class="intro">面是四川的宜宾燃面，是当地最具特色的汉族传统小吃之一，原名叙府燃面</p>
             <p class="remain">剩余：23天</p>
@@ -277,7 +217,7 @@
         <div class="course">约谈 <span>23</span>　/　关注 <span>1,088</span>　/　认购结束 <span>3,555</span></div>
       </li>
       <li class="finished">
-        <div class="img"> <a href="javascript:;"><img src="{$TMPL}/images/e1.png" width="314px" height="162px" /></a>
+        <div class="img"> <a href="javascript:;"><img src="images/e1.png" width="314px" height="162px" /></a>
           <div class="tip">
             <p class="intro">面是四川的宜宾燃面，是当地最具特色的汉族传统小吃之一，原名叙府燃面</p>
             <p class="remain">剩余：23天</p>
@@ -311,13 +251,13 @@
   </div>
   </div>
   <div class="tabitem bond">
-    <div class="wrap level">
+  	<div class="wrap level">
       <div class="title"> <span class="left">投标中项目</span><span class="right"><a href="javascript:;">查看更多&gt;</a></span> </div>
       <ul class="left plist">
-        <li>
-          <div class="left status">中</div>
+      	<li>
+        	<div class="left status">中</div>
             <div class="left company">
-              <div>塑胶制品生产企业经营贷款</div>
+            	<div>塑胶制品生产企业经营贷款</div>
                 <div class="progressbar">
                   <div class="left gray">
                     <div class="left blue"></div>
@@ -329,13 +269,13 @@
             <div>融资企业：陕西塑胶制品有限公司</div>
             <div>资金用途：补充经营用途，企业经营流动性资金</div><hr />
             <div>年化利率 <span class="ctext">10%+1%</span><span class="g">/</span>截止日期 <span class="ctext">2015年7月8日</span></div>
-      <div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
+			<div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
         </li>
         
         <li>
-          <div class="left status">中</div>
+        	<div class="left status">中</div>
             <div class="left company">
-              <div>塑胶制品生产企业经营贷款</div>
+            	<div>塑胶制品生产企业经营贷款</div>
                 <div class="progressbar">
                   <div class="left gray">
                     <div class="left blue"></div>
@@ -347,13 +287,13 @@
             <div>融资企业：陕西塑胶制品有限公司</div>
             <div>资金用途：补充经营用途，企业经营流动性资金</div><hr />
             <div>年化利率 <span class="ctext">10%+1%</span><span class="g">/</span>截止日期 <span class="ctext">2015年7月8日</span></div>
-      <div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
+			<div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
         </li>
         
         <li>
-          <div class="left status">中</div>
+        	<div class="left status">中</div>
             <div class="left company">
-              <div>塑胶制品生产企业经营贷款</div>
+            	<div>塑胶制品生产企业经营贷款</div>
                 <div class="progressbar">
                   <div class="left gray">
                     <div class="left blue"></div>
@@ -365,18 +305,18 @@
             <div>融资企业：陕西塑胶制品有限公司</div>
             <div>资金用途：补充经营用途，企业经营流动性资金</div><hr />
             <div>年化利率 <span class="ctext">10%+1%</span><span class="g">/</span>截止日期 <span class="ctext">2015年7月8日</span></div>
-      <div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
+			<div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
         </li>
       </ul>
     </div>
-    <div class="clearfix"></div>
+  	<div class="clearfix"></div>
     <div class="wrap level refund">
       <div class="title"> <span class="left">还款中项目</span><span class="right"><a href="javascript:;">查看更多&gt;</a></span> </div>
       <ul class="left plist">
-        <li>
-          <div class="left status">还</div>
+      	<li>
+        	<div class="left status">还</div>
             <div class="left company">
-              <div>塑胶制品生产企业经营贷款</div>
+            	<div>塑胶制品生产企业经营贷款</div>
                 <div class="progressbar">
                   <div class="left gray">
                     <div class="left green"></div>
@@ -388,12 +328,12 @@
             <div>融资企业：陕西塑胶制品有限公司</div>
             <div>资金用途：补充经营用途，企业经营流动性资金</div><hr />
             <div>年化利率 <span class="ctext">10%+1%</span><span class="g">/</span>截止日期 <span class="ctext">2015年7月8日</span></div>
-      <div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
+			<div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
         </li>
         <li>
-          <div class="left status">还</div>
+        	<div class="left status">还</div>
             <div class="left company">
-              <div>塑胶制品生产企业经营贷款</div>
+            	<div>塑胶制品生产企业经营贷款</div>
                 <div class="progressbar">
                   <div class="left gray">
                     <div class="left green"></div>
@@ -405,12 +345,12 @@
             <div>融资企业：陕西塑胶制品有限公司</div>
             <div>资金用途：补充经营用途，企业经营流动性资金</div><hr />
             <div>年化利率 <span class="ctext">10%+1%</span><span class="g">/</span>截止日期 <span class="ctext">2015年7月8日</span></div>
-      <div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
+			<div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
         </li>
         <li>
-          <div class="left status">还</div>
+        	<div class="left status">还</div>
             <div class="left company">
-              <div>塑胶制品生产企业经营贷款</div>
+            	<div>塑胶制品生产企业经营贷款</div>
                 <div class="progressbar">
                   <div class="left gray">
                     <div class="left green"></div>
@@ -422,18 +362,18 @@
             <div>融资企业：陕西塑胶制品有限公司</div>
             <div>资金用途：补充经营用途，企业经营流动性资金</div><hr />
             <div>年化利率 <span class="ctext">10%+1%</span><span class="g">/</span>截止日期 <span class="ctext">2015年7月8日</span></div>
-      <div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
+			<div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
         </li>
         </ul>
         </div>
-    <div class="clearfix"></div>
+  	<div class="clearfix"></div>
     <div class="wrap level frefund">
       <div class="title"> <span class="left">还款中项目</span><span class="right"><a href="javascript:;">查看更多&gt;</a></span> </div>
       <ul class="left plist">
         <li>
-          <div class="left status">完</div>
+        	<div class="left status">完</div>
             <div class="left company">
-              <div>塑胶制品生产企业经营贷款</div>
+            	<div>塑胶制品生产企业经营贷款</div>
                 <div class="progressbar">
                   <div class="left gray">
                     <div class="left yellow"></div>
@@ -445,12 +385,12 @@
             <div>融资企业：陕西塑胶制品有限公司</div>
             <div>资金用途：补充经营用途，企业经营流动性资金</div><hr />
             <div>年化利率 <span class="ctext">10%+1%</span><span class="g">/</span>截止日期 <span class="ctext">2015年7月8日</span></div>
-      <div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
+			<div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
         </li>
         <li>
-          <div class="left status">完</div>
+        	<div class="left status">完</div>
             <div class="left company">
-              <div>塑胶制品生产企业经营贷款</div>
+            	<div>塑胶制品生产企业经营贷款</div>
                 <div class="progressbar">
                   <div class="left gray">
                     <div class="left yellow"></div>
@@ -462,12 +402,12 @@
             <div>融资企业：陕西塑胶制品有限公司</div>
             <div>资金用途：补充经营用途，企业经营流动性资金</div><hr />
             <div>年化利率 <span class="ctext">10%+1%</span><span class="g">/</span>截止日期 <span class="ctext">2015年7月8日</span></div>
-      <div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
+			<div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
         </li>
         <li>
-          <div class="left status">完</div>
+        	<div class="left status">完</div>
             <div class="left company">
-              <div>塑胶制品生产企业经营贷款</div>
+            	<div>塑胶制品生产企业经营贷款</div>
                 <div class="progressbar">
                   <div class="left gray">
                     <div class="left yellow"></div>
@@ -479,32 +419,32 @@
             <div>融资企业：陕西塑胶制品有限公司</div>
             <div>资金用途：补充经营用途，企业经营流动性资金</div><hr />
             <div>年化利率 <span class="ctext">10%+1%</span><span class="g">/</span>截止日期 <span class="ctext">2015年7月8日</span></div>
-      <div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
+			<div>融资金额 <span class="ctext">￥500.00万</span><span class="g">/</span>授信额度 <span class="ctext">￥2000.00万</span></div>
         </li>
         </ul>
         </div>
   </div>
 <div class="tabitem transfer">
-  <div class="wrap level">
+	<div class="wrap level">
       <div class="title"> <span class="left">进行中的项目</span><span class="right"><a href="javascript:;">查看更多&gt;</a></span> </div>
       <ul class="left">
-        <li>
-          <div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bg">债权转让</span><span class="right bb">进行中</span></div>
+      	<li>
+        	<div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bg">债权转让</span><span class="right bb">进行中</span></div>
             <div class="lbar"><span class="left">实际年化：<span class="y">10%</span></span><span class="left">原标年化：<span class="y">10%</span></span><span class="right y">查看详情&gt;&gt;</span></div>
             <div class="pbar">债权总价 <span class="b">7,000,000</span> 转让总价 <span class="b">7,000,000</span> 公允价值 <span class="b">7,000,000</span> 剩余期限 <span class="b">293天</span></div>
         </li>
         <li>
-          <div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bp">债权转让</span><span class="right bb">进行中</span></div>
+        	<div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bp">债权转让</span><span class="right bb">进行中</span></div>
             <div class="lbar"><span class="left">实际年化：<span class="y">10%</span></span><span class="left">原标年化：<span class="y">10%</span></span><span class="right y">查看详情&gt;&gt;</span></div>
             <div class="pbar">债权总价 <span class="b">7,000,000</span> 转让总价 <span class="b">7,000,000</span> 公允价值 <span class="b">7,000,000</span> 剩余期限 <span class="b">293天</span></div>
         </li>
         <li>
-          <div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bp">债权转让</span><span class="right bb">进行中</span></div>
+        	<div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bp">债权转让</span><span class="right bb">进行中</span></div>
             <div class="lbar"><span class="left">实际年化：<span class="y">10%</span></span><span class="left">原标年化：<span class="y">10%</span></span><span class="right y">查看详情&gt;&gt;</span></div>
             <div class="pbar">债权总价 <span class="b">7,000,000</span> 转让总价 <span class="b">7,000,000</span> 公允价值 <span class="b">7,000,000</span> 剩余期限 <span class="b">293天</span></div>
         </li>
         <li>
-          <div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bg">债权转让</span><span class="right bb">进行中</span></div>
+        	<div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bg">债权转让</span><span class="right bb">进行中</span></div>
             <div class="lbar"><span class="left">实际年化：<span class="y">10%</span></span><span class="left">原标年化：<span class="y">10%</span></span><span class="right y">查看详情&gt;&gt;</span></div>
             <div class="pbar">债权总价 <span class="b">7,000,000</span> 转让总价 <span class="b">7,000,000</span> 公允价值 <span class="b">7,000,000</span> 剩余期限 <span class="b">293天</span></div>
         </li>
@@ -514,23 +454,23 @@
    <div class="wrap level">
       <div class="title"> <span class="left">已完成的项目</span><span class="right"><a href="javascript:;">查看更多&gt;</a></span> </div>
       <ul class="left">
-        <li>
-          <div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bg">债权转让</span><span class="right by">已完成</span></div>
+      	<li>
+        	<div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bg">债权转让</span><span class="right by">已完成</span></div>
             <div class="lbar"><span class="left">实际年化：<span class="y">10%</span></span><span class="left">原标年化：<span class="y">10%</span></span><span class="right y">查看详情&gt;&gt;</span></div>
             <div class="pbar">债权总价 <span class="b">7,000,000</span> 转让总价 <span class="b">7,000,000</span> 公允价值 <span class="b">7,000,000</span> 剩余期限 <span class="b">293天</span></div>
         </li>
         <li>
-          <div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bp">债权转让</span><span class="right by">已完成</span></div>
+        	<div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bp">债权转让</span><span class="right by">已完成</span></div>
             <div class="lbar"><span class="left">实际年化：<span class="y">10%</span></span><span class="left">原标年化：<span class="y">10%</span></span><span class="right y">查看详情&gt;&gt;</span></div>
             <div class="pbar">债权总价 <span class="b">7,000,000</span> 转让总价 <span class="b">7,000,000</span> 公允价值 <span class="b">7,000,000</span> 剩余期限 <span class="b">293天</span></div>
         </li>
         <li>
-          <div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bp">债权转让</span><span class="right by">已完成</span></div>
+        	<div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bp">债权转让</span><span class="right by">已完成</span></div>
             <div class="lbar"><span class="left">实际年化：<span class="y">10%</span></span><span class="left">原标年化：<span class="y">10%</span></span><span class="right y">查看详情&gt;&gt;</span></div>
             <div class="pbar">债权总价 <span class="b">7,000,000</span> 转让总价 <span class="b">7,000,000</span> 公允价值 <span class="b">7,000,000</span> 剩余期限 <span class="b">293天</span></div>
         </li>
         <li>
-          <div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bg">债权转让</span><span class="right by">已完成</span></div>
+        	<div class="nbar"><span class="left">蓝莓种植企业经营贷款 724-1-2</span><span class="right bg">债权转让</span><span class="right by">已完成</span></div>
             <div class="lbar"><span class="left">实际年化：<span class="y">10%</span></span><span class="left">原标年化：<span class="y">10%</span></span><span class="right y">查看详情&gt;&gt;</span></div>
             <div class="pbar">债权总价 <span class="b">7,000,000</span> 转让总价 <span class="b">7,000,000</span> 公允价值 <span class="b">7,000,000</span> 剩余期限 <span class="b">293天</span></div>
         </li>
@@ -541,4 +481,3 @@
 </div>
 <div class="clearfix"></div>
 {include file="inc/footer.html"} 
-
