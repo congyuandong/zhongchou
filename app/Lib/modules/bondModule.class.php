@@ -8,7 +8,7 @@ class bondModule extends BaseModule{
 		$limit = ($page-1)*$page_size.",".$page_size;
 
 
-		$condition = " 1 = 1 "; 
+		$condition = " is_delete = 0 "; 
 		
 		$deal_count = $GLOBALS['db']->getOne("select count(*) from ".DB_PREFIX."bond where ".$condition);
 		$page = new Page($deal_count,$page_size);   //初始化分页对象 		
