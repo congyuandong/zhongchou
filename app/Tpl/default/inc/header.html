@@ -21,7 +21,7 @@ $this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/heustudio.jquery.min.js
     <div class="right userbar"> <a href="javascript:;" class="login">登录</a>|<a href="javascript:;" class="reg">注册</a> </div>
     <ul class="right navi">
         {foreach from=$nav_list item=nav_item}
-          <li><a href="{$nav_item.url}" class="navi_{$nav_item.sort}">{$nav_item.name}</a></li>
+          <li {if $nav_item.current eq 1}class="hover"{/if}><a href="{$nav_item.url}" class="navi_{$nav_item.sort}">{$nav_item.name}</a></li>
         {/foreach}
     </ul>
   </div>
