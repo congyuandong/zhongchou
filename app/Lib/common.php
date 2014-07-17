@@ -107,6 +107,35 @@ function percent($have,$total){
 	return round($have * 100/$total).'%';
 }
 
+function substr_heu($text,$start=0,$end=15) {
+    if(empty($text)){
+        return false;
+    }
+    if (function_exists('mb_substr')){
+        if(func_num_args() >= 3) {
+            $end = func_get_arg(2);
+            return mb_substr($text,$start,$end,'utf-8');
+        }
+        else {
+            mb_internal_encoding("UTF-8");
+            return mb_substr($text,$start);
+        }       
+ 
+    }
+    else {
+        $null = "";
+        preg_match_all("/./u", $text, $ar);
+        if(func_num_args() >= 3) {
+            $end = func_get_arg(2);
+            return join($null, array_slice($ar[0],$start,$end));
+        }
+        else {
+            return join($null, array_slice($ar[0],$start));
+        }
+    }
+}
+
+
 //获取相应规格的图片地址
 //gen=0:保持比例缩放，不剪裁,如高为0，则保证宽度按比例缩放  gen=1：保证长宽，剪裁
 function get_spec_image($img_path,$width=0,$height=0,$gen=0,$is_preview=true,$is_deleteable=true)

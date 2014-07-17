@@ -148,7 +148,7 @@
       	<li>
         	<div class="left status">中</div>
             <div class="left company">
-            	<div><a href="{url r="showbond" p="id=$bond_item.id"}" class="company">{$bond_item.name}</a></div>
+            	<div><a href="{url r="showbond" p="id=$bond_item.id"}" class="company">{function name="substr_heu" t=$bond_item.name s=0 e=15}</a></div>
                 <div class="progressbar">
                   <div class="left gray">
                     <div class="left blue"></div>
@@ -173,7 +173,7 @@
       	<li>
         	<div class="left status">还</div>
             <div class="left company">
-            	<div><a href="{url r="showbond" p="id=$bond_item.id"}" class="company">{$bond_item.name}</a></div>
+            	<div><a href="{url r="showbond" p="id=$bond_item.id"}" class="company">{function name="substr_heu" t=$bond_item.name s=0 e=15}</a></div>
                 <div class="progressbar">
                   <div class="left gray">
                     <div class="left green"></div>
@@ -198,7 +198,7 @@
       	<li>
         	<div class="left status">完</div>
             <div class="left company">
-            	<div><a href="{url r="showbond" p="id=$bond_item.id"}" class="company">{$bond_item.name}</a></div>
+            	<div><a href="{url r="showbond" p="id=$bond_item.id"}" class="company">{function name="substr_heu" t=$bond_item.name s=0 e=15}</a></div>
                 <div class="progressbar">
                   <div class="left gray">
                     <div class="left yellow"></div>
