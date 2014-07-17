@@ -25,7 +25,7 @@
   <div class="tabitem stock">
   	<!-- underway -->
   <div class="wrap level">
-    <div class="title"> <span class="left">融资中项目</span><span class="right"><a href="javascript:;">更多&gt;</a></span> </div>
+    <div class="title"> <span class="left">融资中项目</span><span class="right"><a href="{url r="stock" p="deal_type=筹资中"}">更多&gt;</a></span> </div>
     <ul class="list">
     {foreach from=$stock_list1 item=stock_item}
       <li>
@@ -66,7 +66,7 @@
   
   <!-- preheat -->
   <div class="wrap level">
-    <div class="title"> <span class="left">预热中项目</span><span class="right"><a href="javascript:;">更多&gt;</a></span> </div>
+    <div class="title"> <span class="left">预热中项目</span><span class="right"><a href="{url r="stock" p="deal_type=即将开始"}">更多&gt;</a></span> </div>
     <ul class="list">
     {foreach from=$stock_list2 item=stock_item}
       <li class="preheat">
@@ -102,7 +102,7 @@
   
   <!-- finished -->
   <div class="wrap level">
-    <div class="title"> <span class="left">融资成功项目</span><span class="right"><a href="javascript:;">更多&gt;</a></span> </div>
+    <div class="title"> <span class="left">融资成功项目</span><span class="right"><a href="{url r="stock" p="deal_type=成功项目"}">更多&gt;</a></span> </div>
     <ul class="list">
     {foreach from=$stock_list3 item=stock_item}
       <li class="finished">
@@ -142,7 +142,7 @@
   </div>
   <div class="tabitem bond">
   	<div class="wrap level">
-      <div class="title"> <span class="left">投标中项目</span><span class="right"><a href="javascript:;">查看更多&gt;</a></span> </div>
+      <div class="title"> <span class="left">投标中项目</span><span class="right"><a href="{url r="bond" p="deal_status=投标中"}">查看更多&gt;</a></span> </div>
       <ul class="left plist">
       {foreach from=$bond_list1 item=bond_item}
       	<li>
@@ -167,7 +167,7 @@
     </div>
   	<div class="clearfix"></div>
     <div class="wrap level refund">
-      <div class="title"> <span class="left">还款中项目</span><span class="right"><a href="javascript:;">查看更多&gt;</a></span> </div>
+      <div class="title"> <span class="left">还款中项目</span><span class="right"><a href="{url r="bond" p="deal_status=还款中"}">查看更多&gt;</a></span> </div>
       <ul class="left plist">
       	{foreach from=$bond_list2 item=bond_item}
       	<li>
@@ -192,7 +192,7 @@
         </div>
   	<div class="clearfix"></div>
     <div class="wrap level frefund">
-      <div class="title"> <span class="left">还款完成项目</span><span class="right"><a href="javascript:;">查看更多&gt;</a></span> </div>
+      <div class="title"> <span class="left">还款完成项目</span><span class="right"><a href="{url r="bond" p="deal_status=还款完成"}">查看更多&gt;</a></span> </div>
       <ul class="left plist">
         {foreach from=$bond_list3 item=bond_item}
       	<li>
@@ -218,7 +218,7 @@
   </div>
 <div class="tabitem transfer">
 	<div class="wrap level">
-      <div class="title"> <span class="left">进行中的项目</span><span class="right"><a href="javascript:;">查看更多&gt;</a></span> </div>
+      <div class="title"> <span class="left">进行中的项目</span><span class="right"><a href="{url r="transfer" p="deal_status=进行中"}">查看更多&gt;</a></span> </div>
       <ul class="left">
       {foreach from=$transfer_list1 item=transfer_item}
       	<li>
@@ -231,7 +231,7 @@
    </div>
    <div class="clearfix"></div>
    <div class="wrap level">
-      <div class="title"> <span class="left">已完成的项目</span><span class="right"><a href="javascript:;">查看更多&gt;</a></span> </div>
+      <div class="title"> <span class="left">已完成的项目</span><span class="right"><a href="{url r="transfer" p="deal_status=已完成"}">查看更多&gt;</a></span> </div>
       <ul class="left">
       	{foreach from=$transfer_list2 item=transfer_item}
       	<li>
