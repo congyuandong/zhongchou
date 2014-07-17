@@ -6,10 +6,22 @@
   </div>
   <div class="filterpart">
   	<div class="type">
-    	<span>企业类型：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">拟挂牌企业股权众筹</a></span><span><a href="javascript:;">已挂牌企业再融资股权众筹</a></span><span><a href="javascript:;">其他股权众筹</a></span>
+    	<span>企业类型：</span>
+      {if $b_g_com_type == "" || $b_g_com_type == "all"}
+        <span class="hover"><a href="{url r="bond" p="com_type=all"}">全部</a></span>
+      {else}
+        <span><a href="{url r="bond" p="com_type=all"}">全部</a></span>
+      {/if}
+      {foreach from=$com_type_list item=com_type}
+        {if $com_type.com_type == $b_g_com_type}
+          <span class="hover"><a href="{url r="bond" p="com_type=$com_type.com_type"}">{$com_type.com_type}</a></span>
+        {else}
+          <span><a href="{url r="bond" p="com_type=$com_type.com_type"}">{$com_type.com_type}</a></span>
+        {/if}
+      {/foreach}
     </div>
     <div class="status">
-    	<span>项目期限：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">3个月以下</a></span><span><a href="javascript:;">3-6 个月</a></span><span><a href="javascript:;">6-9 个月</a></span><span><a href="javascript:;">9-12 个月</a></span><span><a href="javascript:;">12 个月以上</a></span>
+    	<span>项目期限：</span><span class="hover"><a href="{url r="bond" p="l=$com_type.com_type"}">全部</a></span><span><a href="{url r="bond" p="com_type=$com_type.com_type"}">3个月以下</a></span><span><a href="{url r="bond" p="com_type=$com_type.com_type"}">3-6 个月</a></span><span><a href="{url r="bond" p="com_type=$com_type.com_type"}">6-9 个月</a></span><span><a href="{url r="bond" p="com_type=$com_type.com_type"}">9-12 个月</a></span><span><a href="{url r="bond" p="com_type=$com_type.com_type"}">12 个月以上</a></span>
     </div>
     <div class="trade">
     	<span>预期利率：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">5%以下</a></span><span><a href="javascript:;">5%-6%</a></span><span><a href="javascript:;">6%-7%</a></span><span><a href="javascript:;">7%-8%</a></span><span><a href="javascript:;">8%以上</a></span>
