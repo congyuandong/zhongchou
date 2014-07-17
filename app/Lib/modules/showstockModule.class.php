@@ -7,7 +7,10 @@ class showstockModule extends BaseModule{
 		{
 			app_redirect(url("index"));
 		}
+		$stock_order = $GLOBALS['db']->getAll("select * from ".DB_PREFIX."order where type = 0");
+
 		$GLOBALS['tmpl']->assign("stock_info",$stock_info);	
+		$GLOBALS['tmpl']->assign("stock_order",$stock_order);	
 		$GLOBALS['tmpl']->display("sdetail.html");
 	}
 }

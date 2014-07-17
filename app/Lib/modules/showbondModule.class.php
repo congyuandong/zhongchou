@@ -7,7 +7,10 @@ class showbondModule extends BaseModule{
 		{
 			app_redirect(url("index"));
 		}
+		$bond_order = $GLOBALS['db']->getAll("select * from ".DB_PREFIX."order where type = 1");
+		
 		$GLOBALS['tmpl']->assign("bond_info",$bond_info);	
+		$GLOBALS['tmpl']->assign("bond_order",$bond_order);
 		$GLOBALS['tmpl']->display("bdetail.html");
 	}
 }

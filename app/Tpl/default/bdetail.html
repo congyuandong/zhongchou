@@ -14,7 +14,7 @@
             <div class="left gray">
               <div class="left"></div>
             </div>
-            <div class="right percent bygc">35%</div>
+            <div class="right percent bygc">{function name="percent" b=$bond_info.current_amout e=$bond_info.limit_price}</div>
           </div>
           <div class="money">
             <div class="left">
@@ -39,7 +39,7 @@
       </li>
       </ul>
       <div class="right operate">
-      	<div class="remain">剩余<span class="bygc">22</span>天</div>
+      	<div class="remain">剩余<span class="bygc">{function name="remain_day" b=$bond_item.begin_time e=$bond_item.end_time}</span>天</div>
         <div class="offer">已认购：<span>￥{$bond_info.support_amount}万</span> <a href="javascript:;" class="bygb">投标</a></div>
       </div>
   </div>
@@ -80,19 +80,9 @@
 		<h1>投标情况</h1>
         <table>
         	<tr><th class="s">时 间</th><th class="r">投资人</th><th class="q">投资金额</th></tr>
-            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
-            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
-            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
-            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
-            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
-            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
-            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
-            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
-            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
-            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
-            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
-            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
-            <tr><td>2014-07-12 01:18:34</td><td>LC****05</td><td>7,126.56</td></tr>
+            {foreach from=$bond_order item=bond_order_item}
+            <tr><td>{function name="format_time" v=$bond_order_item.pay_time f="Y-m-d"}</td><td>{$bond_order_item.user_name}</td><td>{$bond_order_item.total_price}</td></tr>
+            {/foreach}
         </table>
     </div>
   </div>
