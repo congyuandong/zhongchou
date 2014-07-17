@@ -85,7 +85,7 @@
             <div class="left gray">
               <div class="left yellow"></div>
             </div>
-            <div class="right percent">35%</div>
+            <div class="right percent">{function name="percent" b=$stock_item.current_amount e=$stock_item.limit_price}</div>
           </div>
           <div class="money">
             <div class="left">当前融资：<span>￥{$stock_item.current_amount}万</span>融资总额：<span>￥{$stock_item.limit_price}万</span>认购起点：<span>￥{$stock_item.min_price}万</span>出让股权比例：<span>{$stock_item.stock_scale}%</span></div>

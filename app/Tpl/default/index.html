@@ -32,7 +32,7 @@
         <div class="img"> <a href="{url r="showstock" p="id=$stock_item.id"}"><img src="{$stock_item.image}" width="314px" height="162px" /></a>
           <div class="tip">
             <p class="intro">{$stock_item.description}</p>
-            <p class="remain">剩余：23天</p>
+            <p class="remain">剩余：{function name="remain_day" b=$stock_item.begin_time e=$stock_item.end_time}天</p>
           </div>
         </div>
         <div class="namebar"> <span class="left name"><a href="{url r="showstock" p="id=$stock_item.id"}">{$stock_item.name}</a></span> <span class="right status">{$stock_item.deal_type}</span> </div>
@@ -40,7 +40,7 @@
           <div class="left gray">
             <div class="left yellow"></div>
           </div>
-          <div class="right percent">23%</div>
+          <div class="right percent">{function name="percent" b=$stock_item.current_amount e=$stock_item.limit_price}</div>
         </div>
         <div class="money">
           <div class="left">
@@ -73,7 +73,7 @@
         <div class="img"> <a href="{url r="showstock" p="id=$stock_item.id"}"><img src="{$stock_item.image}" width="314px" height="162px" /></a>
           <div class="tip">
             <p class="intro">{$stock_item.description}</p>
-            <p class="remain">剩余：23天</p>
+            <p class="remain">剩余：{function name="remain_day" b=$stock_item.begin_time e=$stock_item.end_time}天</p>
           </div>
         </div>
         <div class="namebar"> <span class="left name"><a href="{url r="showstock" p="id=$stock_item.id"}">{$stock_item.name}</a></span> <span class="right status">{$stock_item.deal_type}</span> </div>
@@ -109,7 +109,7 @@
         <div class="img"> <a href="{url r="showstock" p="id=$stock_item.id"}"><img src="{$stock_item.image}" width="314px" height="162px" /></a>
           <div class="tip">
             <p class="intro">{$stock_item.description}</p>
-            <p class="remain">剩余：23天</p>
+            <p class="remain">剩余：{function name="remain_day" b=$stock_item.begin_time e=$stock_item.end_time}天</p>
           </div>
         </div>
         <div class="namebar"> <span class="left name"><a href="{url r="showstock" p="id=$stock_item.id"}">{$stock_item.name}</a></span> <span class="right status">已成功</span> </div>
@@ -153,7 +153,7 @@
                   <div class="left gray">
                     <div class="left blue"></div>
                   </div>
-                  <div class="right percent">30%</div>
+                  <div class="right percent">{function name="percent" b=$bond_item.current_amout e=$bond_item.limit_price}</div>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -178,7 +178,7 @@
                   <div class="left gray">
                     <div class="left green"></div>
                   </div>
-                  <div class="right percent">30%</div>
+                  <div class="right percent">{function name="percent" b=$bond_item.current_amout e=$bond_item.limit_price}</div>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -224,7 +224,7 @@
       	<li>
         	<div class="nbar"><span class="left">{$transfer_item.name} {$transfer_item.tran_code}</span><span class="right {if $transfer_item.com_type eq '债权转让'}bg{else}bp{/if}">{$transfer_item.com_type}</span><span class="right bb">进行中</span></div>
             <div class="lbar"><span class="left">实际年化：<span class="y">{$transfer_item.tran_scale_real}%</span></span><span class="left">原标年化：<span class="y">{$transfer_item.tran_scale_goal}%</span></span><span class="right y"><a class="y" href="{url r="showtransfer" p="id=$transfer_item.id"}">查看详情&gt;&gt;</a></span></div>
-            <div class="pbar">债权总价 <span class="b">{$transfer_item.limit_price}万</span> 转让总价 <span class="b">{$transfer_item.tran_price}万</span> 公允价值 <span class="b">{$transfer_item.pub_price}万</span> 剩余期限 <span class="b">{$transfer_item.last_day}天</span></div>
+            <div class="pbar">债权总价 <span class="b">{$transfer_item.limit_price}万</span> 转让总价 <span class="b">{$transfer_item.tran_price}万</span> 公允价值 <span class="b">{$transfer_item.pub_price}万</span> 剩余期限 <span class="b">{function name="remain_day" b=$transfer_item.begin_time e=$transfer_item.end_time}天</span></div>
         </li>
         {/foreach}
      </ul>
@@ -237,7 +237,7 @@
       	<li>
         	<div class="nbar"><span class="left">{$transfer_item.name} {$transfer_item.tran_code}</span><span class="right {if $transfer_item.com_type eq '债权转让'}bg{else}bp{/if}">{$transfer_item.com_type}</span><span class="right bb">{$transfer_item.tran_code}</span></div>
             <div class="lbar"><span class="left">实际年化：<span class="y">{$transfer_item.tran_scale_real}%</span></span><span class="left">原标年化：<span class="y">{$transfer_item.tran_scale_goal}%</span></span><span class="right y"><a class="y" href="{url r="showtransfer" p="id=$transfer_item.id"}">查看详情&gt;&gt;</a></span></div>
-            <div class="pbar">债权总价 <span class="b">{$transfer_item.limit_price}万</span> 转让总价 <span class="b">{$transfer_item.tran_price}万</span> 公允价值 <span class="b">{$transfer_item.pub_price}万</span> 剩余期限 <span class="b">{$transfer_item.last_day}天</span></div>
+            <div class="pbar">债权总价 <span class="b">{$transfer_item.limit_price}万</span> 转让总价 <span class="b">{$transfer_item.tran_price}万</span> 公允价值 <span class="b">{$transfer_item.pub_price}万</span> 剩余期限 <span class="b">{function name="remain_day" b=$transfer_item.begin_time e=$transfer_item.end_time}天</span></div>
         </li>
         {/foreach}
      </ul>

@@ -99,6 +99,14 @@ function format_time($time,$format = 'Y年m月d日'){
 	return date($format, $time);
 }
 
+function remain_day($btime,$etime){
+	return ceil(($etime - $btime)/86400);
+}
+
+function percent($have,$total){
+	return round($have * 100/$total).'%';
+}
+
 //获取相应规格的图片地址
 //gen=0:保持比例缩放，不剪裁,如高为0，则保证宽度按比例缩放  gen=1：保证长宽，剪裁
 function get_spec_image($img_path,$width=0,$height=0,$gen=0,$is_preview=true,$is_deleteable=true)

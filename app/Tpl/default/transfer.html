@@ -25,7 +25,7 @@
       <li>
           <div class="namebar"><span class="left name"><a href="{url r="showtransfer" p="id=$transfer_item.id"}">{$transfer_item.name}</a></span><span class="left">债权转让编号 {$transfer_item.tran_code}</span><span class="right {if $transfer_item.com_type eq '债权转让'}bg{else}bp{/if}">{$transfer_item.com_type}</span><span class="right bb">{$transfer_item.tran_code}</span></div>
           <div class="binfo">
-            <div class="left dm">实际年化 <span class="y">{$transfer_item.tran_scale_real}%</span><span class="gg">/</span>原标年化 <span class="y">{$transfer_item.tran_scale_goal}%</span><span class="gg">/</span>债权总额 <span class="b">{$transfer_item.limit_price}万</span><span class="gg">/</span>转让价格 <span class="b">{$transfer_item.tran_price}万</span><span class="gg">/</span>公允价值 <span class="b">{$transfer_item.pub_price}万</span><span class="gg">/</span>剩余期限 <span class="b">{$transfer_item.last_day}天</span></div>
+            <div class="left dm">实际年化 <span class="y">{$transfer_item.tran_scale_real}%</span><span class="gg">/</span>原标年化 <span class="y">{$transfer_item.tran_scale_goal}%</span><span class="gg">/</span>债权总额 <span class="b">{$transfer_item.limit_price}万</span><span class="gg">/</span>转让价格 <span class="b">{$transfer_item.tran_price}万</span><span class="gg">/</span>公允价值 <span class="b">{$transfer_item.pub_price}万</span><span class="gg">/</span>剩余期限 <span class="b">{function name="remain_day" b=$transfer_item.begin_time e=$transfer_item.end_time}天</span></div>
           </div>
           <div class="cctext">{$transfer_item.description}<a href="{url r="showtransfer" p="id=$transfer_item.id"}" class="y">更多&gt;&gt;</a></div>
       </li>
