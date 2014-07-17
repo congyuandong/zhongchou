@@ -6,16 +6,102 @@
   </div>
   <div class="filterpart">
   	<div class="type">
-    	<span>转让类型：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">股权转让</a></span><span><a href="javascript:;">债权转让</a></span>
+    	<span>转让类型：</span>
+        {if $t_g_com_type == "" || $t_g_com_type == "all"}
+          <span class="hover"><a href="{url r="transfer" p="com_type=all"}">全部</a></span>
+        {else}
+          <span><a href="{url r="transfer" p="com_type=all"}">全部</a></span>
+        {/if}
+        {foreach from=$com_type_list item=com_type}
+          {if $com_type.com_type == $t_g_com_type}
+            <span class="hover"><a href="{url r="transfer" p="com_type=$com_type.com_type"}">{$com_type.com_type}</a></span>
+          {else}
+            <span><a href="{url r="transfer" p="com_type=$com_type.com_type"}">{$com_type.com_type}</a></span>
+          {/if}
+        {/foreach}
     </div>
     <div class="status">
-    	<span>转让期限：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">3个月以下</a></span><span><a href="javascript:;">3-6 个月</a></span><span><a href="javascript:;">6-9 个月</a></span><span><a href="javascript:;">9-12 个月</a></span><span><a href="javascript:;">12 个月以上</a></span>
+    	<span>转让期限：</span>
+        {if $t_g_last_day == 1}
+            <span class="hover"><a href="{url r="transfer" p="last_day=1"}">全部</a></span>
+        {else}
+            <span><a href="{url r="transfer" p="last_day=1"}">全部</a></span>
+        {/if}
+        {if $t_g_last_day == 2}
+            <span class="hover"><a href="{url r="transfer" p="last_day=2"}">3个月以下</a></span>
+        {else}
+            <span><a href="{url r="transfer" p="last_day=2"}">3个月以下</a></span>
+        {/if}
+        {if $t_g_last_day == 3}
+            <span class="hover"><a href="{url r="transfer" p="last_day=3"}">3-6 个月</a></span>
+        {else}
+            <span><a href="{url r="transfer" p="last_day=3"}">3-6 个月</a></span>
+        {/if}
+        {if $t_g_last_day == 4}
+            <span class="hover"><a href="{url r="transfer" p="last_day=4"}">6-9 个月</a></span>
+        {else}
+            <span><a href="{url r="transfer" p="last_day=4"}">6-9 个月</a></span>
+        {/if}
+        {if $t_g_last_day == 5}
+            <span class="hover"><a href="{url r="transfer" p="last_day=5"}">9-12 个月</a></span>
+        {else}
+            <span><a href="{url r="transfer" p="last_day=5"}">9-12 个月</a></span>
+        {/if}
+        {if $t_g_last_day == 6}
+            <span class="hover"><a href="{url r="transfer" p="last_day=6"}">12 个月以上</a></span>
+        {else}
+            <span><a href="{url r="transfer" p="last_day=6"}">12 个月以上</a></span>
+        {/if}     
     </div>
     <div class="trade">
-    	<span>预期利率：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">50万以下</a></span><span><a href="javascript:;">50万-100万</a></span><span><a href="javascript:;">100万-150万</a></span><span><a href="javascript:;">150万-200万</a></span><span><a href="javascript:;">200万以上</a></span>
+    	<span>预期利率：</span>
+        {if $t_g_scale == 1}
+            <span class="hover"><a href="{url r="transfer" p="scale=1"}">全部</a></span>
+        {else}
+            <span><a href="{url r="transfer" p="scale=1"}">全部</a></span>
+        {/if}
+        {if $t_g_scale == 2}
+            <span class="hover"><a href="{url r="transfer" p="scale=2"}">5%以下</a></span>
+        {else}
+            <span><a href="{url r="transfer" p="scale=2"}">5%以下</a></span>
+        {/if}
+        {if $t_g_scale == 3}
+            <span class="hover"><a href="{url r="transfer" p="scale=3"}">5%-6%</a></span>
+        {else}
+            <span><a href="{url r="transfer" p="scale=3"}">5%-6%</a></span>
+        {/if}
+        {if $t_g_scale == 4}
+            <span class="hover"><a href="{url r="transfer" p="scale=4"}">6%-7%</a></span>
+        {else}
+            <span><a href="{url r="transfer" p="scale=4"}">6%-7%</a></span>
+        {/if}
+        {if $t_g_scale == 5}
+            <span class="hover"><a href="{url r="transfer" p="scale=5"}">7%-8%</a></span>
+        {else}
+            <span><a href="{url r="transfer" p="scale=5"}">7%-8%</a></span>
+        {/if}
+        {if $t_g_scale == 6}
+            <span class="hover"><a href="{url r="transfer" p="scale=6"}">8%以上</a></span>
+        {else}
+            <span><a href="{url r="transfer" p="scale=6"}">8%以上</a></span>
+        {/if}
+
+      <!--span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">50万以下</a></span><span><a href="javascript:;">50万-100万</a></span><span><a href="javascript:;">100万-150万</a></span><span><a href="javascript:;">150万-200万</a></span><span><a href="javascript:;">200万以上</a></span-->
     </div>
     <div class="area">
-    	<span>项目状态：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">已完成</a></span><span><a href="javascript:;">进行中</a></span>
+    	<span>项目状态：</span>
+        {if $t_g_deal_status == "" || $t_g_deal_status == "all"}
+          <span class="hover"><a href="{url r="transfer" p="deal_status=all"}">全部</a></span>
+        {else}
+          <span><a href="{url r="transfer" p="deal_status=all"}">全部</a></span>
+        {/if}
+        {foreach from=$deal_status_list item=deal_status}
+          {if $deal_status.deal_status == $t_g_deal_status}
+            <span class="hover"><a href="{url r="transfer" p="deal_status=$deal_status.deal_status"}">{$deal_status.deal_status}</a></span>
+          {else}
+            <span><a href="{url r="transfer" p="deal_status=$deal_status.deal_status"}">{$deal_status.deal_status}</a></span>
+          {/if}
+        {/foreach}
     </div>
   </div>
 
