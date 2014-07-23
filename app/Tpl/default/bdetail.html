@@ -51,7 +51,7 @@
         <div class="tabitem projectinfo">
         	<table class="t1">
             	<tr><td class="ti">融资企业</td><td class="te">{$bond_info.com_name}</td><td class="ti">本期融资金额</td><td class="ts">{$bond_info.limit_price}万</td></tr>
-                <tr><td class="ti">融资企业代理人</td><td class="te">{$bond_info.user_name}万<a href="javascript:;">所有融资项目</a></td><td class="ti">本次授信额度</td><td class="ts">{$bond_info.min_price}万</td></tr>
+                <tr><td class="ti">融资企业代理人</td><td class="te">{$bond_info.user_name}<a href="javascript:;">所有融资项目</a></td><td class="ti">本次授信额度</td><td class="ts">{$bond_info.min_price}万</td></tr>
                 <tr><td class="ti">项目区域位置</td><td class="te">{$bond_info.province}</td><td class="ti">还款日期</td><td class="ts">{function name="format_time" v=$bond_item.end_time f="Y-m-d"}</td></tr>
                 <tr><td class="ti">年化利率</td><td class="te">{$bond_info.bond_scale}%</td><td class="ti">投标截止日期</td><td class="ts">{function name="format_time" v=$bond_item.end_time f="Y-m-d"}</td></tr>
                 <tr><td class="ti">资金用途</td><td class="te" colspan="3">{$bond_info.description}</td></tr>
